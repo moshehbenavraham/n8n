@@ -1,0 +1,179 @@
+# Upstream Sync Workflow
+# Automatically syncs with upstream n8n repository and creates PRs for updates
+
+name: 'Upstream Sync'
+
+on:
+  schedule:
+    # Run weekly on Monday at 9:00 AM UTC
+    - cron: '0 9 * * 1'
+
+  workflow_dispatch:
+    inputs:
+      create_pr:
+        description: 'Create PR for upstream changes'
+        required: false
+        type: boolean
+        default: true
+      target_branch:
+        description: 'Branch to sync (master or customizations)'
+        required: false
+        type: choice
+        options:
+          - master
+          - customizations
+        default: master
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  sync-upstream:
+    name: Sync with Upstream
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Add upstream remote
+        run: |
+          git remote add upstream https://github.com/n8n-io/n8n.git || true
+          git fetch upstream
+
+      - name: Check for upstream changes
+        id: check-changes
+        run: |
+          TARGET_BRANCH="${{ github.event.inputs.target_branch || 'master' }}"
+
+          # Get commit counts
+          UPSTREAM_COMMITS=$(git rev-list --count HEAD..upstream/master)
+
+          echo "upstream_commits=${UPSTREAM_COMMITS}" >> "$GITHUB_OUTPUT"
+          echo "target_branch=${TARGET_BRANCH}" >> "$GITHUB_OUTPUT"
+
+          if [ "$UPSTREAM_COMMITS" -gt 0 ]; then
+            echo "has_changes=true" >> "$GITHUB_OUTPUT"
+            echo "Found ${UPSTREAM_COMMITS} new commits from upstream"
+          else
+            echo "has_changes=false" >> "$GITHUB_OUTPUT"
+            echo "No new commits from upstream"
+          fi
+
+      - name: Get upstream version info
+        if: steps.check-changes.outputs.has_changes == 'true'
+        id: upstream-version
+        run: |
+          # Get the latest version tag from upstream
+          LATEST_TAG=$(git tag -l 'n8n@*' --sort=-v:refname | head -1)
+          echo "latest_tag=${LATEST_TAG}" >> "$GITHUB_OUTPUT"
+
+          # Get recent commit messages for PR body
+          RECENT_COMMITS=$(git log --oneline HEAD..upstream/master | head -20)
+          {
+            echo "recent_commits<<EOF"
+            echo "${RECENT_COMMITS}"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Create sync branch
+        if: steps.check-changes.outputs.has_changes == 'true'
+        id: create-branch
+        run: |
+          SYNC_BRANCH="upstream-sync/$(date +%Y-%m-%d)"
+          git checkout -b "${SYNC_BRANCH}"
+
+          # Attempt to merge upstream
+          if git merge upstream/master --no-edit; then
+            echo "merge_status=success" >> "$GITHUB_OUTPUT"
+            echo "Merge successful"
+          else
+            echo "merge_status=conflicts" >> "$GITHUB_OUTPUT"
+            echo "Merge has conflicts - manual resolution required"
+            # Abort the merge for now
+            git merge --abort
+          fi
+
+          echo "sync_branch=${SYNC_BRANCH}" >> "$GITHUB_OUTPUT"
+
+      - name: Push sync branch
+        if: steps.check-changes.outputs.has_changes == 'true' && steps.create-branch.outputs.merge_status == 'success'
+        run: |
+          git push origin "${{ steps.create-branch.outputs.sync_branch }}"
+
+      - name: Create Pull Request
+        if: |
+          steps.check-changes.outputs.has_changes == 'true' &&
+          steps.create-branch.outputs.merge_status == 'success' &&
+          (github.event.inputs.create_pr != 'false')
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ steps.create-branch.outputs.sync_branch }}
+          base: ${{ steps.check-changes.outputs.target_branch }}
+          title: "chore: Sync with upstream n8n (${{ steps.upstream-version.outputs.latest_tag }})"
+          body: |
+            ## Upstream Sync
+
+            This PR syncs the fork with the upstream n8n repository.
+
+            **Upstream Version:** ${{ steps.upstream-version.outputs.latest_tag }}
+            **New Commits:** ${{ steps.check-changes.outputs.upstream_commits }}
+
+            ### Recent Upstream Changes
+
+            ```
+            ${{ steps.upstream-version.outputs.recent_commits }}
+            ```
+
+            ### Checklist
+
+            - [ ] Review changes for breaking changes
+            - [ ] Verify branding customizations still intact
+            - [ ] Run build locally: `pnpm build`
+            - [ ] Test functionality
+            - [ ] Update version tracking in deployment
+
+            ---
+            *This PR was automatically created by the upstream sync workflow.*
+          labels: |
+            upstream-sync
+            automated
+
+      - name: Report conflicts
+        if: steps.check-changes.outputs.has_changes == 'true' && steps.create-branch.outputs.merge_status == 'conflicts'
+        run: |
+          {
+            echo "## Upstream Sync - Manual Intervention Required"
+            echo ""
+            echo "The upstream merge has conflicts that require manual resolution."
+            echo ""
+            echo "### Steps to resolve:"
+            echo '```bash'
+            echo "git fetch upstream"
+            echo "git checkout master"
+            echo "git merge upstream/master"
+            echo "# Resolve conflicts manually"
+            echo "git add ."
+            echo "git commit"
+            echo "git push origin master"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Summary - No changes
+        if: steps.check-changes.outputs.has_changes == 'false'
+        run: |
+          {
+            echo "## Upstream Sync - Up to Date"
+            echo ""
+            echo "The fork is already up to date with upstream n8n."
+          } >> "$GITHUB_STEP_SUMMARY"
