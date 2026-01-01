@@ -4,7 +4,7 @@
 name: 'Custom Docker Build'
 
 env:
-  NODE_VERSION: '22.19.0'
+  NODE_VERSION: '22'
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
 
@@ -103,7 +103,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: .
-          file: ./docker/images/n8n/Dockerfile
+          file: ./docker/images/n8n-custom/Dockerfile
           build-args: |
             NODE_VERSION=${{ env.NODE_VERSION }}
             N8N_VERSION=${{ github.ref_name }}
