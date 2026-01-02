@@ -16,7 +16,8 @@
     "phase00-session01-color-system-foundation",
     "phase00-session02-brand-identity-assets",
     "phase00-session03-element-plus-token-integration",
-    "phase00-session04-visual-atmosphere-motion"
+    "phase00-session04-visual-atmosphere-motion",
+    "phase00-session05-hardcoded-color-remediation"
   ],
   "next_session_history": [
     {
@@ -37,6 +38,11 @@
     {
       "date": "2026-01-02",
       "session": "phase00-session04-visual-atmosphere-motion",
+      "status": "completed"
+    },
+    {
+      "date": "2026-01-02",
+      "session": "phase00-session05-hardcoded-color-remediation",
       "status": "completed"
     }
   ]

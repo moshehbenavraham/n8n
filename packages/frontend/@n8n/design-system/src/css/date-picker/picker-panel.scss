@@ -51,14 +51,14 @@
 		}
 
 		&.active {
-			background-color: #e6f1fe;
+			background-color: var(--color--primary--tint-3);
 			color: var.$datepicker-active-color;
 		}
 	}
 
 	@include mixins.e(btn) {
-		border: 1px solid #dcdcdc;
-		color: #333;
+		border: 1px solid var(--border-color);
+		color: var(--color--text--shade-1);
 		line-height: 24px;
 		border-radius: 2px;
 		padding: 0 20px;

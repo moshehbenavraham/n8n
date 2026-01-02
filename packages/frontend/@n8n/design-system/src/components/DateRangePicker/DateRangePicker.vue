@@ -254,7 +254,7 @@ const forwarded = useForwardPropsEmits(props, emit);
 .CalendarCellTrigger[data-selection-start='true'],
 .CalendarCellTrigger[data-selection-end='true'] {
 	background: var(--color--primary);
-	color: #fff;
+	color: var(--color--foreground--tint-2);
 }
 
 .CalendarCellTrigger[data-today]::before {

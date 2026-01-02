@@ -84,7 +84,7 @@ const iconStyleData = computed((): Record<string, string> => {
 	width: var(--node--icon--size, 26px);
 	height: var(--node--icon--size, 26px);
 	border-radius: var(--radius--sm);
-	color: var(--node--icon--color, #444);
+	color: var(--node--icon--color, var(--color--text));
 	line-height: var(--node--icon--size, 26px);
 	font-size: 1.1em;
 	text-align: center;
@@ -97,7 +97,7 @@ const iconStyleData = computed((): Record<string, string> => {
 }
 
 .disabled {
-	color: '#ccc';
+	color: var(--color--text--tint-2);
 	-webkit-filter: contrast(40%) brightness(1.5) grayscale(100%);
 	filter: contrast(40%) brightness(1.5) grayscale(100%);
 }

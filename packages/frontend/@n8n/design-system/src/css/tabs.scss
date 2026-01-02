@@ -441,8 +441,8 @@
 
 				&.is-active {
 					border-color: transparent;
-					border-top-color: rgb(209, 219, 229);
-					border-bottom-color: rgb(209, 219, 229);
+					border-top-color: var(--border-color--light);
+					border-bottom-color: var(--border-color--light);
 				}
 			}
 		}
@@ -508,8 +508,8 @@
 
 				&.is-active {
 					border-color: transparent;
-					border-top-color: rgb(209, 219, 229);
-					border-bottom-color: rgb(209, 219, 229);
+					border-top-color: var(--border-color--light);
+					border-bottom-color: var(--border-color--light);
 				}
 			}
 		}
