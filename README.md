@@ -1,76 +1,88 @@
-![Banner image](https://user-images.githubusercontent.com/10284570/173569848-c624317f-42b1-45a6-ab09-f0ea3c247648.png)
+# n8n Custom Fork - Obsidian Forge Design
 
-# NOTE THIS IS A CUSTOMIZED FORK OF n8n!
-
-## Designed to work with: https://github.com/moshehbenavraham/n8n-aiwithapex
-
-# n8n - Secure Workflow Automation for Technical Teams
-
-n8n is a workflow automation platform that gives technical teams the flexibility of code with the speed of no-code. With 400+ integrations, native AI capabilities, and a fair-code license, n8n lets you build powerful automations while maintaining full control over your data and deployments.
-
-![n8n.io - Screenshot](https://raw.githubusercontent.com/n8n-io/n8n/master/assets/n8n-screenshot-readme.png)
-
-## Key Capabilities
-
-- **Code When You Need It**: Write JavaScript/Python, add npm packages, or use the visual interface
-- **AI-Native Platform**: Build AI agent workflows based on LangChain with your own data and models
-- **Full Control**: Self-host with our fair-code license or use our [cloud offering](https://app.n8n.cloud/login)
-- **Enterprise-Ready**: Advanced permissions, SSO, and air-gapped deployments
-- **Active Community**: 400+ integrations and 900+ ready-to-use [templates](https://n8n.io/workflows)
+Custom n8n fork with comprehensive visual redesign. Industrial luxury meets precision engineering.
 
 ## Quick Start
 
-Try n8n instantly with [npx](https://docs.n8n.io/hosting/installation/npm/) (requires [Node.js](https://nodejs.org/en/)):
-
-```
-npx n8n
-```
-
-Or deploy with [Docker](https://docs.n8n.io/hosting/installation/docker/):
-
-```
-docker volume create n8n_data
-docker run -it --rm --name n8n -p 5678:5678 -v n8n_data:/home/node/.n8n docker.n8n.io/n8nio/n8n
+```bash
+pnpm install && pnpm dev
 ```
 
 Access the editor at http://localhost:5678
 
-## Resources
+## Repository Structure
 
-- 📚 [Documentation](https://docs.n8n.io)
-- 🔧 [400+ Integrations](https://n8n.io/integrations)
-- 💡 [Example Workflows](https://n8n.io/workflows)
-- 🤖 [AI & LangChain Guide](https://docs.n8n.io/advanced-ai/)
-- 👥 [Community Forum](https://community.n8n.io)
-- 📖 [Community Tutorials](https://community.n8n.io/c/tutorials/28)
+```
+.
+├── packages/
+│   ├── cli/                      # Backend entry point
+│   ├── core/                     # Workflow execution engine
+│   ├── workflow/                 # Shared interfaces
+│   ├── nodes-base/               # 400+ built-in nodes
+│   ├── @n8n/                     # Scoped packages (config, db, api-types, di)
+│   └── frontend/
+│       ├── editor-ui/            # Main Vue SPA
+│       └── @n8n/
+│           ├── design-system/    # Components + CSS tokens
+│           ├── i18n/             # Translations
+│           ├── stores/           # Shared Pinia stores
+│           └── chat/             # Embeddable chat widget
+├── docker/images/                # Docker configurations
+├── docs/                         # Project documentation
+└── .spec_system/                 # Spec-driven development artifacts
+```
 
-## Support
+## Documentation
 
-Need help? Our community forum is the place to get support and connect with other users:
-[community.n8n.io](https://community.n8n.io)
+- [Getting Started](docs/onboarding.md)
+- [Development Guide](docs/development.md)
+- [Architecture](docs/ARCHITECTURE.md)
+- [Environments](docs/environments.md)
+- [Contributing](docs/CONTRIBUTING.md)
+- [Custom Fork Guide](docs/custom-fork.md)
+- [Deployment](docs/deployment/DEPLOYMENT.md)
+- [Maintenance](docs/MAINTENANCE.md)
+
+## Tech Stack
+
+- **Vue 3** - Frontend framework
+- **TypeScript** - Type-safe development
+- **SCSS** - Styling with CSS custom properties (token architecture)
+- **Tailwind CSS** - Utility classes with `[data-theme="dark"]` selector
+- **Element Plus** - UI component library (38 override files)
+- **Vue Flow** - Workflow canvas
+- **pnpm 10.x** - Monorepo package management
+- **Turborepo** - Build orchestration
+- **Node.js 22.16+** - Runtime
+
+## Project Status
+
+This fork implements the "Obsidian Forge" design overhaul - warm amber and copper metallic accents against deep obsidian surfaces.
+
+See [PRD](.spec_system/PRD/PRD.md) for detailed requirements and phase breakdown.
+
+## Commands
+
+| Command | Purpose |
+|---------|---------|
+| `pnpm install` | Install dependencies |
+| `pnpm dev` | Full dev mode with hot reload |
+| `pnpm dev:be` | Backend only |
+| `pnpm dev:fe` | Frontend only |
+| `pnpm build` | Production build |
+| `pnpm test` | Run all tests |
+| `pnpm lint:fix` | Fix linting issues |
+| `pnpm typecheck` | TypeScript validation |
+
+## Upstream Sync
+
+This fork tracks upstream n8n. See [MAINTENANCE.md](docs/MAINTENANCE.md) for sync procedures.
+
+```bash
+git fetch upstream
+git log HEAD..upstream/master --oneline
+```
 
 ## License
 
-n8n is [fair-code](https://faircode.io) distributed under the [Sustainable Use License](https://github.com/n8n-io/n8n/blob/master/LICENSE.md) and [n8n Enterprise License](https://github.com/n8n-io/n8n/blob/master/LICENSE_EE.md).
-
-- **Source Available**: Always visible source code
-- **Self-Hostable**: Deploy anywhere
-- **Extensible**: Add your own nodes and functionality
-
-[Enterprise licenses](mailto:license@n8n.io) available for additional features and support.
-
-Additional information about the license model can be found in the [docs](https://docs.n8n.io/sustainable-use-license/).
-
-## Contributing
-
-Found a bug 🐛 or have a feature idea ✨? Check our [Contributing Guide](https://github.com/n8n-io/n8n/blob/master/CONTRIBUTING.md) to get started.
-
-## Join the Team
-
-Want to shape the future of automation? Check out our [job posts](https://n8n.io/careers) and join our team!
-
-## What does n8n mean?
-
-**Short answer:** It means "nodemation" and is pronounced as n-eight-n.
-
-**Long answer:** "I get that question quite often (more often than I expected) so I decided it is probably best to answer it here. While looking for a good name for the project with a free domain I realized very quickly that all the good ones I could think of were already taken. So, in the end, I chose nodemation. 'node-' in the sense that it uses a Node-View and that it uses Node.js and '-mation' for 'automation' which is what the project is supposed to help with. However, I did not like how long the name was and I could not imagine writing something that long every time in the CLI. That is when I then ended up on 'n8n'." - **Jan Oberhauser, Founder and CEO, n8n.io**
+n8n is [fair-code](https://faircode.io) distributed under the [Sustainable Use License](docs/LICENSE.md) and [n8n Enterprise License](docs/LICENSE_EE.md).

@@ -1,0 +1,17 @@
+{
+  "version": "2.0",
+  "project_name": "n8n AIwithApex.com",
+  "description": "Custom Enhanced n8n Fork - Obsidian Forge Design Overhaul",
+  "current_phase": 0,
+  "current_session": null,
+  "phases": {
+    "0": {
+      "name": "Foundation - Colors, Typography, Branding",
+      "description": "Establish the visual foundation for the Obsidian Forge design system - color primitives, typography, brand assets, and motion tokens",
+      "status": "not_started",
+      "session_count": 6
+    }
+  },
+  "completed_sessions": [],
+  "next_session_history": []
+}

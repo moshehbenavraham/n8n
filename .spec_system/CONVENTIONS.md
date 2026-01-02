@@ -162,6 +162,20 @@
 - Main branch is always deployable
 - Use semantic versioning for releases
 
+### Infrastructure
+
+| Bundle | Status | Details |
+|--------|--------|---------|
+| Health | configured | `/healthz` (liveness), `/healthz/readiness` (DB check), Docker HEALTHCHECK |
+| Security | configured | Rate limiting via `@n8n/decorators` on auth endpoints |
+| Backup | not configured | - |
+| Deploy | configured | GitHub Actions release-publish.yml (NPM + DockerHub) |
+
+**Platform:** Self-hosted Docker
+**Health Endpoints:**
+- `/healthz` - Basic liveness (returns `{ status: 'ok' }`)
+- `/healthz/readiness` - Readiness probe (checks DB connection and migration status)
+
 ## Local Dev Tools
 
 | Category | Tool | Config |
