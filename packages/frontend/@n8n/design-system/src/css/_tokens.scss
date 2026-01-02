@@ -177,6 +177,34 @@
 	/* stylelint-disable-next-line @n8n/css-var-naming */
 	--border: var(--border-base, var(--border-width) var(--border-style) var(--color--foreground));
 
+	// Animation tokens (Forge motion language)
+	// Semantic animation durations for consistent motion across the application
+	--animation--duration--reveal: var(--duration--normal);
+	--animation--duration--hover: var(--duration--fast);
+	--animation--duration--active: var(--duration--instant);
+	--animation--duration--pulse: 2s;
+	--animation--duration--flow: 1s;
+
+	// Animation easing tokens
+	--animation--easing--enter: var(--easing--forge-enter);
+	--animation--easing--exit: var(--easing--forge-exit);
+	--animation--easing--glow: var(--easing--forge-glow);
+
+	// Atmosphere tokens (Forge visual atmosphere - light mode)
+	// Gradient mesh colors for light mode surfaces
+	--atmosphere--gradient--primary: var(--color--obsidian-100);
+	--atmosphere--gradient--secondary: var(--color--steel-100);
+	--atmosphere--gradient--accent: var(--color--amber-alpha-100);
+	--atmosphere--noise--opacity: 0.02;
+
+	// Focus ring configuration
+	--focus--glow--color: var(--color--amber-alpha-300);
+	--focus--glow--spread: 12px;
+
+	// Interactive element feedback
+	--interactive--hover--brightness: 1.05;
+	--interactive--active--scale: 0.98;
+
 	// Secondary tokens
 
 	// LangChain

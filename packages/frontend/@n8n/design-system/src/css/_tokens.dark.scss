@@ -50,6 +50,21 @@
 	--border--focus: 2px solid var(--color--amber-500);
 	--border--error: 1px solid var(--color--ember-400);
 
+	// Atmosphere tokens (Forge visual atmosphere - dark mode)
+	// Gradient mesh colors for dark mode surfaces
+	--atmosphere--gradient--primary: var(--color--obsidian-800);
+	--atmosphere--gradient--secondary: var(--color--obsidian-900);
+	--atmosphere--gradient--accent: var(--color--amber-alpha-100);
+	--atmosphere--noise--opacity: 0.03;
+
+	// Focus ring glow (enhanced in dark mode)
+	--focus--glow--color: var(--color--amber-alpha-300);
+	--focus--glow--spread: 12px;
+
+	// Interactive element feedback (dark mode adjustments)
+	--interactive--hover--brightness: 1.1;
+	--interactive--active--scale: 0.98;
+
 	// Secondary tokens
 
 	// AI Assistant

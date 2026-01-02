@@ -1,0 +1,71 @@
+// _animations.scss
+// Obsidian Forge Design System - Animation Keyframes
+// Session: phase00-session04-visual-atmosphere-motion
+//
+// Defines the core animation keyframes for the Forge motion language:
+// - forge-reveal: Page load and element reveal animation
+// - ember-pulse: Running/active state pulse animation
+// - flow-pulse: Connection/data flow stroke animation
+//
+// All animations respect prefers-reduced-motion via wrapper mixins in _mixins.scss
+
+// Forge Reveal Animation
+// Smooth fade-in with subtle upward slide for page load and element reveals
+@keyframes forge-reveal {
+	0% {
+		opacity: 0;
+		transform: translateY(8px);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+// Ember Pulse Animation
+// Soft amber glow pulse for running/active states
+// Uses box-shadow with amber alpha values for the glow effect
+@keyframes ember-pulse {
+	0%,
+	100% {
+		box-shadow: 0 0 0 0 var(--color--amber-alpha-100);
+	}
+	50% {
+		box-shadow: 0 0 16px 4px var(--color--amber-alpha-300);
+	}
+}
+
+// Flow Pulse Animation
+// Stroke-dashoffset animation for connection/data flow visualization
+// Creates a flowing effect along paths and connections
+@keyframes flow-pulse {
+	0% {
+		stroke-dashoffset: 0;
+	}
+	100% {
+		stroke-dashoffset: -20;
+	}
+}
+
+// Fade In Animation
+// Simple opacity fade for subtle reveals
+@keyframes fade-in {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+// Glow Breathe Animation
+// Subtle breathing glow effect for ambient indicators
+@keyframes glow-breathe {
+	0%,
+	100% {
+		opacity: 0.6;
+	}
+	50% {
+		opacity: 1;
+	}
+}
