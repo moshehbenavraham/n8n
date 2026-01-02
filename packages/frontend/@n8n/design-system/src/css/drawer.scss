@@ -9,7 +9,7 @@ $directions: rtl, ltr, ttb, btt;
 	background-color: var.$dialog-background-color;
 	display: flex;
 	flex-direction: column;
-	box-shadow: 0 6px 16px rgb(68 28 23 / 6%);
+	box-shadow: var(--shadow--light);
 	overflow: hidden;
 
 	transition: all 0.3s;
@@ -26,7 +26,7 @@ $directions: rtl, ltr, ttb, btt;
 
 	&__header {
 		align-items: center;
-		color: rgb(114, 118, 123);
+		color: var(--color--text--tint-1);
 		display: flex;
 		margin-bottom: 32px;
 		padding: var.$dialog-padding-primary;

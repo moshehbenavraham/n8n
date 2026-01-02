@@ -51,7 +51,7 @@
 	background-color: var.$menu-background-color;
 	@include utils.utils-clearfix;
 	&.el-menu--horizontal {
-		border-bottom: solid 1px #e6e6e6;
+		border-bottom: solid 1px var(--border-color--light);
 	}
 
 	@include mixins.m(horizontal) {

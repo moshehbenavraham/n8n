@@ -19,7 +19,7 @@
 	}
 	@include mixins.e(new-tab) {
 		float: right;
-		border: 1px solid #d3dce6;
+		border: 1px solid var(--border-color--light);
 		height: 18px;
 		width: 18px;
 		line-height: 18px;
@@ -27,7 +27,7 @@
 		border-radius: 3px;
 		text-align: center;
 		font-size: 12px;
-		color: #d3dce6;
+		color: var(--color--text--tint-2);
 		cursor: pointer;
 		transition: all 0.15s;
 
@@ -433,7 +433,7 @@
 
 		&.el-tabs--border-card {
 			.el-tabs__header.is-left {
-				border-right: 1px solid #dfe4ed;
+				border-right: 1px solid var(--border-color--light);
 			}
 			.el-tabs__item.is-left {
 				border: 1px solid transparent;
@@ -500,7 +500,7 @@
 		}
 		&.el-tabs--border-card {
 			.el-tabs__header.is-right {
-				border-left: 1px solid #dfe4ed;
+				border-left: 1px solid var(--border-color--light);
 			}
 			.el-tabs__item.is-right {
 				border: 1px solid transparent;
