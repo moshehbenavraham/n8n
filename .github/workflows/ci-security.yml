@@ -17,7 +17,23 @@ jobs:
       ref: ${{ inputs.ref }}
     secrets: inherit
 
-  # Future security checks can be added here:
-  # - dependency-scan:
-  # - secret-detection:
-  # - container-scan:
+  gitleaks-scan:
+    name: Gitleaks Secret Scan
+    uses: ./.github/workflows/security-gitleaks-callable.yml
+    with:
+      ref: ${{ inputs.ref }}
+    secrets: inherit
+
+  codeql-analysis:
+    name: CodeQL SAST Analysis
+    uses: ./.github/workflows/security-codeql-callable.yml
+    with:
+      ref: ${{ inputs.ref }}
+    secrets: inherit
+
+  dependency-review:
+    name: Dependency Review
+    uses: ./.github/workflows/security-dependency-review-callable.yml
+    with:
+      ref: ${{ inputs.ref }}
+    secrets: inherit
