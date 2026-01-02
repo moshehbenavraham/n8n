@@ -38,6 +38,7 @@ const PROPERTY_VOCABULARY = new Set([
 	'font-size',
 	'font-weight',
 	'font-family',
+	'letter-spacing',
 	'line-height',
 	'margin',
 	'margin-right',

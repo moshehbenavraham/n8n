@@ -8,7 +8,7 @@
  *
  * To maintain backwards compatibility for users (for example embed customers that customize n8n)
  * we use CSS variable fallbacks:
- * --color--primary: var(--color-primary, var(--color--orange-300))
+ * --color--primary: var(--color-primary, var(--color--amber-500))
  *
  * This ensures:
  * 1. New code using --color--primary--* works correctly
@@ -20,49 +20,49 @@
 
 @mixin theme {
 	/* stylelint-disable-next-line @n8n/css-var-naming */
-	--color--primary--h: 7;
+	--color--primary--h: 38;
 	/* stylelint-disable-next-line @n8n/css-var-naming */
-	--color--primary--s: 100%;
+	--color--primary--s: 92%;
 	/* stylelint-disable-next-line @n8n/css-var-naming */
-	--color--primary--l: 68%;
+	--color--primary--l: 55%;
 
 	// Primary tokens
 
-	// Primary
+	// Primary (Amber - Forge Fire)
 	/* stylelint-disable-next-line @n8n/css-var-naming */
-	--color--primary--shade-1: var(--color-primary-shade-1, var(--color--orange-400));
+	--color--primary--shade-1: var(--color-primary-shade-1, var(--color--amber-600));
 	/* stylelint-disable-next-line @n8n/css-var-naming */
-	--color--primary: var(--color-primary, var(--color--orange-300));
+	--color--primary: var(--color-primary, var(--color--amber-500));
 	/* stylelint-disable-next-line @n8n/css-var-naming */
-	--color--primary--tint-1: var(--color-primary-tint-1, var(--color--orange-200));
+	--color--primary--tint-1: var(--color-primary-tint-1, var(--color--amber-300));
 	/* stylelint-disable-next-line @n8n/css-var-naming */
-	--color--primary--tint-2: var(--color-primary-tint-2, var(--color--orange-150));
+	--color--primary--tint-2: var(--color-primary-tint-2, var(--color--amber-200));
 	/* stylelint-disable-next-line @n8n/css-var-naming */
-	--color--primary--tint-3: var(--color-primary-tint-3, var(--color--orange-50));
+	--color--primary--tint-3: var(--color-primary-tint-3, var(--color--amber-50));
 
-	// Secondary
+	// Secondary (Steel - Cool Metal)
 	/* stylelint-disable-next-line @n8n/css-var-naming */
-	--color--secondary--shade-1: var(--color-secondary-shade-1, var(--color--purple-700));
+	--color--secondary--shade-1: var(--color-secondary-shade-1, var(--color--steel-700));
 	/* stylelint-disable-next-line @n8n/css-var-naming */
-	--color--secondary: var(--color-secondary, var(--color--purple-600));
+	--color--secondary: var(--color-secondary, var(--color--steel-500));
 	/* stylelint-disable-next-line @n8n/css-var-naming */
-	--color--secondary--tint-1: var(--color-secondary-tint-1, var(--color--purple-300));
+	--color--secondary--tint-1: var(--color-secondary-tint-1, var(--color--steel-300));
 	/* stylelint-disable-next-line @n8n/css-var-naming */
-	--color--secondary--tint-2: var(--color-secondary-tint-3, var(--color--purple-200));
+	--color--secondary--tint-2: var(--color-secondary-tint-3, var(--color--steel-200));
 
-	// Success
+	// Success (Verdigris - Oxidized Copper)
 	/* stylelint-disable-next-line @n8n/css-var-naming */
-	--color--success--shade-1: var(--color-success-shade-1, var(--color--green-700));
+	--color--success--shade-1: var(--color-success-shade-1, var(--color--verdigris-700));
 	/* stylelint-disable-next-line @n8n/css-var-naming */
-	--color--success: var(--color-success, var(--color--green-600));
+	--color--success: var(--color-success, var(--color--verdigris-500));
 	/* stylelint-disable-next-line @n8n/css-var-naming */
-	--color--success--tint-1: var(--color-success-light, var(--color--green-300));
+	--color--success--tint-1: var(--color-success-light, var(--color--verdigris-300));
 	/* stylelint-disable-next-line @n8n/css-var-naming */
-	--color--success--tint-2: var(--color-success-light-2, var(--color--green-200));
+	--color--success--tint-2: var(--color-success-light-2, var(--color--verdigris-200));
 	/* stylelint-disable-next-line @n8n/css-var-naming */
-	--color--success--tint-3: var(--color-success-tint-1, var(--color--green-100));
+	--color--success--tint-3: var(--color-success-tint-1, var(--color--verdigris-100));
 	/* stylelint-disable-next-line @n8n/css-var-naming */
-	--color--success--tint-4: var(--color-success-tint-2, var(--color--green-50));
+	--color--success--tint-4: var(--color-success-tint-2, var(--color--verdigris-50));
 
 	// Warning
 	/* stylelint-disable-next-line @n8n/css-var-naming */
@@ -74,19 +74,19 @@
 	/* stylelint-disable-next-line @n8n/css-var-naming */
 	--color--warning--tint-2: var(--color-warning-tint-2, var(--color--gold-50));
 
-	// Danger
+	// Danger (Ember - Forge Coals)
 	/* stylelint-disable-next-line @n8n/css-var-naming */
-	--color--danger--shade-1: var(--color-danger-shade-1, var(--color--red-700));
+	--color--danger--shade-1: var(--color-danger-shade-1, var(--color--ember-700));
 	/* stylelint-disable-next-line @n8n/css-var-naming */
-	--color--danger: var(--color-danger, var(--color--red-600));
+	--color--danger: var(--color-danger, var(--color--ember-500));
 	/* stylelint-disable-next-line @n8n/css-var-naming */
-	--color--danger--tint-1: var(--color-danger-light, var(--color--red-400));
+	--color--danger--tint-1: var(--color-danger-light, var(--color--ember-400));
 	/* stylelint-disable-next-line @n8n/css-var-naming */
-	--color--danger--tint-2: var(--color-danger-light-2, var(--color--red-300));
+	--color--danger--tint-2: var(--color-danger-light-2, var(--color--ember-300));
 	/* stylelint-disable-next-line @n8n/css-var-naming */
-	--color--danger--tint-3: var(--color-danger-tint-1, var(--color--red-100));
+	--color--danger--tint-3: var(--color-danger-tint-1, var(--color--ember-100));
 	/* stylelint-disable-next-line @n8n/css-var-naming */
-	--color--danger--tint-4: var(--color-danger-tint-2, var(--color--red-50));
+	--color--danger--tint-4: var(--color-danger-tint-2, var(--color--ember-50));
 
 	// Text
 	/* stylelint-disable-next-line @n8n/css-var-naming */
@@ -137,6 +137,25 @@
 	);
 	/* stylelint-disable-next-line @n8n/css-var-naming */
 	--shadow--light: var(--box-shadow-light, 0 2px 12px 0 rgba(0, 0, 0, 0.07));
+
+	// Shadow depth scale (Forge system)
+	--shadow--xs: 0 1px 2px rgba(0, 0, 0, 0.05);
+	--shadow--sm: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+	--shadow--md: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+	--shadow--lg: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
+	--shadow--xl: 0 20px 25px rgba(0, 0, 0, 0.1), 0 10px 10px rgba(0, 0, 0, 0.04);
+
+	// Amber glow shadows (Forge fire effect)
+	--shadow--glow--subtle: 0 0 8px var(--color--amber-alpha-100);
+	--shadow--glow--medium: 0 0 16px var(--color--amber-alpha-200);
+	--shadow--glow--strong: 0 0 24px var(--color--amber-alpha-300);
+
+	// Border tokens (Forge system)
+	--border--subtle: 1px solid var(--color--obsidian-200);
+	--border--default: 1px solid var(--color--obsidian-300);
+	--border--strong: 1px solid var(--color--obsidian-400);
+	--border--focus: 2px solid var(--color--amber-500);
+	--border--error: 1px solid var(--color--ember-500);
 
 	/* stylelint-disable-next-line @n8n/css-var-naming */
 	--radius--xl: var(--border-radius-xlarge, 12px);
@@ -347,23 +366,23 @@
 
 	// Button primary
 	--button--color--text--primary: var(--color--neutral-white);
-	--button--border-color--primary: var(--color--orange-300);
-	--button--color--background--primary: var(--color--orange-300);
-	--button--border-color--primary--hover-active: var(--color--orange-400);
-	--button--color--background--primary--hover-active-focus: var(--color--orange-400);
-	--button--outline-color--primary--focus: var(--color--orange-alpha-300);
+	--button--border-color--primary: var(--color--amber-500);
+	--button--color--background--primary: var(--color--amber-500);
+	--button--border-color--primary--hover-active: var(--color--amber-600);
+	--button--color--background--primary--hover-active-focus: var(--color--amber-600);
+	--button--outline-color--primary--focus: var(--color--amber-alpha-300);
 	--button--color--text--primary--disabled: var(--color--white-alpha-800);
-	--button--border-color--primary--disabled: var(--color--orange-200);
-	--button--color--background--primary--disabled: var(--color--orange-200);
+	--button--border-color--primary--disabled: var(--color--amber-300);
+	--button--color--background--primary--disabled: var(--color--amber-300);
 
 	// Button secondary
 	--button--color--text--secondary: var(--color--neutral-700);
 	--button--border-color--secondary: var(--color--neutral-300);
 	--button--color--background--secondary: var(--color--neutral-white);
-	--button--color--text--secondary--hover-active-focus: var(--color--orange-400);
-	--button--border-color--secondary--hover-active-focus: var(--color--orange-300);
-	--button--color--background--secondary--hover: var(--color--orange-50);
-	--button--color--background--secondary--active-focus: var(--color--orange-100);
+	--button--color--text--secondary--hover-active-focus: var(--color--amber-600);
+	--button--border-color--secondary--hover-active-focus: var(--color--amber-500);
+	--button--color--background--secondary--hover: var(--color--amber-50);
+	--button--color--background--secondary--active-focus: var(--color--amber-100);
 	--button--outline-color--secondary--focus: var(--color--neutral-200);
 	--button--color--text--secondary--disabled: var(--color--neutral-250);
 	--button--border-color--secondary--disabled: var(--color--neutral-250);
@@ -372,7 +391,7 @@
 	--button--color--text--highlight: var(--color--neutral-700);
 	--button--border-color--highlight: transparent;
 	--button--color--background--highlight: transparent;
-	--button--color--text--highlight--hover-active-focus: var(--color--orange-400);
+	--button--color--text--highlight--hover-active-focus: var(--color--amber-600);
 	--button--border-color--highlight--hover-active-focus: var(--color--neutral-125);
 	--button--color--background--highlight--hover: var(--color--neutral-125);
 	--button--color--background--highlight--active-focus: var(--color--neutral-125);
@@ -398,8 +417,8 @@
 
 	// Node Creator Button
 	--node-creator--button--color--text: var(--color--neutral-600);
-	--node-creator--button--color--text--hover: var(--color--orange-300);
-	--node-creator--button--border-color--hover: var(--color--orange-300);
+	--node-creator--button--color--text--hover: var(--color--amber-500);
+	--node-creator--button--border-color--hover: var(--color--amber-500);
 	--node-creator--button--color--background: var(--color--neutral-white);
 
 	// Table
@@ -704,7 +723,7 @@
 
 	// Params
 	--icon--color: var(--color--text--tint-1);
-	--icon--color--hover: var(--color--orange-300);
+	--icon--color--hover: var(--color--amber-500);
 
 	/* Ag Grid */
 	--grid--row--color--background--selected: var(--color--purple-200);
