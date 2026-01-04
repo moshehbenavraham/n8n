@@ -150,42 +150,44 @@ It is intentionally a map (entrypoints + responsibilities), not a style guide.
 
 ## Branding Customization
 
+> **Phase 00 Status:** Foundation complete. All items below marked with [x] have been implemented as part of the Obsidian Forge design overhaul.
+
 ### Logo Assets
 
 **Favicon:** `packages/frontend/editor-ui/public/`
 
-- [ ] Create/obtain brand favicon
-- [ ] Replace `favicon.ico` (multi-size: 16, 32, 48)
+- [x] Create/obtain brand favicon
+- [x] Replace `favicon.ico` (multi-size: 16, 32, 48)
 
 **Logo SVGs:** `packages/frontend/@n8n/design-system/src/components/N8nLogo/`
 
-- [ ] Replace `logo-icon.svg` (icon portion of logo)
-- [ ] Replace `logo-text.svg` (text portion of logo, shown when sidebar expanded)
+- [x] Replace `logo-icon.svg` (Forge Mark anvil icon)
+- [x] Replace `logo-text.svg` ("FORGE" wordmark)
 
 **Logo Components to Review:**
-- [ ] Review `packages/frontend/@n8n/design-system/src/components/N8nLogo/Logo.vue`
-- [ ] Review `packages/frontend/editor-ui/src/app/components/MainSidebarHeader.vue`
-- [ ] Review `packages/frontend/editor-ui/src/app/components/MainSidebar.vue`
-- [ ] Verify logo displays correctly in sidebar (collapsed)
-- [ ] Verify logo displays correctly in sidebar (expanded)
+- [x] Review `packages/frontend/@n8n/design-system/src/components/N8nLogo/Logo.vue`
+- [x] Review `packages/frontend/editor-ui/src/app/components/MainSidebarHeader.vue`
+- [x] Review `packages/frontend/editor-ui/src/app/components/MainSidebar.vue`
+- [x] Verify logo displays correctly in sidebar (collapsed)
+- [x] Verify logo displays correctly in sidebar (expanded)
 
 ### Theme Colors (Light Mode)
 
 **Primitives:** `packages/frontend/@n8n/design-system/src/css/_primitives.scss`
 
-Color primitives are HSL-based scales (50-950) for each color family. To change brand colors:
-- [ ] Add/modify primitive color scales (e.g., `--color--brand-50` through `--color--brand-950`)
-- [ ] Default primary uses orange scale: `--color--orange-*` (hue: 7)
+Color primitives are HSL-based scales (50-950) for each color family. Forge Metals palette implemented:
+- [x] Add/modify primitive color scales - Added Amber, Obsidian, Steel, Verdigris, Ember (55+ new primitives)
+- [x] Primary now uses amber scale: `--color--amber-*` (hue: 38)
 
 **Tokens:** `packages/frontend/@n8n/design-system/src/css/_tokens.scss`
 
 Semantic tokens map primitives to UI purposes. Tokens use backwards-compatible fallbacks:
-- [ ] Update `--color--primary` tokens (maps to `--color--orange-300` by default)
-- [ ] Update `--color--primary--shade-1` (darker, maps to `--color--orange-400`)
-- [ ] Update `--color--primary--tint-*` (lighter variants)
-- [ ] Update `--color--success` if needed (maps to green scale)
-- [ ] Update `--color--warning` if needed (maps to yellow scale)
-- [ ] Update `--color--danger` if needed (maps to red scale)
+- [x] Update `--color--primary` tokens (now maps to amber-500)
+- [x] Update `--color--primary--shade-1` (now maps to copper/amber-600)
+- [x] Update `--color--primary--tint-*` (lighter amber variants)
+- [x] Update `--color--success` (now maps to verdigris-500, hue 168)
+- [x] Update `--color--warning` (gold scale retained)
+- [x] Update `--color--danger` (now maps to ember-500, hue 8)
 
 > **Note:** Legacy variable names (single-dash like `--color-primary`) are supported via CSS fallbacks for backwards compatibility.
 
@@ -193,40 +195,38 @@ Semantic tokens map primitives to UI purposes. Tokens use backwards-compatible f
 
 **File:** `packages/frontend/@n8n/design-system/src/css/_tokens.dark.scss`
 
-- [ ] Update dark mode primary color values
-- [ ] Update dark mode tint/shade values
-- [ ] Update dark mode background colors if needed
-- [ ] Update dark mode text colors if needed
+- [x] Update dark mode primary color values
+- [x] Update dark mode tint/shade values
+- [x] Update dark mode background colors (obsidian surfaces)
+- [x] Update dark mode text colors
 
 ### Brand Text / Translations
 
 **File:** `packages/frontend/@n8n/i18n/src/locales/en.json`
 
-- [ ] Search for "n8n" references in file
-- [ ] Add/update `_brand.name` key
-- [ ] Add/update `_brand.tagline` key
-- [ ] Add/update `_brand.website` key
-- [ ] Update `about.aboutN8n` text
-- [ ] Update `settings.n8nApi` text
-- [ ] Search and update other n8n brand references
+- [x] Search for "n8n" references in file
+- [x] Update brand text references (25+ instances updated)
+- [x] AI Assistant renamed to "Forge AI"
+- [x] Trial/banner messages updated
+- [x] Personalization modal texts updated
 
 ### Window Title
 
 **File:** `packages/frontend/editor-ui/index.html`
-- [ ] Update `<title>` tag
+- [x] Update `<title>` tag
 
 **File:** `packages/frontend/editor-ui/src/app/composables/useDocumentTitle.ts`
-- [ ] Update `DEFAULT_TITLE` constant (default: 'n8n')
+- [x] Update `DEFAULT_TITLE` constant (now: 'Obsidian Forge')
 - [ ] Update `DEFAULT_TAGLINE` constant (default: 'Workflow Automation')
 - [ ] Update title format pattern if needed
 
 ### Additional Customization Points
 
 **Email Templates:** `packages/cli/src/user-management/email/templates/`
-- [ ] Review email templates for branding (MJML format)
-- [ ] Update `_logo.mjml` and `n8n-logo.png` for branding
-- [ ] Update `_common.mjml` and `_footer.mjml` for header/footer branding
-- [ ] Update email copy references in template files
+- [x] Review email templates for branding (MJML format)
+- [x] Update `n8n-logo.png` for branding (Forge Mark PNG)
+- [x] Update `_common.mjml` colors (#e8a230 button, #2a3441 text, #d4cfc7 divider, #6b7280 footer)
+- [x] Update `_footer.mjml` for footer branding
 
 **Documentation Links:** `packages/frontend/editor-ui/src/app/constants/externalLinks.ts`
 - [ ] Review external documentation URLs

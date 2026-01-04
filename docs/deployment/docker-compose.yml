@@ -7,7 +7,7 @@ services:
     container_name: n8n-custom
     restart: unless-stopped
     ports:
-      - "5680:5678"
+      - '5680:5678'
     environment:
       # Database Configuration
       - DB_TYPE=${DB_TYPE:-sqlite}
@@ -49,7 +49,7 @@ services:
     volumes:
       - n8n_data:/home/node/.n8n
     healthcheck:
-      test: ["CMD-SHELL", "wget -qO- http://localhost:5678/healthz || exit 1"]
+      test: ['CMD-SHELL', 'wget -qO- http://localhost:5678/healthz || exit 1']
       interval: 30s
       timeout: 10s
       retries: 3

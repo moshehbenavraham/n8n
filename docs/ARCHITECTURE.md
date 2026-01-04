@@ -78,6 +78,8 @@ n8n is a workflow automation platform built as a TypeScript monorepo. The archit
 - **Purpose**: Shared component library + CSS tokens
 - **Components**: 104 Vue components (N8nButton, N8nInput, N8nModal, etc.)
 - **Tokens**: `src/css/_primitives.scss`, `src/css/_tokens.scss`, `src/css/_tokens.dark.scss`
+- **Animations**: `src/css/_animations.scss` - Forge keyframe definitions (forge-reveal, ember-pulse, flow-pulse)
+- **Mixins**: `src/css/_mixins.scss` - Visual treatment mixins (atmosphere, focus ring, noise texture)
 - **Storybook**: 97 stories for visual testing
 
 #### stores (`packages/frontend/@n8n/stores/`)
@@ -152,11 +154,21 @@ User Interface
 
 ### Token-Based Architecture
 The codebase uses a three-tier token system:
-1. **Primitives**: Raw values (HSL color scales, spacing)
-2. **Semantic tokens**: UI-purpose mappings
+1. **Primitives**: Raw values (HSL color scales, spacing, typography, motion)
+2. **Semantic tokens**: UI-purpose mappings (colors, shadows, borders, atmosphere)
 3. **Component tokens**: Component-specific overrides
 
 This enables design changes to cascade efficiently - updating primitives affects 14,300+ usages.
+
+### Obsidian Forge Design System (Phase 00 Complete)
+The custom fork implements the "Forge Metals" color palette:
+- **Amber** (Primary): Warm forge fire - hue 38
+- **Obsidian** (Neutral): Deep dark backgrounds - hue 220
+- **Steel** (Secondary): Cool metal complement - hue 215
+- **Verdigris** (Success): Oxidized copper patina - hue 168
+- **Ember** (Danger): Warm forge coals - hue 8
+
+Motion design uses precision/mechanical easing curves rather than playful animations.
 
 ### Backwards Compatibility
 Legacy token format (`--color-primary`) coexists with new format (`--color--primary`) via CSS fallbacks:

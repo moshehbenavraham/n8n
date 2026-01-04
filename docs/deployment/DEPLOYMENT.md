@@ -197,12 +197,103 @@ docker compose logs n8n
 
 ---
 
+## Backup and Recovery
+
+### Manual Backup
+
+Run the backup script to create a snapshot of your n8n data:
+
+```bash
+cd ~/n8n-deployment
+
+# Copy backup script from repo (first time only)
+cp /path/to/n8n/docs/deployment/backup.sh .
+chmod +x backup.sh
+
+# Run backup (SQLite - default)
+./backup.sh
+
+# Run backup (PostgreSQL)
+./backup.sh --postgres
+
+# Run backup with upload to remote storage
+./backup.sh --upload
+```
+
+Backups are stored in `./backups/` with timestamped filenames:
+- SQLite: `n8n_sqlite_YYYYMMDD_HHMMSS.tar.gz`
+- PostgreSQL: `n8n_postgres_YYYYMMDD_HHMMSS.sql.gz`
+
+### Automated Backup
+
+For automated daily backups:
+
+1. **Using cron** (recommended for self-hosted):
+   ```bash
+   # Edit crontab
+   crontab -e
+
+   # Add daily backup at 2 AM
+   0 2 * * * /home/user/n8n-deployment/backup.sh >> /var/log/n8n-backup.log 2>&1
+   ```
+
+2. **Using GitHub Actions**:
+   A backup workflow is available at `.github/workflows/backup.yml` for self-hosted runners.
+
+### Remote Storage
+
+Configure remote storage in your `.env` file:
+
+```bash
+# AWS S3 or S3-compatible (R2, MinIO)
+BACKUP_S3_BUCKET=my-backup-bucket
+BACKUP_S3_ENDPOINT=https://your-r2-account.r2.cloudflarestorage.com
+AWS_ACCESS_KEY_ID=your_key
+AWS_SECRET_ACCESS_KEY=your_secret
+
+# Or use rclone for other providers
+RCLONE_REMOTE=myremote
+```
+
+### Restore from Backup
+
+**SQLite:**
+```bash
+# Stop n8n
+docker compose down
+
+# Extract backup to volume
+docker run --rm -v n8n-deployment_n8n_data:/data \
+  -v $(pwd)/backups:/backups alpine \
+  tar -xzf /backups/n8n_sqlite_YYYYMMDD_HHMMSS.tar.gz -C /data
+
+# Start n8n
+docker compose up -d
+```
+
+**PostgreSQL:**
+```bash
+# Stop n8n
+docker compose stop n8n
+
+# Restore database
+gunzip -c backups/n8n_postgres_YYYYMMDD_HHMMSS.sql.gz | \
+  docker exec -i n8n-postgres psql -U n8n -d n8n
+
+# Start n8n
+docker compose start n8n
+```
+
+---
+
 ## File Summary
 
 ```
 ~/n8n-deployment/
 ├── docker-compose.yml    # Defines n8n container configuration
 ├── .env                  # Your configuration (secrets, settings)
+├── backup.sh             # Backup script for SQLite/PostgreSQL
+├── backups/              # Local backup storage directory
 └── (created by Docker)
     └── n8n_data/         # Volume storing n8n data & workflows
 ```

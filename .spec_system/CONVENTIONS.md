@@ -168,13 +168,19 @@
 |--------|--------|---------|
 | Health | configured | `/healthz` (liveness), `/healthz/readiness` (DB check), Docker HEALTHCHECK |
 | Security | configured | Rate limiting via `@n8n/decorators` on auth endpoints |
-| Backup | not configured | - |
+| Backup | configured | backup.sh (SQLite/PostgreSQL), GitHub Actions daily 02:00 UTC, 7-day retention |
 | Deploy | configured | GitHub Actions release-publish.yml (NPM + DockerHub) |
 
 **Platform:** Self-hosted Docker
 **Health Endpoints:**
 - `/healthz` - Basic liveness (returns `{ status: 'ok' }`)
 - `/healthz/readiness` - Readiness probe (checks DB connection and migration status)
+
+**Backup:**
+- Script: `docs/deployment/backup.sh`
+- Schedule: Daily 02:00 UTC (cron or GitHub Actions)
+- Storage: Local + optional S3/R2/rclone
+- Retention: 7 days (configurable)
 
 ## Local Dev Tools
 

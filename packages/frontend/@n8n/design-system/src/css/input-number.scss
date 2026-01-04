@@ -1,6 +1,7 @@
 @use 'mixins/mixins';
 @use './common/var';
 @use 'input';
+@use './_forge-mixins' as forge;
 
 @include mixins.b(input-number) {
 	position: relative;
@@ -46,6 +47,12 @@
 		color: var(--color--text--shade-1);
 		cursor: pointer;
 		font-size: 13px;
+		transition:
+			color var(--duration--fast) var(--easing--ease-out),
+			background-color var(--duration--fast) var(--easing--ease-out),
+			box-shadow var(--duration--fast) var(--easing--ease-out);
+
+		@include forge.focus-ring-inset;
 
 		&:hover {
 			color: var(--color--primary);
