@@ -49,11 +49,18 @@ const handleClasses = 'target';
 	transform: translate(0, -50%) scale(var(--canvas-zoom-compensation-factor, 1)) translate(-100%, 0);
 	transform-origin: center left;
 	font-size: var(--font-size--2xs);
-	color: var(--color--foreground--shade-2);
+	color: var(--canvas--label--color);
 	background: var(--canvas--label--color--background);
 	z-index: 1;
 	text-align: center;
 	white-space: nowrap;
+
+	// Obsidian Forge: Smooth transition for label visibility
+	transition: opacity var(--canvas-node--transition--duration, 150ms) var(--easing--ease-out, ease-out);
+
+	@media (prefers-reduced-motion: reduce) {
+		transition: none;
+	}
 }
 
 .required .label::after {

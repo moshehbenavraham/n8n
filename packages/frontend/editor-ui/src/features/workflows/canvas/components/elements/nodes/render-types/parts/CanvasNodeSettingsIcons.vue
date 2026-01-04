@@ -94,14 +94,26 @@ const size = 'medium';
 	right: var(--canvas-node--status-icons--margin);
 	display: flex;
 	flex-direction: row;
+	gap: var(--spacing--3xs);
+
+	// Obsidian Forge: Subtle icon color
+	color: var(--color--foreground--shade-1);
+
+	// Obsidian Forge: Smooth transition for icon visibility
+	transition: opacity var(--canvas-node--transition--duration, 150ms) var(--easing--ease-out, ease-out);
+
+	@media (prefers-reduced-motion: reduce) {
+		transition: none;
+	}
 }
+
 .tooltipHeader {
 	display: flex;
-	gap: 2px;
+	gap: var(--spacing--4xs);
 }
 
 .tooltipTitle {
-	font-weight: 600;
+	font-weight: var(--font-weight--semibold);
 	font-size: inherit;
 	line-height: inherit;
 }

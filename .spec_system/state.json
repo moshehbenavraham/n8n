@@ -37,7 +37,8 @@
 		"phase01-session04-design-system-display-components",
 		"phase01-session05-element-plus-override-files",
 		"phase01-session06-storybook-verification-v2-migration",
-		"phase02-session01-workflow-canvas-foundation"
+		"phase02-session01-workflow-canvas-foundation",
+		"phase02-session02-canvas-node-styling"
 	],
 	"next_session_history": [
 		{
@@ -103,6 +104,11 @@
 		{
 			"date": "2026-01-04",
 			"session": "phase02-session01-workflow-canvas-foundation",
+			"status": "completed"
+		},
+		{
+			"date": "2026-01-04",
+			"session": "phase02-session02-canvas-node-styling",
 			"status": "completed"
 		}
 	]

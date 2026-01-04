@@ -121,6 +121,30 @@
 	--canvas--label--color: var(--color--obsidian-400);
 	--canvas--label--color--background: oklch(from var(--canvas--color--background) l c h / 0.85);
 
+	// Canvas Nodes (Obsidian Forge - Dark Mode)
+	// Deep forge shadows with warm ember undertones
+	--canvas-node--shadow: 0 2px 4px var(--color--obsidian-alpha-300),
+		0 1px 2px var(--color--obsidian-alpha-200);
+	--canvas-node--shadow--hover: 0 4px 8px var(--color--obsidian-alpha-300),
+		0 2px 4px var(--color--obsidian-alpha-200);
+	--canvas-node--shadow--selected: var(--shadow--glow-sm);
+	--canvas-node--border-color--running: var(--color--orange-400);
+	--canvas-node--border-color--running-gradient-start: var(--color--orange-400);
+	--canvas-node--border-color--running-gradient-mid: oklch(
+		from var(--color--orange-400) l c h / 0.2
+	);
+	--canvas-node--transition--duration: var(--duration--fast);
+
+	// Canvas Handles (Obsidian Forge - Dark Mode)
+	--canvas-handle--color--background: var(--color--obsidian-800);
+	--canvas-handle--color--background--hover: var(--color--obsidian-700);
+	--canvas-handle--border-color: var(--color--obsidian-600);
+	--canvas-handle--border-color--hover: var(--color--obsidian-500);
+	--canvas-handle--plus--color: var(--color--obsidian-300);
+	--canvas-handle--plus--color--hover: var(--color--obsidian-200);
+	--canvas-handle--plus--color--background: var(--color--obsidian-700);
+	--canvas-handle--plus--color--background--hover: var(--color--obsidian-600);
+
 	// Nodes
 	--node--color--background: var(--color--neutral-850);
 	--node--color--background--executing: var(--color--neutral-700);

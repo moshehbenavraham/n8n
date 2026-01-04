@@ -146,6 +146,13 @@ const groupedExecutionErrors = computed(() => {
 	align-items: center;
 	gap: var(--spacing--5xs);
 	font-weight: var(--font-weight--bold);
+
+	// Obsidian Forge: Smooth transition for status icon changes
+	transition: color var(--canvas-node--transition--duration, 150ms) var(--easing--ease-out, ease-out);
+
+	@media (prefers-reduced-motion: reduce) {
+		transition: none;
+	}
 }
 
 .runData {
@@ -179,7 +186,11 @@ const groupedExecutionErrors = computed(() => {
 
 	&.spinnerScrim {
 		z-index: 10;
-		background-color: rgba(255, 255, 255, 0.82);
+		// Obsidian Forge: Tokenized background for spinner scrim
+		background-color: light-dark(
+			oklch(from var(--color--neutral-white) l c h / 0.82),
+			oklch(from var(--color--obsidian-900) l c h / 0.82)
+		);
 		border-radius: var(--radius--lg);
 	}
 }

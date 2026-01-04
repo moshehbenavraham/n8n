@@ -25,22 +25,34 @@ withDefaults(
 .diamond {
 	width: var(--handle--indicator--width);
 	height: var(--handle--indicator--height);
-	background: light-dark(var(--color--neutral-white), var(--color--neutral-850));
+	// Obsidian Forge: Tokenized handle colors
+	background: var(--canvas-handle--color--background);
 	border: 1px solid
 		light-dark(
 			oklch(var(--handle--border--lightness--light, 0.68) 0 0),
 			oklch(var(--handle--border--lightness--dark, 0.5) 0 0)
 		);
 	transform: rotate(45deg) scale(0.8);
+	// Obsidian Forge: Smooth transitions with tokens
 	transition:
-		transform 0.2s ease,
-		background 0.2s ease,
+		transform var(--canvas-node--transition--duration, 150ms) var(--easing--ease-out, ease-out),
+		background var(--canvas-node--transition--duration, 150ms) var(--easing--ease-out, ease-out),
 		border-width 0.1s ease;
 
 	.wrapper:hover & {
-		border: 1.5px solid light-dark(var(--color--neutral-300), var(--color--neutral-300));
-		background: light-dark(var(--color--neutral-100), var(--color--neutral-700));
+		// Obsidian Forge: Tokenized hover colors
+		border: 1.5px solid var(--canvas-handle--border-color--hover);
+		background: var(--canvas-handle--color--background--hover);
 		transform: rotate(45deg) scale(1.2);
+	}
+
+	// Respect reduced motion preference
+	@media (prefers-reduced-motion: reduce) {
+		transition: none;
+
+		.wrapper:hover & {
+			transform: rotate(45deg) scale(0.8);
+		}
 	}
 }
 </style>

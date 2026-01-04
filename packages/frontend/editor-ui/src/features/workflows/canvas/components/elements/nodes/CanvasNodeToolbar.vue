@@ -213,11 +213,27 @@ function onFocusNode() {
 	align-items: center;
 	justify-content: center;
 	background-color: var(--canvas--color--background);
-	border-radius: var(--radius);
+	border-radius: var(--radius--md);
 	pointer-events: auto;
+
+	// Obsidian Forge: Subtle shadow and border for toolbar container
+	box-shadow: var(--canvas-node--shadow);
+	border: 1px solid light-dark(var(--color--obsidian-alpha-100), var(--color--obsidian-alpha-200));
+
+	// Obsidian Forge: Smooth transition for visibility
+	transition: opacity var(--canvas-node--transition--duration, 150ms) var(--easing--ease-out, ease-out);
 
 	:global(.button) {
 		--button--color--text: var(--color--text--tint-1);
+
+		// Obsidian Forge: Button hover effect
+		&:hover {
+			--button--color--text: var(--color--text);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		transition: none;
 	}
 }
 

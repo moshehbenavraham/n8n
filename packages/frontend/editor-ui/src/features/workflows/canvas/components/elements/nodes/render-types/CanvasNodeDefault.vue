@@ -225,6 +225,29 @@ function onActivate(event: MouseEvent) {
 		);
 	border-radius: var(--radius--lg);
 
+	// Obsidian Forge: Base shadow elevation for "lifted" aesthetic
+	box-shadow: var(--canvas-node--shadow);
+
+	// Obsidian Forge: GPU-accelerated transitions for smooth hover effects
+	transition:
+		transform var(--canvas-node--transition--duration, 150ms) var(--easing--ease-out, ease-out),
+		box-shadow var(--canvas-node--transition--duration, 150ms) var(--easing--ease-out, ease-out);
+
+	// Obsidian Forge: Hover lift effect - elevates node visually
+	&:hover:not(.disabled):not(.running):not(.waiting) {
+		transform: translateY(-2px);
+		box-shadow: var(--canvas-node--shadow--hover);
+	}
+
+	// Respect reduced motion preference
+	@media (prefers-reduced-motion: reduce) {
+		transition: none;
+
+		&:hover:not(.disabled):not(.running):not(.waiting) {
+			transform: none;
+		}
+	}
+
 	&.trigger {
 		border-radius: var(--trigger-node--radius) var(--radius--lg) var(--radius--lg)
 			var(--trigger-node--radius);
@@ -305,9 +328,12 @@ function onActivate(event: MouseEvent) {
 	 */
 
 	&.selected {
+		// Obsidian Forge: Amber glow ring for selected state
 		/* stylelint-disable-next-line @n8n/css-var-naming */
-		box-shadow: 0 0 0 calc(6px * var(--canvas-zoom-compensation-factor, 1))
-			var(--canvas--color--selected-transparent);
+		box-shadow:
+			var(--canvas-node--shadow--selected),
+			0 0 0 calc(6px * var(--canvas-zoom-compensation-factor, 1))
+				var(--canvas--color--selected-transparent);
 	}
 
 	&.success {
@@ -356,6 +382,8 @@ function onActivate(event: MouseEvent) {
 }
 
 /* stylelint-disable */
+// Obsidian Forge: Ember-pulse animation for running/waiting states
+// Uses tokenized colors for consistent theming
 .running::after,
 .waiting::after {
 	content: '';
@@ -365,12 +393,12 @@ function onActivate(event: MouseEvent) {
 	z-index: -1;
 	background: conic-gradient(
 		from var(--node--gradient-angle),
-		rgba(255, 109, 90, 1),
-		rgba(255, 109, 90, 1) 20%,
-		rgba(255, 109, 90, 0.2) 35%,
-		rgba(255, 109, 90, 0.2) 65%,
-		rgba(255, 109, 90, 1) 90%,
-		rgba(255, 109, 90, 1)
+		var(--canvas-node--border-color--running-gradient-start, var(--color--orange-400)),
+		var(--canvas-node--border-color--running-gradient-start, var(--color--orange-400)) 20%,
+		var(--canvas-node--border-color--running-gradient-mid, oklch(from var(--color--orange-400) l c h / 0.2)) 35%,
+		var(--canvas-node--border-color--running-gradient-mid, oklch(from var(--color--orange-400) l c h / 0.2)) 65%,
+		var(--canvas-node--border-color--running-gradient-start, var(--color--orange-400)) 90%,
+		var(--canvas-node--border-color--running-gradient-start, var(--color--orange-400))
 	);
 }
 
@@ -379,6 +407,16 @@ function onActivate(event: MouseEvent) {
 }
 .waiting::after {
 	animation: border-rotate 4.5s linear infinite;
+}
+
+// Respect reduced motion preference for running animation
+@media (prefers-reduced-motion: reduce) {
+	.running::after,
+	.waiting::after {
+		animation: none;
+		// Static border instead of animated gradient
+		background: var(--canvas-node--border-color--running-gradient-start, var(--color--orange-400));
+	}
 }
 
 @property --node--gradient-angle {

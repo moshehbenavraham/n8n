@@ -111,20 +111,37 @@ async function onClickTemplatesLink() {
 	width: 100px;
 	height: 100px;
 
-	&:hover .button svg path {
-		fill: var(--color--primary);
+	&:hover .button {
+		// Obsidian Forge: Hover lift and border highlight
+		transform: translateY(-2px);
+		border-color: var(--color--primary);
+		box-shadow: var(--canvas-node--shadow--hover);
+
+		svg path {
+			fill: var(--color--primary);
+		}
 	}
 }
 
 .button {
 	background: var(--color--foreground--tint-2);
 	border: 2px dashed var(--color--foreground--shade-2);
-	border-radius: 8px;
+	border-radius: var(--radius--lg);
 	padding: 0;
-
 	min-width: 100px;
 	min-height: 100px;
 	cursor: pointer;
+
+	// Obsidian Forge: GPU-accelerated transitions
+	transition:
+		transform var(--canvas-node--transition--duration, 150ms) var(--easing--ease-out, ease-out),
+		border-color var(--canvas-node--transition--duration, 150ms) var(--easing--ease-out, ease-out),
+		box-shadow var(--canvas-node--transition--duration, 150ms) var(--easing--ease-out, ease-out);
+
+	// Respect reduced motion preference
+	@media (prefers-reduced-motion: reduce) {
+		transition: none;
+	}
 }
 
 .label {

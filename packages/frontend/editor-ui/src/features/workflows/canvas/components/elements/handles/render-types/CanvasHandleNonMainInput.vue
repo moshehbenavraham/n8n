@@ -92,6 +92,13 @@ function onClickAdd() {
 	z-index: 1;
 	text-align: center;
 	white-space: nowrap;
+
+	// Obsidian Forge: Smooth transition for label visibility
+	transition: opacity var(--canvas-node--transition--duration, 150ms) var(--easing--ease-out, ease-out);
+
+	@media (prefers-reduced-motion: reduce) {
+		transition: none;
+	}
 }
 
 .required .label::after {
@@ -101,17 +108,25 @@ function onClickAdd() {
 </style>
 
 <style lang="scss">
+// Obsidian Forge: Enhanced handle animation
 .canvas-node-handle-non-main-input-enter-active,
 .canvas-node-handle-non-main-input-leave-active {
 	transform-origin: center 0;
 	transition-property: transform, opacity;
-	transition-duration: 0.2s;
-	transition-timing-function: ease;
+	transition-duration: var(--canvas-node--transition--duration, 150ms);
+	transition-timing-function: var(--easing--ease-out, ease-out);
 }
 
 .canvas-node-handle-non-main-input-enter-from,
 .canvas-node-handle-non-main-input-leave-to {
 	transform: scale(0);
 	opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.canvas-node-handle-non-main-input-enter-active,
+	.canvas-node-handle-non-main-input-leave-active {
+		transition: none;
+	}
 }
 </style>
