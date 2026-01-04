@@ -123,10 +123,10 @@
 
 	// Canvas Nodes (Obsidian Forge - Dark Mode)
 	// Deep forge shadows with warm ember undertones
-	--canvas-node--shadow: 0 2px 4px var(--color--obsidian-alpha-300),
-		0 1px 2px var(--color--obsidian-alpha-200);
-	--canvas-node--shadow--hover: 0 4px 8px var(--color--obsidian-alpha-300),
-		0 2px 4px var(--color--obsidian-alpha-200);
+	--canvas-node--shadow:
+		0 2px 4px var(--color--obsidian-alpha-300), 0 1px 2px var(--color--obsidian-alpha-200);
+	--canvas-node--shadow--hover:
+		0 4px 8px var(--color--obsidian-alpha-300), 0 2px 4px var(--color--obsidian-alpha-200);
 	--canvas-node--shadow--selected: var(--shadow--glow-sm);
 	--canvas-node--border-color--running: var(--color--orange-400);
 	--canvas-node--border-color--running-gradient-start: var(--color--orange-400);
@@ -144,6 +144,23 @@
 	--canvas-handle--plus--color--hover: var(--color--obsidian-200);
 	--canvas-handle--plus--color--background: var(--color--obsidian-700);
 	--canvas-handle--plus--color--background--hover: var(--color--obsidian-600);
+
+	// Canvas Edges/Connections (Obsidian Forge - Dark Mode)
+	// Lighter steel for visibility, enhanced amber glow when active
+	--canvas-edge--color--default: var(--color--steel-500);
+	--canvas-edge--color--hover: var(--color--steel-400);
+	--canvas-edge--color--selected: var(--color--amber-400);
+	--canvas-edge--color--running: var(--color--amber-400);
+	--canvas-edge--color--error: var(--color--danger);
+	--canvas-edge--color--success: var(--color--success);
+	--canvas-edge--color--pinned: var(--color--purple-500);
+	--canvas-edge--shadow--selected: 0 0 10px var(--color--amber-alpha-500);
+	--canvas-edge--shadow--running: 0 0 16px var(--color--amber-alpha-500);
+
+	// Canvas Selection Rectangle (Obsidian Forge - Dark Mode)
+	// Enhanced visibility with stronger amber glow
+	--canvas-selection--color--background: var(--color--amber-alpha-200);
+	--canvas-selection--border-color: var(--color--obsidian-500);
 
 	// Nodes
 	--node--color--background: var(--color--neutral-850);

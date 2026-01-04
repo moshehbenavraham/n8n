@@ -8,8 +8,6 @@ import { NodeConnectionTypes } from 'n8n-workflow';
 import { computed, ref, toRef, useCssModule, watch } from 'vue';
 import CanvasEdgeToolbar from './CanvasEdgeToolbar.vue';
 import { getEdgeRenderData } from './utils';
-import { useCanvas } from '../../../composables/useCanvas';
-import { useZoomAdjustedValues } from '../../../composables/useZoomAdjustedValues';
 
 const emit = defineEmits<{
 	add: [connection: Connection];
@@ -28,9 +26,6 @@ const props = defineProps<CanvasEdgeProps>();
 const data = toRef(props, 'data');
 
 const $style = useCssModule();
-
-const { viewport } = useCanvas();
-const { calculateEdgeLightness } = useZoomAdjustedValues(viewport);
 
 const connectionType = computed(() =>
 	isValidNodeConnectionType(props.data.source.type)
@@ -70,7 +65,12 @@ const edgeStyle = computed(() => ({
 
 const edgeClasses = computed(() => ({
 	[$style.edge]: true,
-	hovered: delayedHovered.value,
+	[$style.hovered]: delayedHovered.value && !hasColoredStatus.value,
+	[$style.selected]: props.selected && !hasColoredStatus.value,
+	[$style.running]: status.value === 'running',
+	[$style.error]: status.value === 'error',
+	[$style.success]: status.value === 'success',
+	[$style.pinned]: status.value === 'pinned',
 	'bring-to-front': props.bringToFront,
 }));
 
@@ -103,31 +103,8 @@ const connection = computed<Connection>(() => ({
 	targetHandle: props.targetHandleId,
 }));
 
-const edgeColor = computed(() => {
-	if (status.value === 'success') {
-		return 'var(--color--success)';
-	} else if (status.value === 'pinned') {
-		return 'var(--color--secondary)';
-	}
-	return undefined;
-});
-
-// For colored edges (success/pinned), don't apply hover effect
+// For colored edges (success/pinned), don't apply hover/selected effects
 const hasColoredStatus = computed(() => status.value === 'success' || status.value === 'pinned');
-const hoveredForLightness = computed(() => (hasColoredStatus.value ? false : delayedHovered.value));
-
-const edgeLightness = calculateEdgeLightness(hoveredForLightness);
-
-const edgeStyles = computed(() => {
-	const styles: Record<string, string> = {
-		'--canvas-edge--color--lightness--light': edgeLightness.value.light,
-		'--canvas-edge--color--lightness--dark': edgeLightness.value.dark,
-	};
-	if (edgeColor.value) {
-		styles['--canvas-edge--color'] = edgeColor.value;
-	}
-	return styles;
-});
 
 function onAdd() {
 	emit('add', connection.value);
@@ -151,7 +128,6 @@ function onEdgeLabelMouseLeave() {
 		data-test-id="edge"
 		:data-source-node-name="data.source?.node"
 		:data-target-node-name="data.target?.node"
-		:style="edgeStyles"
 		v-bind="$attrs"
 	>
 		<slot name="highlight" v-bind="{ segments }" />
@@ -191,20 +167,61 @@ function onEdgeLabelMouseLeave() {
 </template>
 
 <style lang="scss" module>
+// Canvas Edge Styling - Obsidian Forge Theme
+// Steel default connections with amber energy on active/running states
 .edge {
-	transition: fill 0.3s ease;
 	// @bugfix cat-1639-connection-colors-not-rendering-correctly
 	// Using !important here to override BaseEdge styles after Rolldown Vite migration
-	stroke: var(
-		--canvas-edge--color,
-		light-dark(
-			oklch(var(--canvas-edge--color--lightness--light) 0 0),
-			oklch(var(--canvas-edge--color--lightness--dark) 0 0)
-		)
-	) !important;
+	stroke: var(--canvas-edge--color--default) !important;
 	/* stylelint-disable-next-line @n8n/css-var-naming */
 	stroke-width: calc(2 * var(--canvas-zoom-compensation-factor, 1)) !important;
-	stroke-linecap: square;
+	stroke-linecap: round;
+	transition:
+		stroke var(--canvas-edge--transition--duration) var(--easing--ease-out),
+		stroke-width var(--canvas-edge--transition--duration) var(--easing--ease-out),
+		filter var(--canvas-edge--transition--duration) var(--easing--ease-out);
+}
+
+// Hover state - slightly darker steel with increased stroke
+.hovered {
+	stroke: var(--canvas-edge--color--hover) !important;
+	/* stylelint-disable-next-line @n8n/css-var-naming */
+	stroke-width: calc(3 * var(--canvas-zoom-compensation-factor, 1)) !important;
+}
+
+// Selected state - amber with glow
+.selected {
+	stroke: var(--canvas-edge--color--selected) !important;
+	/* stylelint-disable-next-line @n8n/css-var-naming */
+	stroke-width: calc(3 * var(--canvas-zoom-compensation-factor, 1)) !important;
+	filter: drop-shadow(var(--canvas-edge--shadow--selected));
+}
+
+// Running/Active state - amber with flow-pulse animation
+.running {
+	stroke: var(--canvas-edge--color--running) !important;
+	/* stylelint-disable-next-line @n8n/css-var-naming */
+	stroke-width: calc(3 * var(--canvas-zoom-compensation-factor, 1)) !important;
+	stroke-dasharray: 10 5;
+	animation: flow-pulse var(--animation--duration--flow) linear infinite;
+	filter: drop-shadow(var(--canvas-edge--shadow--running));
+}
+
+// Error state - danger color
+.error {
+	stroke: var(--canvas-edge--color--error) !important;
+	/* stylelint-disable-next-line @n8n/css-var-naming */
+	stroke-width: calc(3 * var(--canvas-zoom-compensation-factor, 1)) !important;
+}
+
+// Success state - success color (briefly shown after execution)
+.success {
+	stroke: var(--canvas-edge--color--success) !important;
+}
+
+// Pinned state - secondary/purple color
+.pinned {
+	stroke: var(--canvas-edge--color--pinned) !important;
 }
 
 .edgeLabelWrapper {
@@ -226,5 +243,16 @@ function onEdgeLabelMouseLeave() {
 	color: var(--canvas--label--color);
 	font-size: var(--font-size--xs);
 	background-color: var(--canvas--label--color--background);
+}
+
+// Flow-pulse animation keyframes (imported from _animations.scss)
+@keyframes flow-pulse {
+	0% {
+		stroke-dashoffset: 0;
+	}
+
+	100% {
+		stroke-dashoffset: -20;
+	}
 }
 </style>

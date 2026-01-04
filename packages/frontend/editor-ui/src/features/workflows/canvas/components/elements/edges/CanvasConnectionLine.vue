@@ -27,8 +27,6 @@ const classes = computed(() => {
 
 const edgeStyle = computed(() => ({
 	...(connectionType.value === NodeConnectionTypes.Main ? {} : { strokeDasharray: '5,6' }),
-	strokeWidth: 2,
-	stroke: 'var(--color--foreground--shade-2)',
 }));
 
 const renderData = computed(() =>
@@ -62,10 +60,15 @@ onMounted(() => {
 </template>
 
 <style lang="scss" module>
+// Connection preview line - matches themed connection appearance
 .edge {
-	transition-property: stroke, opacity;
-	transition-duration: 300ms;
-	transition-timing-function: ease;
+	stroke: var(--canvas-edge--color--default);
+	/* stylelint-disable-next-line @n8n/css-var-naming */
+	stroke-width: calc(2 * var(--canvas-zoom-compensation-factor, 1));
+	stroke-linecap: round;
+	transition:
+		stroke var(--canvas-edge--transition--duration) var(--easing--ease-out),
+		opacity 300ms ease;
 	opacity: 0;
 
 	&.visible {
