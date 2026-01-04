@@ -28,7 +28,8 @@
 		"phase01-session01-design-system-form-components",
 		"phase01-session02-design-system-selection-components",
 		"phase01-session03-design-system-action-components",
-		"phase01-session04-design-system-display-components"
+		"phase01-session04-design-system-display-components",
+		"phase01-session05-element-plus-override-files"
 	],
 	"next_session_history": [
 		{
@@ -79,6 +80,11 @@
 		{
 			"date": "2026-01-04",
 			"session": "phase01-session04-design-system-display-components",
+			"status": "completed"
+		},
+		{
+			"date": "2026-01-04",
+			"session": "phase01-session05-element-plus-override-files",
 			"status": "completed"
 		}
 	]

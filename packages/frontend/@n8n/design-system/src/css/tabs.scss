@@ -212,9 +212,8 @@
 	@include mixins.m(border-card) {
 		background: var.$color-white;
 		border: 1px solid var(--border-color);
-		box-shadow:
-			0 2px 4px 0 rgba(0, 0, 0, 0.12),
-			0 0 6px 0 rgba(0, 0, 0, 0.04);
+		// Updated: Use Forge shadow token instead of hardcoded rgba values
+		box-shadow: var(--shadow--sm);
 
 		> .el-tabs__content {
 			padding: 15px;

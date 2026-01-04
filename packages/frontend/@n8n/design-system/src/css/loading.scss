@@ -14,7 +14,8 @@
 @include mixins.b(loading-mask) {
 	position: absolute;
 	z-index: 2000;
-	background-color: var(--color--loading-mask--background, rgba(255, 255, 255, 0.9));
+	// Updated: Use Forge white-alpha token instead of hardcoded rgba fallback
+	background-color: var(--color--loading-mask--background, var(--color--white-alpha-900));
 	margin: 0;
 	top: 0;
 	right: 0;

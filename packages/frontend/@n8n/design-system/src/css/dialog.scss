@@ -10,7 +10,8 @@
 	position: fixed;
 	top: 0;
 	left: 0;
-	background-color: hsla(247deg, 14%, 30%, 0.75);
+	// Updated: Use Forge dialog overlay token instead of hardcoded hsla
+	background-color: var(--dialog--overlay--color--background);
 }
 
 @include mixins.b(overlay-dialog) {
