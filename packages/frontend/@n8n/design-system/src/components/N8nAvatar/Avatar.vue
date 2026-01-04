@@ -9,6 +9,7 @@ interface AvatarProps {
 	lastName?: string | null;
 	size?: 'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large';
 	colors?: string[];
+	active?: boolean;
 }
 
 defineOptions({ name: 'N8nAvatar' });
@@ -23,6 +24,7 @@ const props = withDefaults(defineProps<AvatarProps>(), {
 		'--avatar--color--accent-2',
 		'--color--primary--tint-1',
 	],
+	active: false,
 });
 
 const name = computed(() => `${props.firstName} ${props.lastName}`.trim());
@@ -44,7 +46,7 @@ const getSize = (size: string): number => sizes[size];
 </script>
 
 <template>
-	<span :class="['n8n-avatar', $style.container]" v-bind="$attrs">
+	<span :class="['n8n-avatar', $style.container, { [$style.active]: active }]" v-bind="$attrs">
 		<Avatar
 			v-if="name"
 			:size="getSize(size)"
@@ -68,6 +70,17 @@ const getSize = (size: string): number => sizes[size];
 
 	svg {
 		border-radius: 50%;
+	}
+
+	&.active {
+		&::after {
+			content: '';
+			position: absolute;
+			inset: calc(-1 * var(--avatar--ring-width--active) - 2px);
+			border-radius: 50%;
+			border: var(--avatar--ring-width--active) solid var(--avatar--ring-color--active);
+			pointer-events: none;
+		}
 	}
 }
 

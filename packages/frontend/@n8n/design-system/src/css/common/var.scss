@@ -748,13 +748,13 @@ $popover-title-font-color: var(--color--text--shade-1);
 /* Tooltip
 -------------------------- */
 /// color|1|Color|0
-$tooltip-fill: var(--color--background--shade-2);
+$tooltip-fill: var(--tooltip--color--background, var(--color--obsidian-900));
 /// color|1|Color|0
-$tooltip-color: $color-white;
+$tooltip-color: var(--tooltip--color--text, var(--color--neutral-white));
 /// fontSize||Font|1
 $tooltip-font-size: 12px;
 /// color||Color|0
-$tooltip-border-color: var(--color--background--shade-2);
+$tooltip-border-color: var(--tooltip--border-color, var(--color--amber-alpha-200));
 $tooltip-arrow-size: 6px;
 /// padding||Spacing|3
 $tooltip-padding: 10px;

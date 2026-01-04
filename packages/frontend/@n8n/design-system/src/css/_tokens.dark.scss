@@ -339,6 +339,23 @@
 
 	// Avatar
 	--avatar--color--text: var(--color--neutral-white);
+	--avatar--ring-color--active: var(--color--amber-400);
+
+	// Card (Forge elevation system - dark mode)
+	--card--shadow: var(--shadow--sm);
+	--card--shadow--hover: var(--shadow--md);
+	--card--border-color: var(--color--foreground);
+	--card--border-color--hover: var(--color--amber-500);
+	--card--color--background: var(--color--neutral-900);
+
+	// Tooltip (Obsidian theme - dark mode)
+	--tooltip--color--background: var(--color--obsidian-950);
+	--tooltip--color--text: var(--color--neutral-white);
+	--tooltip--border-color: var(--color--amber-alpha-300);
+
+	// Popover (Obsidian theme - dark mode)
+	--popover--color--background: var(--color--neutral-900);
+	--popover--border-color: var(--color--obsidian-700);
 
 	// NPS Survey
 	--nps-survey--color--background: var(--color--neutral-850);
