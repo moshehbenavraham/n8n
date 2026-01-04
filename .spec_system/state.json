@@ -16,6 +16,12 @@
 			"description": "Systematically update design-system components and Element Plus overrides to fully integrate the Obsidian Forge theme",
 			"status": "completed",
 			"session_count": 6
+		},
+		"2": {
+			"name": "Application Features - Canvas, NDV, Modals",
+			"description": "Apply Obsidian Forge theme to workflow canvas, Node Details View, and modal/dialog system - the highest-visibility application features",
+			"status": "in_progress",
+			"session_count": 7
 		}
 	},
 	"completed_sessions": [
@@ -30,7 +36,8 @@
 		"phase01-session03-design-system-action-components",
 		"phase01-session04-design-system-display-components",
 		"phase01-session05-element-plus-override-files",
-		"phase01-session06-storybook-verification-v2-migration"
+		"phase01-session06-storybook-verification-v2-migration",
+		"phase02-session01-workflow-canvas-foundation"
 	],
 	"next_session_history": [
 		{
@@ -91,6 +98,11 @@
 		{
 			"date": "2026-01-04",
 			"session": "phase01-session06-storybook-verification-v2-migration",
+			"status": "completed"
+		},
+		{
+			"date": "2026-01-04",
+			"session": "phase02-session01-workflow-canvas-foundation",
 			"status": "completed"
 		}
 	]

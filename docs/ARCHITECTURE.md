@@ -160,7 +160,7 @@ The codebase uses a three-tier token system:
 
 This enables design changes to cascade efficiently - updating primitives affects 14,300+ usages.
 
-### Obsidian Forge Design System (Phase 00 Complete)
+### Obsidian Forge Design System (Phase 00-01 Complete)
 The custom fork implements the "Forge Metals" color palette:
 - **Amber** (Primary): Warm forge fire - hue 38
 - **Obsidian** (Neutral): Deep dark backgrounds - hue 220
@@ -169,6 +169,15 @@ The custom fork implements the "Forge Metals" color palette:
 - **Ember** (Danger): Warm forge coals - hue 8
 
 Motion design uses precision/mechanical easing curves rather than playful animations.
+
+**Phase 01 Component Library Complete:**
+- 104 design-system components updated with Obsidian Forge tokens
+- 38 Element Plus override files integrated with theme
+- Form components: N8nInput, N8nSelect, N8nCheckbox, N8nRadio, N8nSwitch, N8nTextarea
+- Selection components: N8nSelect2, N8nCheckbox2, N8nUserSelect, N8nRecycleScroller
+- Action components: N8nButton, N8nIconButton, N8nActionToggle, N8nActionDropdown, N8nLink
+- Display components: N8nCard, N8nBadge, N8nAvatar, N8nLoading, N8nText, N8nHeading, N8nCircleLoader
+- Storybook verification complete for all updated components
 
 ### Backwards Compatibility
 Legacy token format (`--color-primary`) coexists with new format (`--color--primary`) via CSS fallbacks:

@@ -111,13 +111,14 @@
 	--lm-chat--user--color--background: var(--color--green-700);
 	--lm-chat--user--border-color: var(--color--green-600);
 
-	// Canvas
-	--canvas--color--background: var(--color--neutral-950);
-	--canvas--dot--color: var(--color--neutral-700);
-	--canvas--read-only-line--color: var(--color--neutral-900);
-	--canvas--color--selected: var(--color--white-alpha-400);
+	// Canvas (Obsidian Forge - Dark Mode)
+	// Deep obsidian atmosphere with subtle steel undertones
+	--canvas--color--background: var(--color--obsidian-950);
+	--canvas--dot--color: var(--color--obsidian-700);
+	--canvas--read-only-line--color: var(--color--obsidian-900);
+	--canvas--color--selected: var(--color--obsidian-alpha-200);
 	--canvas--color--selected-transparent: var(--canvas--color--selected);
-	--canvas--label--color: var(--color--neutral-500);
+	--canvas--label--color: var(--color--obsidian-400);
 	--canvas--label--color--background: oklch(from var(--canvas--color--background) l c h / 0.85);
 
 	// Nodes

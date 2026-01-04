@@ -129,7 +129,7 @@ This system delivers the product via phases. Each phase is implemented via multi
 |-------|------|----------|--------|
 | 00 | Foundation - Colors, Typography, Branding | 6 | Completed |
 | 01 | Component Library - Design System and Element Plus | 6 | Completed |
-| 02 | Application Features - Canvas, NDV, Modals | TBD | Not Started |
+| 02 | Application Features - Canvas, NDV, Modals | 7 | Not Started |
 | 03 | Polish - Edge Cases, Testing, Dark Mode Parity | TBD | Not Started |
 
 ## Phase 00: Foundation - Colors, Typography, Branding
@@ -172,6 +172,20 @@ Session stubs defined in `.spec_system/PRD/phase_00/`.
 2. Style NDV panels and form elements
 3. Update modal and dialog styling via centralized system
 4. Customize code editor (CodeMirror) themes
+
+### Sessions (7 Total)
+
+| Session | Name | Est. Tasks |
+|---------|------|------------|
+| 01 | Workflow Canvas Foundation | ~20 |
+| 02 | Canvas Node Styling | ~22 |
+| 03 | Canvas Connections and Interactions | ~18 |
+| 04 | NDV Layout and Structure | ~20 |
+| 05 | NDV Forms and Code Editor | ~22 |
+| 06 | Modal and Dialog System | ~20 |
+| 07 | Overlay Components | ~18 |
+
+Session stubs defined in `.spec_system/PRD/phase_02/`.
 
 ## Phase 03: Polish - Edge Cases, Testing, Dark Mode Parity
 

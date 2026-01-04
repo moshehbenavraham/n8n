@@ -39,28 +39,67 @@
 }
 
 /**
- * Minimap
+ * Minimap (Obsidian Forge themed)
  */
 
 .vue-flow__minimap {
 	height: 120px;
 	overflow: hidden;
 	margin-bottom: calc(48px + 2 * var(--spacing--xs));
-	border: var(--border);
-	border-radius: var(--radius);
-	background: var(--color--background--light-2);
+	border: 1px solid var(--color--obsidian-200);
+	border-radius: var(--radius--lg);
+	background: var(--canvas--color--background);
+	box-shadow: var(--shadow--sm);
+	transition:
+		opacity var(--duration--normal) var(--easing--ease-out),
+		box-shadow var(--duration--fast) var(--easing--ease-out);
 
-	.minimap-node-default {
-		fill: var(--color--foreground--shade-1);
+	&:hover {
+		box-shadow: var(--shadow--md);
 	}
 
+	// Minimap mask (viewport indicator)
+	.vue-flow__minimap-mask {
+		fill: var(--color--obsidian-alpha-100);
+		stroke: var(--color--amber-500);
+		stroke-width: 1;
+	}
+
+	// Default node styling
+	.minimap-node-default {
+		fill: var(--color--steel-400);
+		rx: 4;
+		ry: 4;
+	}
+
+	// Sticky note node styling
 	.minimap-node-n8n-nodes-base-stickyNote {
-		fill: var(--color--foreground--shade-1);
-		opacity: 0.2;
+		fill: var(--color--amber-300);
+		opacity: 0.5;
 	}
 
 	@include mixins.breakpoint('xs-only') {
 		display: none;
+	}
+}
+
+// Dark mode minimap overrides
+body[data-theme='dark'] .vue-flow__minimap {
+	border-color: var(--color--obsidian-700);
+	background: var(--color--obsidian-900);
+
+	.vue-flow__minimap-mask {
+		fill: var(--color--obsidian-alpha-200);
+		stroke: var(--color--amber-400);
+	}
+
+	.minimap-node-default {
+		fill: var(--color--obsidian-500);
+	}
+
+	.minimap-node-n8n-nodes-base-stickyNote {
+		fill: var(--color--amber-600);
+		opacity: 0.4;
 	}
 }
 
@@ -140,7 +179,7 @@
 }
 
 /**
- * Controls
+ * Controls (Obsidian Forge themed)
  */
 
 .vue-flow__controls {
@@ -148,6 +187,32 @@
 	display: flex;
 	gap: var(--spacing--xs);
 	box-shadow: none;
+	background: transparent;
+	border: none;
+	padding: 0;
+
+	// Control buttons inherit from N8nIconButton/N8nButton tertiary styling
+	// Additional canvas-specific hover states
+	.vue-flow__controls-button {
+		background: var(--color--background--light-3);
+		border: 1px solid var(--color--obsidian-200);
+		border-radius: var(--radius);
+		color: var(--color--text);
+		transition:
+			background var(--duration--fast) var(--easing--ease-out),
+			border-color var(--duration--fast) var(--easing--ease-out),
+			box-shadow var(--duration--fast) var(--easing--ease-out);
+
+		&:hover {
+			background: var(--color--amber-50);
+			border-color: var(--color--amber-300);
+		}
+
+		&:focus-visible {
+			outline: none;
+			box-shadow: var(--shadow--glow-sm);
+		}
+	}
 
 	@include mixins.breakpoint('xs-only') {
 		max-width: calc(100% - 3 * var(--spacing--sm) - var(--spacing--2xs));
@@ -157,4 +222,45 @@
 		padding-left: var(--spacing--sm);
 		padding-right: var(--spacing--sm);
 	}
+}
+
+// Dark mode control overrides
+body[data-theme='dark'] .vue-flow__controls {
+	.vue-flow__controls-button {
+		background: var(--color--obsidian-800);
+		border-color: var(--color--obsidian-600);
+		color: var(--color--text);
+
+		&:hover {
+			background: var(--color--obsidian-700);
+			border-color: var(--color--amber-500);
+		}
+	}
+}
+
+/**
+ * Canvas Vignette (Forge atmosphere)
+ * Applied via WorkflowCanvas.vue wrapper
+ */
+
+.canvas-vignette {
+	position: absolute;
+	inset: 0;
+	pointer-events: none;
+	z-index: 1;
+	background: radial-gradient(
+		ellipse at center,
+		transparent 50%,
+		var(--color--obsidian-alpha-100) 100%
+	);
+	transition: opacity var(--duration--normal) var(--easing--ease-out);
+}
+
+// Dark mode vignette - slightly more pronounced
+body[data-theme='dark'] .canvas-vignette {
+	background: radial-gradient(
+		ellipse at center,
+		transparent 40%,
+		var(--color--obsidian-alpha-200) 100%
+	);
 }

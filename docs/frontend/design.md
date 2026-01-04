@@ -151,6 +151,8 @@ It is intentionally a map (entrypoints + responsibilities), not a style guide.
 ## Branding Customization
 
 > **Phase 00 Status:** Foundation complete. All items below marked with [x] have been implemented as part of the Obsidian Forge design overhaul.
+>
+> **Phase 01 Status:** Component Library complete. Design-system components and Element Plus overrides have been updated with Obsidian Forge tokens.
 
 ### Logo Assets
 
