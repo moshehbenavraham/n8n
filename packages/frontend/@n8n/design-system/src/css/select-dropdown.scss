@@ -1,25 +1,31 @@
 @use 'mixins/mixins';
 @use './common/var';
+@use './_forge-mixins' as forge;
 @use './popper';
 
 @include mixins.b(select-dropdown) {
 	position: absolute;
 	z-index: #{var.$index-top + 1};
-	border: var.$select-dropdown-border;
-	border-radius: var(--radius);
-	background-color: var.$select-dropdown-background;
-	box-shadow: var.$select-dropdown-shadow;
+	border: 1px solid var(--color--obsidian-200);
+	border-radius: var(--radius--lg);
+	background-color: var(--color--foreground--tint-2);
+	box-shadow: var(--shadow--lg);
 	box-sizing: border-box;
-	margin: 5px 0;
+	margin: var(--spacing--4xs) 0;
 	max-width: var(--select--dropdown--max-width);
+
+	// Forge reveal animation for dropdown appearance
+	@include forge.motion-safe {
+		animation: forge-reveal var(--duration--normal) var(--easing--forge-enter);
+	}
 
 	@include mixins.when(multiple) {
 		& .el-select-dropdown__item.selected {
-			color: var.$select-option-selected-font-color;
-			background-color: var.$select-dropdown-background;
+			color: var(--color--amber-600);
+			background-color: var(--color--amber-50);
 
 			&.hover {
-				background-color: var.$select-option-hover-background;
+				background-color: var(--color--amber-100);
 			}
 
 			&::after {
@@ -29,6 +35,7 @@
 				content: '\e6da';
 				font-size: 12px;
 				font-weight: var(--font-weight--bold);
+				color: var(--color--amber-500);
 				-webkit-font-smoothing: antialiased;
 				-moz-osx-font-smoothing: grayscale;
 			}
@@ -41,11 +48,11 @@
 }
 
 @include mixins.b(select-dropdown__empty) {
-	padding: var.$select-dropdown-empty-padding;
+	padding: var(--spacing--sm) var(--spacing--md);
 	margin: 0;
 	text-align: center;
-	color: var.$select-dropdown-empty-color;
-	font-size: var.$select-font-size;
+	color: var(--color--text--tint-1);
+	font-size: var(--font-size--xs);
 }
 
 @include mixins.b(select-dropdown__wrap) {
@@ -54,7 +61,7 @@
 
 @include mixins.b(select-dropdown__list) {
 	list-style: none;
-	padding: var.$select-dropdown-padding;
+	padding: var(--spacing--4xs);
 	margin: 0;
 	box-sizing: border-box;
 }

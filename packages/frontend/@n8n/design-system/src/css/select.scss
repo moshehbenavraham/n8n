@@ -1,6 +1,7 @@
 @use 'mixins/mixins';
 @use 'mixins/utils';
 @use './common/var';
+@use './_forge-mixins' as forge;
 @use 'select-dropdown';
 @use 'input';
 @use 'tag';
@@ -37,16 +38,20 @@
 	.el-input__inner {
 		cursor: pointer;
 		padding-right: 35px;
+		transition: border-color var(--duration--fast) var(--easing--ease-out),
+			box-shadow var(--duration--fast) var(--easing--ease-out);
 
 		&:focus {
-			border-color: var.$select-input-focus-border-color;
+			border-color: var(--color--amber-500);
 		}
+
+		@include forge.focus-ring;
 	}
 
 	.el-input {
 		& .el-select__caret {
 			font-size: var.$select-input-font-size;
-			transition: transform 0.3s;
+			transition: transform var(--duration--normal) var(--easing--ease-out);
 			cursor: pointer;
 
 			@include mixins.when(reverse) {
@@ -59,10 +64,10 @@
 				transform: rotateZ(180deg);
 				border-radius: var.$border-radius-circle;
 				color: var.$select-input-color;
-				transition: var.$color-transition-base;
+				transition: color var(--duration--fast) var(--easing--ease-out);
 
 				&:hover {
-					color: var.$select-close-hover-color;
+					color: var(--color--amber-500);
 				}
 			}
 		}
@@ -78,7 +83,7 @@
 		}
 
 		&.is-focus .el-input__inner {
-			border-color: var.$select-input-focus-border-color;
+			border-color: var(--color--amber-500);
 		}
 
 		&__prefix {
@@ -143,21 +148,29 @@
 	.el-tag {
 		box-sizing: border-box;
 		margin: 2px 0 2px 6px;
-		border-color: var(--color--foreground);
-		background-color: var(--color--foreground);
+		border-color: var(--color--amber-200);
+		background-color: var(--color--amber-50);
 		color: var(--color--text--shade-1);
-		border-radius: 20px;
+		border-radius: var(--radius--full);
 		font-weight: var(--font-weight--regular);
+		transition: background-color var(--duration--fast) var(--easing--ease-out),
+			border-color var(--duration--fast) var(--easing--ease-out);
+
+		&:hover {
+			background-color: var(--color--amber-100);
+			border-color: var(--color--amber-300);
+		}
 
 		&__close.el-icon-close {
-			background-color: var(--color--text--tint-1);
+			background-color: var(--color--amber-400);
 			right: -7px;
 			top: 0;
-			color: var.$color-white;
+			color: var(--color--neutral-white);
 			margin-right: 6px;
+			transition: background-color var(--duration--fast) var(--easing--ease-out);
 
 			&:hover {
-				background-color: var(--color--text);
+				background-color: var(--color--amber-600);
 			}
 
 			&::before {
@@ -175,6 +188,76 @@
 	&--default {
 		.el-tag {
 			padding: var(--spacing--5xs) var(--spacing--xs);
+		}
+	}
+}
+
+// Dark mode overrides for select component
+body[data-theme='dark'] {
+	.el-select {
+		.el-input__inner {
+			&:focus {
+				border-color: var(--color--amber-400);
+			}
+		}
+
+		&.is-focus .el-input__inner {
+			border-color: var(--color--amber-400);
+		}
+
+		.el-tag {
+			border-color: var(--color--amber-700);
+			background-color: var(--color--amber-900);
+			color: var(--color--amber-200);
+
+			&:hover {
+				background-color: var(--color--amber-800);
+				border-color: var(--color--amber-600);
+			}
+
+			&__close.el-icon-close {
+				background-color: var(--color--amber-600);
+
+				&:hover {
+					background-color: var(--color--amber-500);
+				}
+			}
+		}
+	}
+}
+
+// System preference dark mode
+@media (prefers-color-scheme: dark) {
+	body:not([data-theme]) {
+		.el-select {
+			.el-input__inner {
+				&:focus {
+					border-color: var(--color--amber-400);
+				}
+			}
+
+			&.is-focus .el-input__inner {
+				border-color: var(--color--amber-400);
+			}
+
+			.el-tag {
+				border-color: var(--color--amber-700);
+				background-color: var(--color--amber-900);
+				color: var(--color--amber-200);
+
+				&:hover {
+					background-color: var(--color--amber-800);
+					border-color: var(--color--amber-600);
+				}
+
+				&__close.el-icon-close {
+					background-color: var(--color--amber-600);
+
+					&:hover {
+						background-color: var(--color--amber-500);
+					}
+				}
+			}
 		}
 	}
 }

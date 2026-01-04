@@ -160,6 +160,19 @@ defineExpose({
 .container {
 	display: inline-flex;
 	width: 100%;
+
+	// Forge-consistent focus styling for select trigger
+	:deep(.el-select) {
+		.el-input__wrapper {
+			transition: border-color var(--duration--fast) var(--easing--ease-out),
+				box-shadow var(--duration--fast) var(--easing--ease-out);
+		}
+
+		&.is-focus .el-input__wrapper,
+		.el-input__inner:focus {
+			border-color: var(--color--amber-500);
+		}
+	}
 }
 
 .withPrepend {
@@ -184,5 +197,6 @@ defineExpose({
 	border-top-left-radius: var(--input--radius, var(--radius));
 	color: var(--color--text);
 	white-space: nowrap;
+	transition: border-color var(--duration--fast) var(--easing--ease-out);
 }
 </style>

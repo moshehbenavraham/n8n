@@ -28,9 +28,12 @@ withDefaults(defineProps<TagProps>(), {
 	color: var(--tag--color--text);
 	background-color: var(--tag--color--background);
 	border: 1px solid var(--tag--border-color);
-	border-radius: var(--tag--radius);
+	border-radius: var(--radius--full);
 	font-size: var(--tag--font-size);
-	transition: background-color 0.3s ease;
+	font-weight: var(--tag--font-weight);
+	transition: background-color var(--duration--fast) var(--easing--ease-out),
+		border-color var(--duration--fast) var(--easing--ease-out),
+		transform var(--duration--instant) var(--easing--ease-out);
 
 	&.clickable {
 		cursor: pointer;
@@ -38,6 +41,10 @@ withDefaults(defineProps<TagProps>(), {
 		&:hover {
 			background-color: var(--tag--color--background--hover);
 			border-color: var(--tag--border-color--hover);
+		}
+
+		&:active {
+			transform: scale(var(--interactive--active--scale, 0.98));
 		}
 	}
 }

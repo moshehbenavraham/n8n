@@ -4,7 +4,7 @@
 **Sessions**: 6
 **Estimated Duration**: 4-5 days
 
-**Progress**: 1/6 sessions (17%)
+**Progress**: 2/6 sessions (33%)
 
 ---
 
@@ -21,7 +21,7 @@ The design system contains 86 components with 96 Storybook stories. Element Plus
 | Session | Name | Status | Est. Tasks | Validated |
 |---------|------|--------|------------|-----------|
 | 01 | Design System Form Components | Complete | 22 | 2026-01-04 |
-| 02 | Design System Selection Components | Not Started | ~18 | - |
+| 02 | Design System Selection Components | Complete | 20 | 2026-01-04 |
 | 03 | Design System Action Components | Not Started | ~18 | - |
 | 04 | Design System Display Components | Not Started | ~20 | - |
 | 05 | Element Plus Override Files | Not Started | ~22 | - |
@@ -36,11 +36,16 @@ The design system contains 86 components with 96 Storybook stories. Element Plus
 - **Tasks**: 22/22
 - **Deliverables**: Form focus rings, checkbox/radio/switch theming, motion transitions
 
+### Session 02: Design System Selection Components
+- **Completed**: 2026-01-04
+- **Tasks**: 20/20
+- **Deliverables**: Select dropdown styling, tag chip amber accents, V2 Select theming, dark mode parity
+
 ---
 
 ## Upcoming Sessions
 
-- Session 02: Design System Selection Components
+- Session 03: Design System Action Components
 
 ---
 

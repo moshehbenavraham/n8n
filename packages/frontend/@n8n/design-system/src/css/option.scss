@@ -3,13 +3,13 @@
 
 @include mixins.b(select-dropdown) {
 	@include mixins.e(item) {
-		font-size: var.$select-font-size;
-		padding: var(--select--option--padding, 0 20px);
+		font-size: var(--font-size--xs);
+		padding: var(--select--option--padding, 0 var(--spacing--md));
 		position: relative;
 		white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;
-		color: var.$select-option-color;
+		color: var(--color--text--shade-1);
 		min-height: var.$select-option-height;
 		height: auto;
 		line-height: var(--select--option--line-height, var.$select-option-height);
@@ -17,24 +17,65 @@
 		cursor: pointer;
 		display: flex;
 		align-items: center;
+		border-radius: var(--radius);
+		margin: var(--spacing--5xs) var(--spacing--4xs);
+		transition: background-color var(--duration--fast) var(--easing--ease-out),
+			color var(--duration--fast) var(--easing--ease-out);
 
 		@include mixins.when(disabled) {
-			color: var.$select-option-disabled-color;
+			color: var(--color--text--tint-1);
 			cursor: not-allowed;
 
 			&:hover {
-				background-color: var.$color-white;
+				background-color: transparent;
 			}
 		}
 
 		&.hover,
 		&:hover {
-			background-color: var.$select-option-hover-background;
+			background-color: var(--color--background--light-1);
 		}
 
 		&.selected {
-			color: var.$select-option-selected-font-color;
+			color: var(--color--amber-600);
 			font-weight: var(--font-weight--bold);
+			background-color: var(--color--amber-50);
+
+			&.hover,
+			&:hover {
+				background-color: var(--color--amber-100);
+			}
+		}
+	}
+}
+
+// Dark mode overrides for option items
+body[data-theme='dark'] {
+	.el-select-dropdown__item {
+		&.selected {
+			color: var(--color--amber-300);
+			background-color: var(--color--amber-alpha-200);
+
+			&.hover,
+			&:hover {
+				background-color: var(--color--amber-alpha-300);
+			}
+		}
+	}
+}
+
+@media (prefers-color-scheme: dark) {
+	body:not([data-theme]) {
+		.el-select-dropdown__item {
+			&.selected {
+				color: var(--color--amber-300);
+				background-color: var(--color--amber-alpha-200);
+
+				&.hover,
+				&:hover {
+					background-color: var(--color--amber-alpha-300);
+				}
+			}
 		}
 	}
 }
