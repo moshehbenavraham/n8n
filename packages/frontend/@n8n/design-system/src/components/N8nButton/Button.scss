@@ -24,11 +24,13 @@
 	box-sizing: border-box;
 	outline: none;
 	margin: 0;
+	// Forge motion system: mechanical precision for action components
 	transition:
-		all 0.3s,
-		padding 0s,
-		width 0s,
-		height 0s;
+		color var(--duration--fast) var(--easing--ease-in-out),
+		background-color var(--duration--fast) var(--easing--ease-in-out),
+		border-color var(--duration--fast) var(--easing--ease-in-out),
+		transform var(--duration--fast) var(--easing--ease-in-out),
+		box-shadow var(--duration--fast) var(--easing--ease-in-out);
 
 	gap: var(--spacing--3xs);
 
@@ -39,22 +41,28 @@
 		color: var.$button-font-color string.unquote($important);
 	}
 
-	&:hover {
+	&:hover:not(.disabled, :disabled) {
 		color: var.$button-hover-font-color string.unquote($important);
 		border-color: var.$button-hover-border-color string.unquote($important);
 		background-color: var.$button-hover-background-color string.unquote($important);
+		// Forge hover lift: subtle elevation on hover
+		transform: var(--action--hover--transform);
+		box-shadow: var(--shadow--md);
 
 		& a {
 			color: var.$button-hover-font-color string.unquote($important);
 		}
 	}
 
-	&:active,
-	&.active {
+	&:active:not(.disabled, :disabled),
+	&.active:not(.disabled, :disabled) {
 		color: var.$button-active-font-color string.unquote($important);
 		border-color: var.$button-active-border-color string.unquote($important);
 		background-color: var.$button-active-background-color string.unquote($important);
 		outline: none;
+		// Forge active press: return to baseline
+		transform: var(--action--active--transform);
+		box-shadow: var(--shadow--sm);
 
 		& a {
 			color: var.$button-active-font-color string.unquote($important);
@@ -65,8 +73,9 @@
 		color: var.$button-focus-font-color string.unquote($important);
 		border-color: var.$button-focus-border-color string.unquote($important);
 		background-color: var.$button-focus-background-color string.unquote($important);
-		outline: var.$focus-outline-width solid var.$button-focus-outline-color
-			string.unquote($important);
+		// Forge amber focus ring: accessible glow indicator
+		outline: none;
+		box-shadow: var(--shadow--glow-sm);
 
 		& a {
 			color: var.$button-focus-font-color string.unquote($important);
@@ -81,6 +90,9 @@
 			color: var.$button-disabled-font-color;
 			border-color: var.$button-disabled-border-color;
 			background-color: var.$button-disabled-background-color;
+			// Forge: reset transform and shadow for disabled state
+			transform: none;
+			box-shadow: none;
 
 			& a {
 				color: var.$button-disabled-font-color;

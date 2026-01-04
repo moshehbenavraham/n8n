@@ -43,6 +43,9 @@
 	--shadow--glow--medium: 0 0 20px var(--color--amber-alpha-300);
 	--shadow--glow--strong: 0 0 30px var(--color--amber-alpha-500);
 
+	// Action component focus ring (enhanced visibility in dark mode)
+	--shadow--glow-sm: 0 0 0 3px var(--color--amber-alpha-500);
+
 	// Border tokens (Forge system - dark mode)
 	--border--subtle: 1px solid var(--color--obsidian-700);
 	--border--default: 1px solid var(--color--obsidian-600);
@@ -263,6 +266,9 @@
 	--button--color--text--danger--disabled: var(--color--white-alpha-400);
 	--button--border-color--danger--disabled: transparent;
 	--button--color--background--danger--disabled: var(--color--red-alpha-020);
+
+	// Loading spinner color (Forge amber accent - dark mode)
+	--spinner--color: var(--color--amber-400);
 
 	// Text button
 	--text-button--color--text--secondary: var(--color--neutral-300);

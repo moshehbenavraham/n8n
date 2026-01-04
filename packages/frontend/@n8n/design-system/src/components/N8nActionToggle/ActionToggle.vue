@@ -166,13 +166,27 @@ defineExpose({
 	border-radius: var(--radius);
 	display: flex;
 	align-items: center;
+	// Forge motion: smooth transitions for toggle interactions
+	transition:
+		color var(--duration--fast) var(--easing--ease-in-out),
+		background-color var(--duration--fast) var(--easing--ease-in-out),
+		transform var(--duration--fast) var(--easing--ease-in-out),
+		box-shadow var(--duration--fast) var(--easing--ease-in-out);
 
 	&:hover {
 		color: var(--color--primary);
-		cursor: pointer;
+		// Forge hover lift for toggle button
+		transform: var(--action--hover--transform);
 	}
 
-	&:focus {
+	&:active {
+		transform: var(--action--active--transform);
+	}
+
+	&:focus-visible {
+		// Forge amber focus ring
+		outline: none;
+		box-shadow: var(--shadow--glow-sm);
 		color: var(--color--primary);
 	}
 }

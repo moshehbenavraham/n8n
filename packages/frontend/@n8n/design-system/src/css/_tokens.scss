@@ -150,6 +150,17 @@
 	--shadow--glow--medium: 0 0 16px var(--color--amber-alpha-200);
 	--shadow--glow--strong: 0 0 24px var(--color--amber-alpha-300);
 
+	// Action component focus ring (spread-style glow for buttons/links)
+	--shadow--glow-sm: 0 0 0 3px var(--color--amber-alpha-300);
+
+	// Action component interaction tokens
+	/* stylelint-disable-next-line @n8n/css-var-naming */
+	--action--transition:
+		transform var(--duration--fast) var(--easing--ease-in-out),
+		box-shadow var(--duration--fast) var(--easing--ease-in-out);
+	--action--hover--transform: translateY(-1px);
+	--action--active--transform: translateY(0);
+
 	// Border tokens (Forge system)
 	--border--subtle: 1px solid var(--color--obsidian-200);
 	--border--default: 1px solid var(--color--obsidian-300);
@@ -439,6 +450,9 @@
 	--button--color--text--danger--disabled: var(--color--white-alpha-800);
 	--button--border-color--danger--disabled: var(--color--danger--tint-3);
 	--button--color--background--danger--disabled: var(--color--danger--tint-3);
+
+	// Loading spinner color (Forge amber accent)
+	--spinner--color: var(--color--amber-500);
 
 	// Text button
 	--text-button--color--text--secondary: var(--color--neutral-700);

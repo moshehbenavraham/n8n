@@ -41,8 +41,33 @@ withDefaults(defineProps<LinkProps>(), {
 @use '../../utils';
 @use '../../css/common/var';
 
+// Forge motion: smooth transitions for link interactions
+%link-base {
+	transition:
+		color var(--duration--fast) var(--easing--ease-in-out),
+		text-decoration-color var(--duration--fast) var(--easing--ease-in-out);
+	text-decoration: none;
+	text-decoration-color: transparent;
+	border-radius: var(--radius--sm);
+
+	&:hover {
+		text-decoration: underline;
+		text-decoration-color: currentColor;
+	}
+
+	&:focus-visible {
+		outline: none;
+		box-shadow: var(--shadow--glow-sm);
+	}
+}
+
 .primary {
+	@extend %link-base;
 	color: var.$link-color;
+
+	&:hover {
+		color: var(--color--amber-600);
+	}
 
 	&:active {
 		color: var.$link-color-active;
@@ -50,6 +75,7 @@ withDefaults(defineProps<LinkProps>(), {
 }
 
 .text {
+	@extend %link-base;
 	color: var(--color--text);
 
 	&:hover {
@@ -62,7 +88,12 @@ withDefaults(defineProps<LinkProps>(), {
 }
 
 .danger {
+	@extend %link-base;
 	color: var(--color--danger);
+
+	&:hover {
+		color: var(--color--danger--shade-1);
+	}
 
 	&:active {
 		color: var(--color--danger--shade-1);
@@ -70,7 +101,12 @@ withDefaults(defineProps<LinkProps>(), {
 }
 
 .secondary {
+	@extend %link-base;
 	color: var(--link--color--secondary);
+
+	&:hover {
+		color: var(--link--color--secondary--hover);
+	}
 
 	&:active {
 		color: var(--link--color--secondary--hover);
@@ -80,20 +116,24 @@ withDefaults(defineProps<LinkProps>(), {
 .primary-underline {
 	composes: primary;
 	text-decoration: underline;
+	text-decoration-color: currentColor;
 }
 
 .text-underline {
 	composes: text;
 	text-decoration: underline;
+	text-decoration-color: currentColor;
 }
 
 .danger-underline {
 	composes: danger;
 	text-decoration: underline;
+	text-decoration-color: currentColor;
 }
 
 .secondary-underline {
 	composes: secondary;
 	text-decoration: underline;
+	text-decoration-color: currentColor;
 }
 </style>

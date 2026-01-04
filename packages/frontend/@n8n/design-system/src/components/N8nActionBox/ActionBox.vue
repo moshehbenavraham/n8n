@@ -91,6 +91,21 @@ withDefaults(defineProps<ActionBoxProps>(), {
 	flex-direction: column;
 	align-items: center;
 	padding: var(--spacing--3xl);
+	// Forge motion: smooth transitions for container interactions
+	transition:
+		border-color var(--duration--fast) var(--easing--ease-in-out),
+		box-shadow var(--duration--fast) var(--easing--ease-in-out),
+		transform var(--duration--fast) var(--easing--ease-in-out);
+
+	&:hover {
+		// Forge hover: subtle border enhancement
+		border-color: var(--color--foreground--shade-1);
+	}
+
+	&:focus-within {
+		// Forge focus: amber glow when child elements have focus
+		box-shadow: var(--shadow--glow--subtle);
+	}
 
 	> * {
 		margin-bottom: var(--spacing--lg);
