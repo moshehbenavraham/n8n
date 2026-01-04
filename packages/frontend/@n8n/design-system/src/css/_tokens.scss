@@ -532,8 +532,8 @@
 
 	// Avatar
 	--avatar--color--text: var(--color--text--tint-3);
-	--avatar--ring-color--active: var(--color--amber-300);
-	--avatar--ring-width--active: 2px;
+	--avatar--border-color--active: var(--color--amber-300);
+	--avatar--border-width--active: 2px;
 
 	// Card (Forge elevation system)
 	--card--shadow: var(--shadow--sm);
@@ -541,7 +541,8 @@
 	--card--border-color: var(--color--foreground);
 	--card--border-color--hover: var(--color--primary);
 	--card--color--background: var(--color--background--light-3);
-	--card--transition: box-shadow var(--duration--fast) var(--easing--ease-out),
+	--card--duration:
+		box-shadow var(--duration--fast) var(--easing--ease-out),
 		border-color var(--duration--fast) var(--easing--ease-out);
 
 	// Tooltip (Obsidian theme)

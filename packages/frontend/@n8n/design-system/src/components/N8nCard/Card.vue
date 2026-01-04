@@ -91,7 +91,7 @@ const classes = computed(() => ({
 
 .hoverable {
 	cursor: pointer;
-	transition: var(--card--transition);
+	transition: var(--card--duration);
 
 	&:hover,
 	&:focus {

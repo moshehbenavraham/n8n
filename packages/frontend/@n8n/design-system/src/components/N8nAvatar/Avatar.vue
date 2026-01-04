@@ -76,9 +76,9 @@ const getSize = (size: string): number => sizes[size];
 		&::after {
 			content: '';
 			position: absolute;
-			inset: calc(-1 * var(--avatar--ring-width--active) - 2px);
+			inset: calc(-1 * var(--avatar--border-width--active) - 2px);
 			border-radius: 50%;
-			border: var(--avatar--ring-width--active) solid var(--avatar--ring-color--active);
+			border: var(--avatar--border-width--active) solid var(--avatar--border-color--active);
 			pointer-events: none;
 		}
 	}
