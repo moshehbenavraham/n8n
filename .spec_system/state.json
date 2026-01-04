@@ -41,7 +41,8 @@
 		"phase02-session02-canvas-node-styling",
 		"phase02-session03-canvas-connections-interactions",
 		"phase02-session04-ndv-layout-structure",
-		"phase02-session05-ndv-forms-code-editor"
+		"phase02-session05-ndv-forms-code-editor",
+		"phase02-session06-modal-dialog-system"
 	],
 	"next_session_history": [
 		{
@@ -127,6 +128,11 @@
 		{
 			"date": "2026-01-05",
 			"session": "phase02-session05-ndv-forms-code-editor",
+			"status": "completed"
+		},
+		{
+			"date": "2026-01-05",
+			"session": "phase02-session06-modal-dialog-system",
 			"status": "completed"
 		}
 	]

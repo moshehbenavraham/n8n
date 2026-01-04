@@ -412,6 +412,12 @@
 	--dialog--overlay--color--background: var(--color--slate-alpha-700);
 	--dialog--overlay--color--background--dark: var(--color--black-alpha-600);
 
+	// Modal tokens (Forge - dark mode)
+	--modal--backdrop--opacity: 0.85;
+	--modal--color--background: var(--color--neutral-900);
+	--modal--border-color: var(--color--obsidian-700);
+	--modal--shadow: 0 20px 25px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.15);
+
 	// Avatar
 	--avatar--color--text: var(--color--neutral-white);
 	--avatar--border-color--active: var(--color--amber-400);

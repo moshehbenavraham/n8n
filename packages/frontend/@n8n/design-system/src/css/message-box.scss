@@ -4,16 +4,18 @@
 @use 'common/popup';
 @use 'input';
 
+// T015: el-message-box container, header, and content (Forge styling)
 @include mixins.b(message-box) {
 	display: inline-block;
 	width: var.$msgbox-width;
 	padding-bottom: var(--spacing--sm);
 	vertical-align: middle;
-	background-color: var.$color-white;
-	border-radius: var.$msgbox-border-radius;
-	border: 1px solid var(--border-color--light);
+	// Forge surface styling
+	background-color: var.$modal-background-color;
+	border-radius: var.$modal-border-radius;
+	border: 1px solid var.$modal-border-color;
 	font-size: var.$messagebox-font-size;
-	box-shadow: var.$box-shadow-light;
+	box-shadow: var.$modal-box-shadow;
 	text-align: left;
 	overflow: hidden;
 	backface-visibility: hidden;
@@ -44,9 +46,10 @@
 	@include mixins.e(title) {
 		padding-left: 0;
 		margin-bottom: 0;
-		font-size: var.$messagebox-font-size;
-		line-height: 1;
-		color: var.$messagebox-title-color;
+		font-size: var(--font-size--lg);
+		font-weight: var(--font-weight--medium);
+		line-height: var(--line-height--sm);
+		color: var(--color--text--shade-1);
 	}
 
 	@include mixins.e(headerbtn) {
@@ -59,9 +62,11 @@
 		background: transparent;
 		font-size: var.$message-close-size;
 		cursor: pointer;
+		transition: transform var(--duration--fast) var(--easing--ease-out);
 
 		.el-message-box__close {
 			color: var(--color--info);
+			transition: color var(--duration--fast) var(--easing--ease-out);
 		}
 
 		&:focus,
@@ -70,12 +75,17 @@
 				color: var(--color--primary);
 			}
 		}
+
+		&:active {
+			transform: scale(0.95);
+		}
 	}
 
 	@include mixins.e(content) {
 		padding: var(--spacing--2xs) var.$msgbox-padding-primary var(--spacing--sm);
-		color: var.$messagebox-content-color;
+		color: var(--color--text);
 		font-size: var.$messagebox-content-font-size;
+		line-height: var(--line-height--lg);
 	}
 
 	@include mixins.e(container) {
@@ -83,7 +93,7 @@
 	}
 
 	@include mixins.e(input) {
-		padding-top: 15px;
+		padding-top: var(--spacing--sm);
 
 		& input.invalid {
 			border-color: var(--color--danger);
@@ -93,6 +103,7 @@
 		}
 	}
 
+	// T016: Alert/warning semantic status icons
 	@include mixins.e(status) {
 		position: absolute;
 		top: 50%;
@@ -100,7 +111,6 @@
 		font-size: 24px !important;
 
 		&::before {
-			// 防止图标切割
 			padding-left: 1px;
 		}
 
@@ -109,20 +119,21 @@
 			padding-right: 12px;
 		}
 
+		// Semantic color variants
 		&.el-icon-success {
-			color: var.$messagebox-success-color;
+			color: var(--color--success);
 		}
 
 		&.el-icon-info {
-			color: var.$messagebox-info-color;
+			color: var(--color--info);
 		}
 
 		&.el-icon-warning {
-			color: var.$messagebox-warning-color;
+			color: var(--color--warning);
 		}
 
 		&.el-icon-error {
-			color: var.$messagebox-danger-color;
+			color: var(--color--danger);
 		}
 	}
 
@@ -139,22 +150,26 @@
 		color: var(--color--danger);
 		font-size: var.$messagebox-error-font-size;
 		min-height: 18px;
-		margin-top: 2px;
+		margin-top: var(--spacing--3xs);
 	}
 
+	// T016: Button styling with Forge patterns
 	@include mixins.e(btns) {
 		padding: var(--spacing--sm) var(--spacing--sm) 0;
 		text-align: right;
+		display: flex;
+		justify-content: flex-end;
+		gap: var(--spacing--xs);
 
 		& button {
-			margin-left: 10px;
+			margin-left: 0; // Use gap instead
 		}
 
 		& .btn--confirm {
 			@include button.button-just-primary();
 			@include button.button-small();
 		}
-		//
+
 		& .btn--cancel {
 			--button--color--background--active: var(--color--primary--tint-2);
 			--button--color--active: var(--color--primary);
@@ -173,12 +188,12 @@
 		flex-direction: row-reverse;
 	}
 
-	// centerAlign 布局
+	// Center-aligned layout
 	@include mixins.m(center) {
-		padding-bottom: 30px;
+		padding-bottom: var(--spacing--lg);
 
 		@include mixins.e(header) {
-			padding-top: 30px;
+			padding-top: var(--spacing--lg);
 		}
 
 		@include mixins.e(title) {
@@ -191,7 +206,7 @@
 		@include mixins.e(status) {
 			position: relative;
 			top: auto;
-			padding-right: 5px;
+			padding-right: var(--spacing--2xs);
 			text-align: center;
 			transform: translateY(-1px);
 		}
@@ -205,40 +220,65 @@
 		}
 
 		@include mixins.e(content) {
-			$padding-horizontal: var.$msgbox-padding-primary + 12px;
-
-			padding-left: $padding-horizontal;
-			padding-right: $padding-horizontal;
+			padding-left: var(--spacing--xl);
+			padding-right: var(--spacing--xl);
 		}
+	}
+
+	// T016: Semantic type variants for alert dialogs
+	&.el-message-box--warning {
+		border-left: 3px solid var(--color--warning);
+	}
+
+	&.el-message-box--error {
+		border-left: 3px solid var(--color--danger);
+	}
+
+	&.el-message-box--success {
+		border-left: 3px solid var(--color--success);
+	}
+
+	&.el-message-box--info {
+		border-left: 3px solid var(--color--info);
 	}
 }
 
+// Forge modalReveal animation for message-box
 .msgbox-fade-enter-active {
-	animation: msgbox-fade-in 0.3s;
+	animation: msgboxReveal var.$modal-animation-duration-enter var.$modal-animation-easing-enter;
 }
 
 .msgbox-fade-leave-active {
-	animation: msgbox-fade-out 0.3s;
+	animation: msgboxExit var.$modal-animation-duration-exit var.$modal-animation-easing-exit;
 }
 
-@keyframes msgbox-fade-in {
+@keyframes msgboxReveal {
 	0% {
-		transform: translate3d(0, -20px, 0);
+		transform: translate3d(0, -16px, 0) scale(0.98);
 		opacity: 0;
 	}
 	100% {
-		transform: translate3d(0, 0, 0);
+		transform: translate3d(0, 0, 0) scale(1);
 		opacity: 1;
 	}
 }
 
-@keyframes msgbox-fade-out {
+@keyframes msgboxExit {
 	0% {
-		transform: translate3d(0, 0, 0);
+		transform: translate3d(0, 0, 0) scale(1);
 		opacity: 1;
 	}
 	100% {
-		transform: translate3d(0, -20px, 0);
+		transform: translate3d(0, -8px, 0) scale(0.98);
 		opacity: 0;
+	}
+}
+
+// Respect reduced motion preference
+@media (prefers-reduced-motion: reduce) {
+	.msgbox-fade-enter-active,
+	.msgbox-fade-leave-active {
+		animation: none;
+		transition: opacity var.$modal-animation-duration-exit var.$modal-animation-easing-exit;
 	}
 }

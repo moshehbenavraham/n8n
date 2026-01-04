@@ -610,6 +610,22 @@
 	--dialog--overlay--color--background--dark: var(--color--black-alpha-600);
 	--block-ui--overlay--color: var(--color--neutral-950);
 
+	// Modal backdrop tokens (Forge)
+	--modal--backdrop--opacity: 0.8;
+	--modal--backdrop--blur: 2px;
+
+	// Modal container tokens (Forge elevation)
+	--modal--color--background: var(--color--foreground--tint-2);
+	--modal--border-color: var(--color--border--light);
+	--modal--border-radius: var(--radius--md);
+	--modal--shadow: var(--shadow--xl);
+
+	// Modal animation tokens (Forge motion)
+	--modal--animation--duration--enter: var(--duration--normal);
+	--modal--animation--duration--exit: var(--duration--fast);
+	--modal--animation--easing--enter: var(--easing--forge-enter);
+	--modal--animation--easing--exit: var(--easing--forge-exit);
+
 	// Avatar
 	--avatar--color--text: var(--color--text--tint-3);
 	--avatar--border-color--active: var(--color--amber-300);
