@@ -207,19 +207,19 @@
 	--node--icon--color--crimson: #f188a2;
 
 	// Expressions, autocomplete, infobox
-	--expression-editor--resolvable--color--foreground--valid: var(--color--green-300);
-	--expression-editor--resolvable--color--background--valid: var(--color--green-alpha-200);
-	--expression-editor--resolvable--color--foreground--invalid: var(--color--red-300);
-	--expression-editor--resolvable--color--background--invalid: var(--color--red-alpha-020);
+	--expression-editor--resolvable--color--foreground--valid: var(--color--verdigris-300);
+	--expression-editor--resolvable--color--background--valid: var(--color--verdigris-alpha-200);
+	--expression-editor--resolvable--color--foreground--invalid: var(--color--ember-300);
+	--expression-editor--resolvable--color--background--invalid: var(--color--ember-alpha-200);
 	--expression-editor--resolvable--color--foreground--pending: var(--color--text);
-	--expression-editor--resolvable--color--background--pending: var(--color--neutral-150-alpha-100);
-	--expression-editor--color--background: var(--color--neutral-900);
-	--expression-editor--modal--color--background: var(--color--neutral-900);
-	--expression-editor--syntax-example--color: var(--color--neutral-700);
-	--autocomplete--item--color--selected: var(--color--purple-400);
-	--autocomplete--section-header--border-color: var(--color--neutral-600);
-	--autocomplete--infobox--color--background: var(--color--neutral-900);
-	--autocomplete--infobox--examples--border-color: var(--color--neutral-700);
+	--expression-editor--resolvable--color--background--pending: var(--color--steel-alpha-100);
+	--expression-editor--color--background: var(--color--obsidian-900);
+	--expression-editor--modal--color--background: var(--color--obsidian-900);
+	--expression-editor--syntax-example--color: var(--color--obsidian-400);
+	--autocomplete--item--color--selected: var(--color--amber-400);
+	--autocomplete--section-header--border-color: var(--color--obsidian-600);
+	--autocomplete--infobox--color--background: var(--color--obsidian-900);
+	--autocomplete--infobox--examples--border-color: var(--color--obsidian-600);
 
 	// Code
 	--code-tags--string--color: #9ecbff;
@@ -246,18 +246,18 @@
 	--json--brackets--color--hover: var(--color--blue-400);
 	--json--line--color: var(--color--neutral-250);
 	--json--highlight--color: var(--color--background);
-	--code--color--background: var(--color--neutral-950);
-	--code--color--background--readonly: var(--color--neutral-850);
-	--code--line-highlight--color: var(--color--neutral-300-alpha-100);
-	--code--color--foreground: var(--color--neutral-150);
-	--code--caret--color: var(--color--neutral-50);
-	--code--selection--color: #3392ff44;
-	--code--selection--color--highlight: #17e5e633;
-	--code--gutter--color--background: var(--color--neutral-950);
-	--code--gutter--color--foreground: var(--color--neutral-300);
-	--code--gutter--color--foreground--active: var(--color--neutral-50);
-	--code--indentation-marker--color: var(--color--neutral-850);
-	--code--indentation-marker--color--active: var(--color--neutral-700);
+	--code--color--background: var(--color--obsidian-950);
+	--code--color--background--readonly: var(--color--obsidian-850);
+	--code--line-highlight--color: var(--color--amber-alpha-100);
+	--code--color--foreground: var(--color--obsidian-200);
+	--code--caret--color: var(--color--amber-400);
+	--code--selection--color: var(--color--amber-alpha-300);
+	--code--selection--color--highlight: var(--color--verdigris-alpha-200);
+	--code--gutter--color--background: var(--color--obsidian-950);
+	--code--gutter--color--foreground: var(--color--obsidian-400);
+	--code--gutter--color--foreground--active: var(--color--obsidian-200);
+	--code--indentation-marker--color: var(--color--obsidian-800);
+	--code--indentation-marker--color--active: var(--color--obsidian-600);
 	--line-break--color: var(--color--neutral-400);
 	--code--line-break--color: var(--color--purple-500);
 

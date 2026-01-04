@@ -378,19 +378,19 @@
 	--node--icon--color--crimson: #724;
 
 	// Expressions, autocomplete, infobox
-	--expression-editor--resolvable--color--foreground--valid: var(--color--green-600);
-	--expression-editor--resolvable--color--background--valid: var(--color--green-100);
-	--expression-editor--resolvable--color--foreground--invalid: var(--color--red-600);
-	--expression-editor--resolvable--color--background--invalid: var(--color--red-50);
+	--expression-editor--resolvable--color--foreground--valid: var(--color--verdigris-600);
+	--expression-editor--resolvable--color--background--valid: var(--color--verdigris-alpha-100);
+	--expression-editor--resolvable--color--foreground--invalid: var(--color--ember-600);
+	--expression-editor--resolvable--color--background--invalid: var(--color--ember-alpha-100);
 	--expression-editor--resolvable--color--foreground--pending: var(--color--text);
-	--expression-editor--resolvable--color--background--pending: var(--color--neutral-125);
+	--expression-editor--resolvable--color--background--pending: var(--color--steel-alpha-100);
 	--expression-editor--color--background: var(--color--neutral-white);
 	--expression-editor--modal--color--background: var(--color--background);
-	--expression-editor--syntax-example--color: var(--color--neutral-125);
-	--autocomplete--item--color--selected: var(--color--secondary);
-	--autocomplete--section-header--border-color: var(--color--foreground--tint-1);
-	--autocomplete--infobox--color--background: var(--color--background--light-1);
-	--autocomplete--infobox--examples--border-color: var(--color--foreground--tint-1);
+	--expression-editor--syntax-example--color: var(--color--obsidian-200);
+	--autocomplete--item--color--selected: var(--color--amber-600);
+	--autocomplete--section-header--border-color: var(--color--obsidian-200);
+	--autocomplete--infobox--color--background: var(--color--obsidian-50);
+	--autocomplete--infobox--examples--border-color: var(--color--obsidian-200);
 
 	// Code
 	--code-tags--string--color: #032f62;
@@ -418,17 +418,17 @@
 	--json--line--color: var(--color--neutral-250);
 	--json--highlight--color: var(--color--background);
 	--code--color--background: var(--color--neutral-white);
-	--code--color--background--readonly: var(--color--neutral-125);
-	--code--line-highlight--color: var(--color--neutral-300-alpha-100);
-	--code--color--foreground: var(--color--neutral-700);
-	--code--caret--color: var(--color--neutral-950);
-	--code--selection--color: #0366d625;
-	--code--selection--color--highlight: #34d05840;
+	--code--color--background--readonly: var(--color--obsidian-100);
+	--code--line-highlight--color: var(--color--amber-alpha-100);
+	--code--color--foreground: var(--color--obsidian-700);
+	--code--caret--color: var(--color--amber-500);
+	--code--selection--color: var(--color--amber-alpha-200);
+	--code--selection--color--highlight: var(--color--verdigris-alpha-200);
 	--code--gutter--color--background: var(--color--neutral-white);
-	--code--gutter--color--foreground: var(--color--neutral-300);
-	--code--gutter--color--foreground--active: var(--color--neutral-700);
-	--code--indentation-marker--color: var(--color--neutral-150);
-	--code--indentation-marker--color--active: var(--color--neutral-250);
+	--code--gutter--color--foreground: var(--color--obsidian-300);
+	--code--gutter--color--foreground--active: var(--color--obsidian-700);
+	--code--indentation-marker--color: var(--color--obsidian-200);
+	--code--indentation-marker--color--active: var(--color--obsidian-300);
 	--line-break--color: var(--color--neutral-300);
 	--code--line-break--color: var(--color--purple-400);
 

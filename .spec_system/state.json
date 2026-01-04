@@ -40,7 +40,8 @@
 		"phase02-session01-workflow-canvas-foundation",
 		"phase02-session02-canvas-node-styling",
 		"phase02-session03-canvas-connections-interactions",
-		"phase02-session04-ndv-layout-structure"
+		"phase02-session04-ndv-layout-structure",
+		"phase02-session05-ndv-forms-code-editor"
 	],
 	"next_session_history": [
 		{
@@ -121,6 +122,11 @@
 		{
 			"date": "2026-01-04",
 			"session": "phase02-session04-ndv-layout-structure",
+			"status": "completed"
+		},
+		{
+			"date": "2026-01-05",
+			"session": "phase02-session05-ndv-forms-code-editor",
 			"status": "completed"
 		}
 	]

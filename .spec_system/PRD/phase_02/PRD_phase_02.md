@@ -4,7 +4,7 @@
 **Sessions**: 7 (initial estimate)
 **Estimated Duration**: 14-28 hours
 
-**Progress**: 4/7 sessions (57%)
+**Progress**: 5/7 sessions (71%)
 
 ---
 
@@ -24,7 +24,7 @@ The workflow canvas comprises 42+ Vue components built on Vue Flow, featuring no
 | 02 | Canvas Node Styling | Complete | 22 | 2026-01-04 |
 | 03 | Canvas Connections and Interactions | Complete | 20 | 2026-01-04 |
 | 04 | NDV Layout and Structure | Complete | 22 | 2026-01-04 |
-| 05 | NDV Forms and Code Editor | Not Started | ~22 | - |
+| 05 | NDV Forms and Code Editor | Complete | 20 | 2026-01-05 |
 | 06 | Modal and Dialog System | Not Started | ~20 | - |
 | 07 | Overlay Components | Not Started | ~18 | - |
 
@@ -62,11 +62,18 @@ The workflow canvas comprises 42+ Vue components built on Vue Flow, featuring no
   - Back-to-canvas link styled with amber accent
   - Hardcoded shadow values eliminated from NDV layout
 
+- **Session 05: NDV Forms and Code Editor** - Completed 2026-01-05
+  - Expression resolvable tokens updated (valid=verdigris, invalid=ember, pending=steel)
+  - CodeMirror caret color changed to amber/gold accent
+  - Selection highlight using amber-alpha transparency
+  - Autocomplete dropdown styled with obsidian background and amber selection
+  - Added missing obsidian primitives (obsidian-850, alpha variants)
+
 ---
 
 ## Upcoming Sessions
 
-- Session 05: NDV Forms and Code Editor
+- Session 06: Modal and Dialog System
 
 ---
 
