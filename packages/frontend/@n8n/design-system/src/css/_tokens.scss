@@ -516,8 +516,23 @@
 	--table--row--color--background--hover: var(--color--primary--tint-3);
 	--table--row--color--background--highlight: var(--color--warning--tint-1);
 
-	// Notification
+	// Notification (Obsidian Forge - semantic state styling)
 	--notification--color--background: var(--color--background--light-3);
+	--notification--border-color: var(--color--obsidian-200);
+	--notification--shadow: var(--shadow--lg);
+	// Semantic state backgrounds (subtle tints for light mode)
+	--notification--color--background--success: var(--color--verdigris-50);
+	--notification--color--background--error: var(--color--ember-50);
+	--notification--color--background--warning: var(--color--gold-50);
+	--notification--color--background--info: var(--color--neutral-100);
+	// Semantic state border colors (left accent stripe)
+	--notification--border-color--success: var(--color--verdigris-500);
+	--notification--border-color--error: var(--color--ember-500);
+	--notification--border-color--warning: var(--color--gold-500);
+	--notification--border-color--info: var(--color--steel-400);
+
+	// Loading overlay (Obsidian Forge - backdrop)
+	--color--loading-mask--background: var(--color--white-alpha-900);
 
 	// Execution
 	--execution-card--border-color--new: var(--color--neutral-250);

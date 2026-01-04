@@ -330,8 +330,32 @@
 	--table--row--color--background--hover: var(--color--neutral-850);
 	--table--row--color--background--highlight: var(--color--warning--tint-1);
 
-	// Notification
+	// Notification (Obsidian Forge - semantic state styling - Dark Mode)
 	--notification--color--background: var(--color--neutral-850);
+	--notification--border-color: var(--color--obsidian-700);
+	--notification--shadow: var(--shadow--lg);
+	// Semantic state backgrounds (deeper tones for dark mode)
+	--notification--color--background--success: var(--color--verdigris-950);
+	--notification--color--background--error: var(--color--ember-950);
+	--notification--color--background--warning: var(--color--gold-900);
+	--notification--color--background--info: var(--color--neutral-850);
+	// Semantic state border colors (left accent stripe - brighter for dark visibility)
+	--notification--border-color--success: var(--color--verdigris-400);
+	--notification--border-color--error: var(--color--ember-400);
+	--notification--border-color--warning: var(--color--gold-400);
+	--notification--border-color--info: var(--color--steel-500);
+
+	// Loading overlay (Obsidian Forge - backdrop - Dark Mode)
+	--color--loading-mask--background: var(--color--obsidian-alpha-800);
+
+	// Tooltip (Obsidian theme - Dark Mode - inverted for contrast)
+	--tooltip--color--background: var(--color--neutral-100);
+	--tooltip--color--text: var(--color--obsidian-900);
+	--tooltip--border-color: var(--color--obsidian-200);
+
+	// Popover (Obsidian theme - Dark Mode)
+	--popover--color--background: var(--color--neutral-850);
+	--popover--border-color: var(--color--obsidian-700);
 
 	// Execution
 	--execution-card--color--background: var(--color--foreground--tint-1);

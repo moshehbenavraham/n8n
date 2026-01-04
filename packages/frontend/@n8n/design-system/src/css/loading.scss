@@ -1,6 +1,9 @@
 @use 'mixins/mixins';
 @use './common/var';
 
+// Obsidian Forge Loading Overlay Styling
+// Semi-transparent backdrop with amber spinner accent
+
 @include mixins.b(loading-parent) {
 	@include mixins.m(relative) {
 		position: relative !important;
@@ -14,14 +17,17 @@
 @include mixins.b(loading-mask) {
 	position: absolute;
 	z-index: 2000;
-	// Updated: Use Forge white-alpha token instead of hardcoded rgba fallback
+	// Forge backdrop with theme-aware transparency
 	background-color: var(--color--loading-mask--background, var(--color--white-alpha-900));
+	// Optional backdrop blur for modern browsers
+	backdrop-filter: blur(2px);
 	margin: 0;
 	top: 0;
 	right: 0;
 	bottom: 0;
 	left: 0;
-	transition: opacity 0.3s;
+	// Forge smooth fade transition
+	transition: opacity var(--duration--normal) var(--easing--forge-exit);
 
 	@include mixins.when(fullscreen) {
 		position: fixed;
@@ -46,47 +52,66 @@
 	position: absolute;
 	max-height: 100%;
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	gap: var(--spacing--xs);
 
 	.el-loading-text {
+		// Forge primary amber color for loading text
 		color: var(--spinner--color);
 		margin: 3px 0;
 		font-size: 14px;
+		font-weight: var(--font-weight--medium);
 	}
 
 	.circular {
 		max-height: 100%;
 		height: var.$loading-spinner-size;
 		width: var.$loading-spinner-size;
+		// Smooth rotation animation
 		animation: loading-rotate 2s linear infinite;
 	}
 
 	.path {
+		// Forge dash animation for spinner stroke
 		animation: loading-dash 1.5s ease-in-out infinite;
 		stroke-dasharray: 90, 150;
 		stroke-dashoffset: 0;
 		stroke-width: 2;
+		// Forge amber spinner color
 		stroke: var(--spinner--color);
 		stroke-linecap: round;
 	}
 
 	i {
 		color: var(--spinner--color);
+		font-size: 24px;
 	}
 }
 
+// Loading overlay fade transitions
 .el-loading-fade-enter-from,
 .el-loading-fade-leave-active {
 	opacity: 0;
 }
 
+.el-loading-fade-enter-active {
+	transition: opacity var(--duration--fast) var(--easing--forge-enter);
+}
+
+.el-loading-fade-leave-active {
+	transition: opacity var(--duration--fast) var(--easing--forge-exit);
+}
+
+// Spinner rotation animation
 @keyframes loading-rotate {
 	100% {
 		transform: rotate(360deg);
 	}
 }
 
+// Spinner dash animation with forge timing
 @keyframes loading-dash {
 	0% {
 		stroke-dasharray: 1, 200;

@@ -1,6 +1,9 @@
 @use 'mixins/mixins';
 @use './common/var';
 
+// Obsidian Forge Tooltip Styling
+// High-contrast tooltips with WCAG AA compliance (4.5:1 minimum)
+
 @include mixins.b(tooltip) {
 	max-width: 200px;
 
@@ -15,15 +18,22 @@
 		padding: var.$tooltip-padding;
 		z-index: var.$index-popper;
 		font-size: var.$tooltip-font-size;
-		line-height: 1.2;
+		line-height: 1.4;
 		min-width: 10px;
 		word-wrap: break-word;
 		font-weight: var(--font-weight--regular);
-		box-shadow: var(--tooltip--shadow);
+		box-shadow: var.$tooltip-shadow;
+		// Forge-inspired entrance animation
+		animation: tooltip-fade-in var(--duration--fast) var(--easing--forge-enter);
 
 		a {
 			color: var(--color--primary);
 			font-weight: var(--font-weight--bold);
+			text-decoration: underline;
+
+			&:hover {
+				color: var(--color--primary--shade-1);
+			}
 		}
 
 		.el-popper__arrow,
@@ -98,39 +108,65 @@
 			}
 		}
 
+		// Dark variant (default) - Obsidian background with high contrast white text
+		// WCAG AA: obsidian-900 (#1a1a2e) with neutral-white provides ~15:1 contrast
 		@include mixins.when(is-dark) {
 			background: var.$tooltip-fill;
 			color: var.$tooltip-color;
+			border: 1px solid var.$tooltip-border-color;
+
+			a {
+				color: var(--color--amber-400);
+
+				&:hover {
+					color: var(--color--amber-300);
+				}
+			}
 		}
 
+		// Light variant - Forge surface with obsidian border
+		// Used in contexts where dark tooltip would clash
 		@include mixins.when(is-light) {
-			background: var.$tooltip-color;
-			border: 1px solid var.$tooltip-fill;
+			background: var(--color--neutral-white);
+			color: var(--color--obsidian-900);
+			border: 1px solid var(--color--obsidian-200);
 
 			&[data-popper-placement^='top'] .el-popper__arrow {
-				border-top-color: var.$tooltip-fill;
+				border-top-color: var(--color--obsidian-200);
 				&::after {
-					border-top-color: var.$tooltip-color;
+					border-top-color: var(--color--neutral-white);
 				}
 			}
 			&[data-popper-placement^='bottom'] .el-popper__arrow {
-				border-bottom-color: var.$tooltip-fill;
+				border-bottom-color: var(--color--obsidian-200);
 				&::after {
-					border-bottom-color: var.$tooltip-color;
+					border-bottom-color: var(--color--neutral-white);
 				}
 			}
 			&[data-popper-placement^='left'] .el-popper__arrow {
-				border-left-color: var.$tooltip-fill;
+				border-left-color: var(--color--obsidian-200);
 				&::after {
-					border-left-color: var.$tooltip-color;
+					border-left-color: var(--color--neutral-white);
 				}
 			}
 			&[data-popper-placement^='right'] .el-popper__arrow {
-				border-right-color: var.$tooltip-fill;
+				border-right-color: var(--color--obsidian-200);
 				&::after {
-					border-right-color: var.$tooltip-color;
+					border-right-color: var(--color--neutral-white);
 				}
 			}
 		}
+	}
+}
+
+// Tooltip entrance animation
+@keyframes tooltip-fade-in {
+	from {
+		opacity: 0;
+		transform: scale(0.95);
+	}
+	to {
+		opacity: 1;
+		transform: scale(1);
 	}
 }
