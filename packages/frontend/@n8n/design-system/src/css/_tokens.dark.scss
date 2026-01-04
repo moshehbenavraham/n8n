@@ -341,7 +341,7 @@
 	--execution-select-all--color--text: var(--color--text);
 	--execution-card--color--text--waiting: var(--color--purple-500);
 
-	// NDV
+	// NDV (Node Details View - Obsidian Forge theming - Dark Mode)
 	--run-data--color--background: var(--color--neutral-900);
 	--ndvv2--run-data--color--background: var(--color--neutral-900);
 	--ndv--droppable-parameter--color: var(--color--amber-500);
@@ -350,6 +350,39 @@
 	--ndv--back--color--text: var(--color--neutral-white);
 	--ndv--background--color: var(--color--background--light-1);
 	--ndv--header--color: var(--color--neutral-750);
+
+	// NDV Layout Structure (Obsidian Forge - Dark Mode)
+	// Modal overlay - deep obsidian backdrop with enhanced opacity
+	--ndv--overlay--color--background: var(--color--obsidian-alpha-800);
+
+	// Container (forge-crafted modal - dark)
+	--ndv--container--color--background: var(--color--neutral-900);
+	--ndv--container--border-color: var(--color--obsidian-700);
+
+	// Panel shadows (enhanced visibility in dark mode)
+	--ndv--panel--shadow: 0 4px 16px var(--color--obsidian-alpha-300);
+	--ndv--panel--shadow--hover: 0 6px 20px var(--color--obsidian-alpha-400);
+	--ndv--panel--shadow--dragging: 0 6px 16px var(--color--amber-alpha-300);
+
+	// Panel backgrounds (dark surfaces)
+	--ndv--panel--color--background: var(--color--neutral-850);
+	--ndv--panel--color--background--secondary: var(--color--neutral-900);
+	--ndv--panel--border-color: var(--color--obsidian-700);
+
+	// Header (dark forge tab area)
+	--ndv--header--color--background: var(--color--neutral-800);
+	--ndv--header--border-color: var(--color--obsidian-700);
+
+	// Drag handle (dark forge metal grip)
+	--ndv--drag-handle--color--background: var(--color--neutral-800);
+	--ndv--drag-handle--dot--color: var(--color--obsidian-500);
+	--ndv--drag-handle--arrow--color: var(--color--obsidian-400);
+
+	// Back to canvas link (Obsidian Forge accent - enhanced in dark)
+	--ndv--back-link--color--text: var(--color--amber-400);
+	--ndv--back-link--color--text--hover: var(--color--amber-300);
+	--ndv--back-link--color--background: var(--color--obsidian-900);
+	--ndv--back-link--color--background--hover: var(--color--obsidian-800);
 
 	// Notice
 	--notice--border-color--warning: var(--color--gold-200);

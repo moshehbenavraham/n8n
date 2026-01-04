@@ -84,7 +84,8 @@ function onRename(newNodeName: string) {
 	justify-content: space-between;
 	gap: var(--spacing--2xs);
 	padding: var(--spacing--4xs);
-	background: var(--color--background--light-3);
+	background: var(--ndv--header--color--background);
+	border-bottom: 1px solid var(--ndv--header--border-color);
 }
 
 .content {
@@ -101,7 +102,7 @@ function onRename(newNodeName: string) {
 }
 
 .actions button:hover {
-	background-color: var(--color--background);
+	background-color: var(--ndv--panel--color--background--secondary);
 }
 
 .actions > *:not(:last-child) {

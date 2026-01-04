@@ -833,6 +833,11 @@ onBeforeUnmount(() => {
 </template>
 
 <style lang="scss">
+// NDV Overlay (Obsidian Forge backdrop)
+.data-display-overlay {
+	background-color: var(--ndv--overlay--color--background) !important;
+}
+
 .ndv-wrapper {
 	overflow: visible;
 	margin-top: 0;
@@ -855,7 +860,8 @@ onBeforeUnmount(() => {
 		height: 100%;
 		min-height: 400px;
 		overflow: visible;
-		border-radius: 8px;
+		border-radius: var(--ndv--container--radius);
+		background-color: var(--ndv--container--color--background);
 	}
 }
 
@@ -885,13 +891,24 @@ $main-panel-width: 360px;
 	display: flex;
 	align-items: center;
 	gap: var(--spacing--3xs);
+	padding: var(--spacing--3xs) var(--spacing--xs);
+	border-radius: var(--radius);
+	background-color: var(--ndv--back-link--color--background);
+	transition:
+		background-color var(--duration--fast) var(--easing--ease-out),
+		color var(--duration--fast) var(--easing--ease-out);
 
 	span {
-		color: var(--ndv--back--color--text);
+		color: var(--ndv--back-link--color--text);
 	}
 
 	&:hover {
 		cursor: pointer;
+		background-color: var(--ndv--back-link--color--background--hover);
+
+		span {
+			color: var(--ndv--back-link--color--text--hover);
+		}
 	}
 }
 

@@ -4,7 +4,7 @@
 **Sessions**: 7 (initial estimate)
 **Estimated Duration**: 14-28 hours
 
-**Progress**: 3/7 sessions (43%)
+**Progress**: 4/7 sessions (57%)
 
 ---
 
@@ -23,7 +23,7 @@ The workflow canvas comprises 42+ Vue components built on Vue Flow, featuring no
 | 01 | Workflow Canvas Foundation | Complete | 21 | 2026-01-04 |
 | 02 | Canvas Node Styling | Complete | 22 | 2026-01-04 |
 | 03 | Canvas Connections and Interactions | Complete | 20 | 2026-01-04 |
-| 04 | NDV Layout and Structure | Not Started | ~20 | - |
+| 04 | NDV Layout and Structure | Complete | 22 | 2026-01-04 |
 | 05 | NDV Forms and Code Editor | Not Started | ~22 | - |
 | 06 | Modal and Dialog System | Not Started | ~20 | - |
 | 07 | Overlay Components | Not Started | ~18 | - |
@@ -54,11 +54,19 @@ The workflow canvas comprises 42+ Vue components built on Vue Flow, featuring no
   - Selection rectangle with forge aesthetic
   - Canvas pan/zoom transitions and keyboard focus indicators
 
+- **Session 04: NDV Layout and Structure** - Completed 2026-01-04
+  - Comprehensive NDV token architecture (19 light mode + 16 dark mode tokens)
+  - Elevated surface styling for NDV container and overlay
+  - Panel shadow hierarchy for depth perception
+  - Drag handle styling with forge aesthetic
+  - Back-to-canvas link styled with amber accent
+  - Hardcoded shadow values eliminated from NDV layout
+
 ---
 
 ## Upcoming Sessions
 
-- Session 04: NDV Layout and Structure
+- Session 05: NDV Forms and Code Editor
 
 ---
 

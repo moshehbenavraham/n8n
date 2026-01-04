@@ -533,7 +533,7 @@
 	--execution-selector--color--text: var(--color--text--tint-3);
 	--execution-select-all--color--text: var(--color--danger);
 
-	// NDV
+	// NDV (Node Details View - Obsidian Forge theming)
 	--run-data--color--background: var(--color--neutral-150);
 	--ndvv2--run-data--color--background: var(--color--neutral-125);
 	--ndv--droppable-parameter--color: var(--color--secondary);
@@ -542,6 +542,40 @@
 	--ndv--back--color--text: var(--color--neutral-white);
 	--ndv--background--color: var(--color--background--light-3);
 	--ndv--header--color: var(--color--background);
+
+	// NDV Layout Structure (Obsidian Forge - Light Mode)
+	// Modal overlay - semi-transparent obsidian backdrop
+	--ndv--overlay--color--background: var(--color--obsidian-alpha-600);
+
+	// Container (forge-crafted modal)
+	--ndv--container--color--background: var(--color--neutral-white);
+	--ndv--container--border-color: var(--color--obsidian-200);
+	--ndv--container--radius: var(--radius--xl);
+
+	// Panel shadows (forge-crafted elevation hierarchy)
+	--ndv--panel--shadow: 0 4px 16px var(--color--obsidian-alpha-100);
+	--ndv--panel--shadow--hover: 0 6px 20px var(--color--obsidian-alpha-200);
+	--ndv--panel--shadow--dragging: 0 6px 16px var(--color--amber-alpha-200);
+
+	// Panel backgrounds
+	--ndv--panel--color--background: var(--color--neutral-white);
+	--ndv--panel--color--background--secondary: var(--color--neutral-100);
+	--ndv--panel--border-color: var(--color--obsidian-200);
+
+	// Header (forge-crafted tab area)
+	--ndv--header--color--background: var(--color--neutral-125);
+	--ndv--header--border-color: var(--color--obsidian-200);
+
+	// Drag handle (forge metal grip)
+	--ndv--drag-handle--color--background: var(--color--neutral-125);
+	--ndv--drag-handle--dot--color: var(--color--steel-400);
+	--ndv--drag-handle--arrow--color: var(--color--steel-500);
+
+	// Back to canvas link (Obsidian Forge accent)
+	--ndv--back-link--color--text: var(--color--amber-500);
+	--ndv--back-link--color--text--hover: var(--color--amber-600);
+	--ndv--back-link--color--background: var(--color--obsidian-800);
+	--ndv--back-link--color--background--hover: var(--color--obsidian-700);
 
 	// Notice
 	--notice--border-color--warning: var(--color--warning--tint-1);
