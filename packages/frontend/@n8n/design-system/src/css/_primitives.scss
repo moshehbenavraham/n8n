@@ -323,25 +323,34 @@
 	// Font weight
 	--font-weight--light: 300;
 	--font-weight--regular: 400;
-	--font-weight--medium: 500;
-	--font-weight--semibold: 550;
+	--font-weight--medium: 450;
+	--font-weight--semibold: 500;
 	--font-weight--bold: 600;
-	--font-weight--extrabold: 700;
+	--font-weight--heavy: 700;
+	--font-weight--extrabold: var(--font-weight--heavy); // Backwards-compatible alias
 
 	// Letter spacing
-	--letter-spacing--tight: -0.025em;
-	--letter-spacing--snug: -0.0125em;
+	--letter-spacing--tight: -0.03em;
+	--letter-spacing--snug: -0.02em;
 	--letter-spacing--normal: 0;
-	--letter-spacing--wide: 0.025em;
-	--letter-spacing--wider: 0.05em;
+	--letter-spacing--wide: 0.02em;
+	--letter-spacing--wider: 0.04em;
 
-	// Line height
-	--line-height--xs: 1;
+	// Line height (semantic names)
+	--line-height--none: 1;
+	--line-height--tight: 1.15;
+	--line-height--snug: 1.3;
+	--line-height--normal: 1.5;
+	--line-height--relaxed: 1.6;
+	--line-height--loose: 1.75;
+
+	// Line height (backwards-compatible size aliases)
+	--line-height--xs: var(--line-height--none);
 	--line-height--sm: 1.25;
-	--line-height--md: 1.3;
+	--line-height--md: var(--line-height--snug);
 	--line-height--lg: 1.35;
-	--line-height--xl: 1.5;
-	--line-height--2xl: 1.75;
+	--line-height--xl: var(--line-height--normal);
+	--line-height--2xl: var(--line-height--loose);
 
 	// Motion - Easing curves
 	--easing--linear: linear;
