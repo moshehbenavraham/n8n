@@ -1,0 +1,422 @@
+{
+	"name": "Performance Test - 50 Nodes",
+	"nodes": [
+		{
+			"parameters": {},
+			"id": "n0",
+			"name": "Start",
+			"type": "n8n-nodes-base.manualTrigger",
+			"typeVersion": 1,
+			"position": [0, 0]
+		},
+		{
+			"parameters": { "values": { "string": [{ "name": "data", "value": "test" }] } },
+			"id": "n1",
+			"name": "Set 1",
+			"type": "n8n-nodes-base.set",
+			"typeVersion": 3.4,
+			"position": [200, 0]
+		},
+		{
+			"parameters": { "values": { "string": [{ "name": "data", "value": "test" }] } },
+			"id": "n2",
+			"name": "Set 2",
+			"type": "n8n-nodes-base.set",
+			"typeVersion": 3.4,
+			"position": [400, 0]
+		},
+		{
+			"parameters": { "values": { "string": [{ "name": "data", "value": "test" }] } },
+			"id": "n3",
+			"name": "Set 3",
+			"type": "n8n-nodes-base.set",
+			"typeVersion": 3.4,
+			"position": [600, 0]
+		},
+		{
+			"parameters": { "values": { "string": [{ "name": "data", "value": "test" }] } },
+			"id": "n4",
+			"name": "Set 4",
+			"type": "n8n-nodes-base.set",
+			"typeVersion": 3.4,
+			"position": [800, 0]
+		},
+		{
+			"parameters": { "values": { "string": [{ "name": "data", "value": "test" }] } },
+			"id": "n5",
+			"name": "Set 5",
+			"type": "n8n-nodes-base.set",
+			"typeVersion": 3.4,
+			"position": [1000, 0]
+		},
+		{
+			"parameters": { "values": { "string": [{ "name": "data", "value": "test" }] } },
+			"id": "n6",
+			"name": "Set 6",
+			"type": "n8n-nodes-base.set",
+			"typeVersion": 3.4,
+			"position": [200, 200]
+		},
+		{
+			"parameters": { "values": { "string": [{ "name": "data", "value": "test" }] } },
+			"id": "n7",
+			"name": "Set 7",
+			"type": "n8n-nodes-base.set",
+			"typeVersion": 3.4,
+			"position": [400, 200]
+		},
+		{
+			"parameters": { "values": { "string": [{ "name": "data", "value": "test" }] } },
+			"id": "n8",
+			"name": "Set 8",
+			"type": "n8n-nodes-base.set",
+			"typeVersion": 3.4,
+			"position": [600, 200]
+		},
+		{
+			"parameters": { "values": { "string": [{ "name": "data", "value": "test" }] } },
+			"id": "n9",
+			"name": "Set 9",
+			"type": "n8n-nodes-base.set",
+			"typeVersion": 3.4,
+			"position": [800, 200]
+		},
+		{
+			"parameters": { "values": { "string": [{ "name": "data", "value": "test" }] } },
+			"id": "n10",
+			"name": "Set 10",
+			"type": "n8n-nodes-base.set",
+			"typeVersion": 3.4,
+			"position": [1000, 200]
+		},
+		{
+			"parameters": { "values": { "string": [{ "name": "data", "value": "test" }] } },
+			"id": "n11",
+			"name": "Set 11",
+			"type": "n8n-nodes-base.set",
+			"typeVersion": 3.4,
+			"position": [200, 400]
+		},
+		{
+			"parameters": { "values": { "string": [{ "name": "data", "value": "test" }] } },
+			"id": "n12",
+			"name": "Set 12",
+			"type": "n8n-nodes-base.set",
+			"typeVersion": 3.4,
+			"position": [400, 400]
+		},
+		{
+			"parameters": { "values": { "string": [{ "name": "data", "value": "test" }] } },
+			"id": "n13",
+			"name": "Set 13",
+			"type": "n8n-nodes-base.set",
+			"typeVersion": 3.4,
+			"position": [600, 400]
+		},
+		{
+			"parameters": { "values": { "string": [{ "name": "data", "value": "test" }] } },
+			"id": "n14",
+			"name": "Set 14",
+			"type": "n8n-nodes-base.set",
+			"typeVersion": 3.4,
+			"position": [800, 400]
+		},
+		{
+			"parameters": { "values": { "string": [{ "name": "data", "value": "test" }] } },
+			"id": "n15",
+			"name": "Set 15",
+			"type": "n8n-nodes-base.set",
+			"typeVersion": 3.4,
+			"position": [1000, 400]
+		},
+		{
+			"parameters": { "values": { "string": [{ "name": "data", "value": "test" }] } },
+			"id": "n16",
+			"name": "Set 16",
+			"type": "n8n-nodes-base.set",
+			"typeVersion": 3.4,
+			"position": [200, 600]
+		},
+		{
+			"parameters": { "values": { "string": [{ "name": "data", "value": "test" }] } },
+			"id": "n17",
+			"name": "Set 17",
+			"type": "n8n-nodes-base.set",
+			"typeVersion": 3.4,
+			"position": [400, 600]
+		},
+		{
+			"parameters": { "values": { "string": [{ "name": "data", "value": "test" }] } },
+			"id": "n18",
+			"name": "Set 18",
+			"type": "n8n-nodes-base.set",
+			"typeVersion": 3.4,
+			"position": [600, 600]
+		},
+		{
+			"parameters": { "values": { "string": [{ "name": "data", "value": "test" }] } },
+			"id": "n19",
+			"name": "Set 19",
+			"type": "n8n-nodes-base.set",
+			"typeVersion": 3.4,
+			"position": [800, 600]
+		},
+		{
+			"parameters": { "values": { "string": [{ "name": "data", "value": "test" }] } },
+			"id": "n20",
+			"name": "Set 20",
+			"type": "n8n-nodes-base.set",
+			"typeVersion": 3.4,
+			"position": [1000, 600]
+		},
+		{
+			"parameters": { "values": { "string": [{ "name": "data", "value": "test" }] } },
+			"id": "n21",
+			"name": "Set 21",
+			"type": "n8n-nodes-base.set",
+			"typeVersion": 3.4,
+			"position": [200, 800]
+		},
+		{
+			"parameters": { "values": { "string": [{ "name": "data", "value": "test" }] } },
+			"id": "n22",
+			"name": "Set 22",
+			"type": "n8n-nodes-base.set",
+			"typeVersion": 3.4,
+			"position": [400, 800]
+		},
+		{
+			"parameters": { "values": { "string": [{ "name": "data", "value": "test" }] } },
+			"id": "n23",
+			"name": "Set 23",
+			"type": "n8n-nodes-base.set",
+			"typeVersion": 3.4,
+			"position": [600, 800]
+		},
+		{
+			"parameters": { "values": { "string": [{ "name": "data", "value": "test" }] } },
+			"id": "n24",
+			"name": "Set 24",
+			"type": "n8n-nodes-base.set",
+			"typeVersion": 3.4,
+			"position": [800, 800]
+		},
+		{
+			"parameters": { "values": { "string": [{ "name": "data", "value": "test" }] } },
+			"id": "n25",
+			"name": "Set 25",
+			"type": "n8n-nodes-base.set",
+			"typeVersion": 3.4,
+			"position": [1000, 800]
+		},
+		{
+			"parameters": { "values": { "string": [{ "name": "data", "value": "test" }] } },
+			"id": "n26",
+			"name": "Set 26",
+			"type": "n8n-nodes-base.set",
+			"typeVersion": 3.4,
+			"position": [200, 1000]
+		},
+		{
+			"parameters": { "values": { "string": [{ "name": "data", "value": "test" }] } },
+			"id": "n27",
+			"name": "Set 27",
+			"type": "n8n-nodes-base.set",
+			"typeVersion": 3.4,
+			"position": [400, 1000]
+		},
+		{
+			"parameters": { "values": { "string": [{ "name": "data", "value": "test" }] } },
+			"id": "n28",
+			"name": "Set 28",
+			"type": "n8n-nodes-base.set",
+			"typeVersion": 3.4,
+			"position": [600, 1000]
+		},
+		{
+			"parameters": { "values": { "string": [{ "name": "data", "value": "test" }] } },
+			"id": "n29",
+			"name": "Set 29",
+			"type": "n8n-nodes-base.set",
+			"typeVersion": 3.4,
+			"position": [800, 1000]
+		},
+		{
+			"parameters": { "values": { "string": [{ "name": "data", "value": "test" }] } },
+			"id": "n30",
+			"name": "Set 30",
+			"type": "n8n-nodes-base.set",
+			"typeVersion": 3.4,
+			"position": [1000, 1000]
+		},
+		{
+			"parameters": { "values": { "string": [{ "name": "data", "value": "test" }] } },
+			"id": "n31",
+			"name": "Set 31",
+			"type": "n8n-nodes-base.set",
+			"typeVersion": 3.4,
+			"position": [1200, 0]
+		},
+		{
+			"parameters": { "values": { "string": [{ "name": "data", "value": "test" }] } },
+			"id": "n32",
+			"name": "Set 32",
+			"type": "n8n-nodes-base.set",
+			"typeVersion": 3.4,
+			"position": [1200, 200]
+		},
+		{
+			"parameters": { "values": { "string": [{ "name": "data", "value": "test" }] } },
+			"id": "n33",
+			"name": "Set 33",
+			"type": "n8n-nodes-base.set",
+			"typeVersion": 3.4,
+			"position": [1200, 400]
+		},
+		{
+			"parameters": { "values": { "string": [{ "name": "data", "value": "test" }] } },
+			"id": "n34",
+			"name": "Set 34",
+			"type": "n8n-nodes-base.set",
+			"typeVersion": 3.4,
+			"position": [1200, 600]
+		},
+		{
+			"parameters": { "values": { "string": [{ "name": "data", "value": "test" }] } },
+			"id": "n35",
+			"name": "Set 35",
+			"type": "n8n-nodes-base.set",
+			"typeVersion": 3.4,
+			"position": [1200, 800]
+		},
+		{
+			"parameters": { "values": { "string": [{ "name": "data", "value": "test" }] } },
+			"id": "n36",
+			"name": "Set 36",
+			"type": "n8n-nodes-base.set",
+			"typeVersion": 3.4,
+			"position": [1200, 1000]
+		},
+		{
+			"parameters": { "values": { "string": [{ "name": "data", "value": "test" }] } },
+			"id": "n37",
+			"name": "Set 37",
+			"type": "n8n-nodes-base.set",
+			"typeVersion": 3.4,
+			"position": [1400, 0]
+		},
+		{
+			"parameters": { "values": { "string": [{ "name": "data", "value": "test" }] } },
+			"id": "n38",
+			"name": "Set 38",
+			"type": "n8n-nodes-base.set",
+			"typeVersion": 3.4,
+			"position": [1400, 200]
+		},
+		{
+			"parameters": { "values": { "string": [{ "name": "data", "value": "test" }] } },
+			"id": "n39",
+			"name": "Set 39",
+			"type": "n8n-nodes-base.set",
+			"typeVersion": 3.4,
+			"position": [1400, 400]
+		},
+		{
+			"parameters": { "values": { "string": [{ "name": "data", "value": "test" }] } },
+			"id": "n40",
+			"name": "Set 40",
+			"type": "n8n-nodes-base.set",
+			"typeVersion": 3.4,
+			"position": [1400, 600]
+		},
+		{
+			"parameters": { "values": { "string": [{ "name": "data", "value": "test" }] } },
+			"id": "n41",
+			"name": "Set 41",
+			"type": "n8n-nodes-base.set",
+			"typeVersion": 3.4,
+			"position": [1400, 800]
+		},
+		{
+			"parameters": { "values": { "string": [{ "name": "data", "value": "test" }] } },
+			"id": "n42",
+			"name": "Set 42",
+			"type": "n8n-nodes-base.set",
+			"typeVersion": 3.4,
+			"position": [1400, 1000]
+		},
+		{
+			"parameters": { "values": { "string": [{ "name": "data", "value": "test" }] } },
+			"id": "n43",
+			"name": "Set 43",
+			"type": "n8n-nodes-base.set",
+			"typeVersion": 3.4,
+			"position": [1600, 0]
+		},
+		{
+			"parameters": { "values": { "string": [{ "name": "data", "value": "test" }] } },
+			"id": "n44",
+			"name": "Set 44",
+			"type": "n8n-nodes-base.set",
+			"typeVersion": 3.4,
+			"position": [1600, 200]
+		},
+		{
+			"parameters": { "values": { "string": [{ "name": "data", "value": "test" }] } },
+			"id": "n45",
+			"name": "Set 45",
+			"type": "n8n-nodes-base.set",
+			"typeVersion": 3.4,
+			"position": [1600, 400]
+		},
+		{
+			"parameters": { "values": { "string": [{ "name": "data", "value": "test" }] } },
+			"id": "n46",
+			"name": "Set 46",
+			"type": "n8n-nodes-base.set",
+			"typeVersion": 3.4,
+			"position": [1600, 600]
+		},
+		{
+			"parameters": { "values": { "string": [{ "name": "data", "value": "test" }] } },
+			"id": "n47",
+			"name": "Set 47",
+			"type": "n8n-nodes-base.set",
+			"typeVersion": 3.4,
+			"position": [1600, 800]
+		},
+		{
+			"parameters": { "values": { "string": [{ "name": "data", "value": "test" }] } },
+			"id": "n48",
+			"name": "Set 48",
+			"type": "n8n-nodes-base.set",
+			"typeVersion": 3.4,
+			"position": [1600, 1000]
+		},
+		{
+			"parameters": { "values": { "string": [{ "name": "data", "value": "test" }] } },
+			"id": "n49",
+			"name": "Set 49",
+			"type": "n8n-nodes-base.set",
+			"typeVersion": 3.4,
+			"position": [1800, 0]
+		},
+		{
+			"parameters": { "values": { "string": [{ "name": "data", "value": "test" }] } },
+			"id": "n50",
+			"name": "Set 50",
+			"type": "n8n-nodes-base.set",
+			"typeVersion": 3.4,
+			"position": [1800, 200]
+		}
+	],
+	"connections": {
+		"Start": { "main": [[{ "node": "Set 1", "type": "main", "index": 0 }]] },
+		"Set 1": { "main": [[{ "node": "Set 2", "type": "main", "index": 0 }]] },
+		"Set 2": { "main": [[{ "node": "Set 3", "type": "main", "index": 0 }]] },
+		"Set 3": { "main": [[{ "node": "Set 4", "type": "main", "index": 0 }]] },
+		"Set 4": { "main": [[{ "node": "Set 5", "type": "main", "index": 0 }]] }
+	},
+	"settings": { "executionOrder": "v1" },
+	"staticData": null
+}
