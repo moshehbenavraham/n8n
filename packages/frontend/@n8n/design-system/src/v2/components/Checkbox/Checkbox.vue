@@ -61,7 +61,7 @@ function onUpdate(value: boolean | 'indeterminate') {
 	align-items: center;
 	flex-direction: row;
 	cursor: pointer;
-	color: white;
+	color: var(--color--foreground--tint-2);
 	&[data-disabled] {
 		cursor: not-allowed;
 	}
@@ -76,7 +76,7 @@ function onUpdate(value: boolean | 'indeterminate') {
 	align-items: center;
 	justify-content: center;
 	border: var(--border);
-	color: white;
+	color: var(--color--foreground--tint-2);
 	cursor: inherit;
 
 	&[data-state='checked'],

@@ -50,7 +50,8 @@
 		"phase02-session05-ndv-forms-code-editor",
 		"phase02-session06-modal-dialog-system",
 		"phase02-session07-overlay-components",
-		"phase03-session01-dark-mode-parity-audit"
+		"phase03-session01-dark-mode-parity-audit",
+		"phase03-session02-component-edge-cases"
 	],
 	"next_session_history": [
 		{
@@ -151,6 +152,11 @@
 		{
 			"date": "2026-01-05",
 			"session": "phase03-session01-dark-mode-parity-audit",
+			"status": "completed"
+		},
+		{
+			"date": "2026-01-05",
+			"session": "phase03-session02-component-edge-cases",
 			"status": "completed"
 		}
 	]
