@@ -21,7 +21,7 @@ The n8n frontend consists of a Vue 3 SPA (editor-ui), a shared design system (@n
 - Rebuilding the workflow canvas architecture from scratch
 - Changing n8n core business logic or API behavior
 - Migrating away from Vue 3 or the current component architecture
-- Replacing the existing InterVariable/CommitMono fonts (current fonts are appropriate)
+- ~~Replacing the existing InterVariable/CommitMono fonts~~ **Now in scope: Phase 04 Typography Evolution**
 - Creating a completely new icon set (will use existing with targeted additions)
 
 ## Users and Use Cases
@@ -125,12 +125,16 @@ The n8n frontend consists of a Vue 3 SPA (editor-ui), a shared design system (@n
 
 This system delivers the product via phases. Each phase is implemented via multiple 2-4 hour sessions (12-25 tasks each).
 
+> **PROJECT STATUS**: In Progress - 25 of 29 sessions completed (86%)
+> **Current Phase**: Phase 04 - Typography Evolution (4 sessions, 0 completed)
+
 | Phase | Name | Sessions | Status |
 |-------|------|----------|--------|
-| 00 | Foundation - Colors, Typography, Branding | 6 | Completed |
-| 01 | Component Library - Design System and Element Plus | 6 | Completed |
-| 02 | Application Features - Canvas, NDV, Modals | 7 | Completed |
-| 03 | Polish - Edge Cases, Testing, Dark Mode Parity | 6 | Completed |
+| 00 | Foundation - Colors, Typography, Branding | 6 | ✅ Completed |
+| 01 | Component Library - Design System and Element Plus | 6 | ✅ Completed |
+| 02 | Application Features - Canvas, NDV, Modals | 7 | ✅ Completed |
+| 03 | Polish - Edge Cases, Testing, Dark Mode Parity | 6 | ✅ Completed |
+| 04 | Typography Evolution - Forge Type System | 4 | 🔄 In Progress |
 
 ## Phase 00: Foundation - Colors, Typography, Branding
 
@@ -211,6 +215,39 @@ Session stubs defined in `.spec_system/PRD/phase_02/`.
 
 Session stubs defined in `.spec_system/PRD/phase_03/`.
 
+## Phase 04: Typography Evolution - Forge Type System
+
+### Objectives
+
+1. Replace InterVariable with Outfit Variable as primary UI font
+2. Replace CommitMono with JetBrains Mono Variable as monospace font
+3. Align all typography tokens with PRD specification (fix weight, spacing, line-height values)
+4. Update font assets and @font-face declarations
+5. Verify typography across all components and Storybook stories
+
+### Sessions (4 Total)
+
+| Session | Name | Est. Tasks |
+|---------|------|------------|
+| 01 | Font Selection and Asset Preparation | ~18 |
+| 02 | Typography Token Alignment | ~20 |
+| 03 | Component Typography Updates | ~22 |
+| 04 | Typography QA and Documentation | ~16 |
+
+Session stubs defined in `.spec_system/PRD/phase_04/`.
+
+### Font Selection: "Forge Precision"
+
+**Primary UI Font: Outfit Variable**
+- Geometric construction with warm humanist touches
+- Variable weight 100-900 in ~85KB file
+- Distinctive yet professional - the mark of true craft
+
+**Monospace Font: JetBrains Mono Variable**
+- Designed by engineers, for engineers
+- Distinctive ligatures, increased x-height
+- The definitive "craftsman's code font"
+
 ## Technical Stack
 
 - **Vue 3** - Frontend framework for SPA
@@ -226,17 +263,27 @@ Session stubs defined in `.spec_system/PRD/phase_03/`.
 
 ## Success Criteria
 
-- [ ] Primary brand colors applied and visible across entire application
-- [ ] Logo and favicon replaced with custom assets
-- [ ] Window title reflects custom branding
-- [ ] Light mode fully themed with new design
-- [ ] Dark mode fully themed with visual parity
-- [ ] All 97 Storybook stories render correctly
-- [ ] Workflow canvas displays correctly with new theme
-- [ ] NDV forms and panels styled consistently
-- [ ] No increase in page load time
-- [ ] Existing Playwright e2e tests pass
-- [ ] Zero hardcoded colors remaining (all use tokens)
+### Phases 00-03: Design System Foundation (Completed)
+- [x] Primary brand colors applied and visible across entire application
+- [x] Logo and favicon replaced with custom assets
+- [x] Window title reflects custom branding
+- [x] Light mode fully themed with new design
+- [x] Dark mode fully themed with visual parity
+- [x] All 404 Storybook stories render correctly
+- [x] Workflow canvas displays correctly with new theme
+- [x] NDV forms and panels styled consistently
+- [x] No increase in page load time
+- [x] Existing Playwright e2e tests pass
+- [x] Zero hardcoded colors remaining (all use tokens)
+
+### Phase 04: Typography Evolution (In Progress)
+- [ ] Outfit Variable loaded and rendering as primary UI font
+- [ ] JetBrains Mono Variable loaded and rendering for monospace
+- [ ] All typography tokens match PRD specification exactly
+- [ ] Font loading performance ≤100KB combined initial load
+- [ ] All Storybook stories render correctly with new fonts
+- [ ] No layout regressions in light or dark mode
+- [ ] Typography documentation updated
 
 ## Risks
 
@@ -253,7 +300,7 @@ Session stubs defined in `.spec_system/PRD/phase_03/`.
 - Element Plus will remain the UI library for this project scope
 - Storybook is available and functional for component verification
 - Development environment can run full frontend build for testing
-- InterVariable and CommitMono fonts will be retained (no font replacement needed)
+- ~~InterVariable and CommitMono fonts will be retained~~ **Superseded by Phase 04: Typography Evolution**
 
 ## Resolved Design Decisions
 
@@ -407,7 +454,9 @@ The logo should embody the "Obsidian Forge" aesthetic — precision, power, and 
 
 ### 3. Typography Decision — Precision Engineering
 
-**Decision: Maximize existing fonts with intentional styling**
+> **UPDATE (Phase 04)**: This section describes the original Phase 00-03 typography approach using InterVariable and CommitMono. Phase 04 supersedes this with new fonts: **Outfit Variable** (UI) and **JetBrains Mono Variable** (monospace). See Phase 04 for updated font specifications.
+
+**Decision: Maximize existing fonts with intentional styling** *(Original Phase 00-03 approach)*
 
 The codebase uses high-quality bundled fonts that will be styled for maximum impact:
 

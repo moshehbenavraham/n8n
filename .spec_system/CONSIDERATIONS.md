@@ -2,6 +2,22 @@
 
 > Institutional memory for AI assistants. Updated between phases via /carryforward.
 > **Line budget**: 600 max | **Last updated**: Phase 03 (2026-01-05)
+>
+> **PROJECT STATUS**: In Progress - Phase 04 (Typography Evolution) In Progress
+
+---
+
+## Upcoming: Phase 04 - Typography Evolution
+
+**Objective**: Replace InterVariable with Outfit Variable, CommitMono with JetBrains Mono Variable, and align all typography tokens with PRD specification.
+
+**Sessions**: 4 total (Font Selection → Token Alignment → Component Updates → QA)
+
+**Key Changes**:
+- New UI font: Outfit Variable (~85KB) replacing InterVariable (~344KB)
+- New mono font: JetBrains Mono Variable replacing CommitMono
+- Token corrections: `--font-weight--medium` from 500→450, `--font-weight--semibold` from 550→500
+- New line-height tokens: `--line-height--tight` (1.15), `--line-height--relaxed` (1.6)
 
 ---
 
