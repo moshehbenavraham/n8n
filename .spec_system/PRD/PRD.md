@@ -129,8 +129,8 @@ This system delivers the product via phases. Each phase is implemented via multi
 |-------|------|----------|--------|
 | 00 | Foundation - Colors, Typography, Branding | 6 | Completed |
 | 01 | Component Library - Design System and Element Plus | 6 | Completed |
-| 02 | Application Features - Canvas, NDV, Modals | 7 | Not Started |
-| 03 | Polish - Edge Cases, Testing, Dark Mode Parity | TBD | Not Started |
+| 02 | Application Features - Canvas, NDV, Modals | 7 | Completed |
+| 03 | Polish - Edge Cases, Testing, Dark Mode Parity | 6 | Not Started |
 
 ## Phase 00: Foundation - Colors, Typography, Branding
 
@@ -191,11 +191,25 @@ Session stubs defined in `.spec_system/PRD/phase_02/`.
 
 ### Objectives
 
-1. Identify and fix edge cases in specific components
-2. Ensure dark mode visual parity with light mode
-3. Run cross-browser testing
-4. Verify no performance regressions
-5. Update Storybook documentation as needed
+1. Ensure dark mode visual parity with light mode across all components
+2. Fix edge cases in specific components (V2 components, Element Plus specificity)
+3. Normalize remaining hardcoded hex codes and enforce token usage
+4. Validate cross-browser compatibility (Chrome, Firefox, Safari, Edge)
+5. Verify no performance regressions from design changes
+6. Update Storybook documentation and complete visual QA sign-off
+
+### Sessions (6 Total)
+
+| Session | Name | Est. Tasks |
+|---------|------|------------|
+| 01 | Dark Mode Parity Audit | ~20 |
+| 02 | Component Edge Cases | ~18 |
+| 03 | Token and Color Cleanup | ~16 |
+| 04 | Cross-Browser Testing | ~20 |
+| 05 | Performance Verification | ~15 |
+| 06 | Storybook Documentation and Final QA | ~18 |
+
+Session stubs defined in `.spec_system/PRD/phase_03/`.
 
 ## Technical Stack
 

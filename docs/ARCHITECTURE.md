@@ -160,7 +160,7 @@ The codebase uses a three-tier token system:
 
 This enables design changes to cascade efficiently - updating primitives affects 14,300+ usages.
 
-### Obsidian Forge Design System (Phase 00-01 Complete)
+### Obsidian Forge Design System (Phase 00-02 Complete)
 The custom fork implements the "Forge Metals" color palette:
 - **Amber** (Primary): Warm forge fire - hue 38
 - **Obsidian** (Neutral): Deep dark backgrounds - hue 220
@@ -178,6 +178,16 @@ Motion design uses precision/mechanical easing curves rather than playful animat
 - Action components: N8nButton, N8nIconButton, N8nActionToggle, N8nActionDropdown, N8nLink
 - Display components: N8nCard, N8nBadge, N8nAvatar, N8nLoading, N8nText, N8nHeading, N8nCircleLoader
 - Storybook verification complete for all updated components
+
+**Phase 02 Application Features Complete:**
+- Workflow canvas foundation, node styling, and connection interactions
+- Canvas edge tokens with state-based styling (hover, selected, running, error, success, pinned)
+- NDV layout structure with panel shadows, borders, and drag handle theming
+- NDV forms and code editor with expression-editor resolvable highlighting
+- CodeMirror caret, selection, autocomplete themed with forge colors
+- Modal/dialog system with backdrop blur, forge animations, and elevation shadows
+- Overlay components: notifications, tooltips, popovers, dropdowns, loading masks
+- All components support light/dark mode with proper token cascading
 
 ### Backwards Compatibility
 Legacy token format (`--color-primary`) coexists with new format (`--color--primary`) via CSS fallbacks:

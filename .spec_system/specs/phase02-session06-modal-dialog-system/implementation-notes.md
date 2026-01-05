@@ -64,7 +64,7 @@
 
 **Notes**:
 - Added backdrop tokens: `--modal--backdrop--opacity`, `--modal--backdrop--blur`
-- Added container tokens: `--modal--color--background`, `--modal--border-color`, `--modal--border-radius`, `--modal--shadow`
+- Added container tokens: `--modal--color--background`, `--modal--border-color`, `--modal--radius`, `--modal--shadow`
 - Added animation tokens: `--modal--animation--duration--enter/exit`, `--modal--animation--easing--enter/exit`
 - Uses Forge primitive references (shadow-xl, radius-md, forge-enter easing)
 

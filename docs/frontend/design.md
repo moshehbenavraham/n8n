@@ -153,6 +153,11 @@ It is intentionally a map (entrypoints + responsibilities), not a style guide.
 > **Phase 00 Status:** Foundation complete. All items below marked with [x] have been implemented as part of the Obsidian Forge design overhaul.
 >
 > **Phase 01 Status:** Component Library complete. Design-system components and Element Plus overrides have been updated with Obsidian Forge tokens.
+>
+> **Phase 02 Status:** Application Features complete. Canvas, NDV, modals, and overlay components have been themed with Obsidian Forge tokens. Sessions completed:
+> - Session 01-03: Workflow canvas foundation, node styling, connection interactions
+> - Session 04-05: NDV layout, forms, and code editor theming
+> - Session 06-07: Modal/dialog system and overlay components (notifications, tooltips, popovers, dropdowns, loading)
 
 ### Logo Assets
 

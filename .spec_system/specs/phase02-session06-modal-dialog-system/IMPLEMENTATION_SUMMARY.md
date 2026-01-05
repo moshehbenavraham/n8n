@@ -95,7 +95,7 @@ Items for future sessions:
 --modal--backdrop--blur: 2px
 --modal--color--background: var(--prim--obsidian-50)
 --modal--border-color: var(--prim--obsidian-200)
---modal--border-radius: var(--prim--radius-lg)
+--modal--radius: var(--prim--radius-lg)
 --modal--shadow: var(--prim--shadow-xl)
 --modal--header--border-color: var(--prim--obsidian-200)
 --modal--footer--border-color: var(--prim--obsidian-200)
