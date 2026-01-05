@@ -1,7 +1,7 @@
 # Considerations
 
 > Institutional memory for AI assistants. Updated between phases via /carryforward.
-> **Line budget**: 600 max | **Last updated**: Phase 00 (2026-01-02)
+> **Line budget**: 600 max | **Last updated**: Phase 03 (2026-01-05)
 
 ---
 
@@ -56,7 +56,7 @@ Proven patterns and anti-patterns. Reference during implementation.
 
 - [P00] **CSS variable fallbacks ensure compatibility**: Pattern `--color--primary: var(--color-primary, var(--color--orange-300))` supports both old and new variable names.
 
-- [P00] **Design system well-organized**: 86 components, 96 Storybook stories. Use Storybook at port 6006 to verify all component changes.
+- [P00] **Design system well-organized**: 86 components, 404 Storybook stories. Use Storybook at port 6006 to verify all component changes.
 
 - [P00] **Centralized Element Plus overrides**: 42 SCSS files in `design-system/src/css/` handle all Element Plus customization. Modify these, not component-level styles.
 
@@ -67,6 +67,12 @@ Proven patterns and anti-patterns. Reference during implementation.
 - [P00] **NDV three-panel layout responsive**: Uses CSS variables and percentage-based sizing. Token changes cascade properly through panels.
 
 - [P00] **Expression editor theme uses tokens**: CodeMirror theme in `theme.ts` references `--input--border-color`, `--code--caret--color`, `--color--secondary`.
+
+- [P03] **Playwright automated testing works well**: Use `playwright.sync_api` for Storybook verification. Access `index.json` API for story enumeration. Sample first/middle/last from each category for efficient coverage.
+
+- [P03] **V2 components fully themed**: 75 V2 component stories verified (Checkbox, DropdownMenu, Input, InputNumber, Loading, Pagination, Select, Tooltip). Both V1 and V2 variants render correctly.
+
+- [P03] **Theme toggle URL parameter**: Use `?globals=theme:dark` in Storybook URL for programmatic dark mode testing without clicking UI elements.
 
 ### What to Avoid
 <!-- Max 10 items -->
@@ -82,7 +88,7 @@ Proven patterns and anti-patterns. Reference during implementation.
 ### Tool/Library Notes
 <!-- Max 5 items -->
 
-- [P00] **Storybook commands**: `cd packages/frontend/@n8n/design-system && pnpm storybook` (port 6006). Verify all 96 stories after theme changes.
+- [P00] **Storybook commands**: `cd packages/frontend/@n8n/design-system && pnpm storybook` (port 6006). Verify all 404 stories after theme changes.
 
 - [P00] **Frontend dev command**: `pnpm dev:fe` runs editor-ui (port 8080) with design-system. API expected at localhost:5678.
 
@@ -98,7 +104,11 @@ Recently closed items (buffer - rotates out after 2 phases).
 
 | Phase | Item | Resolution |
 |-------|------|------------|
-| - | *No resolved items yet* | - |
+| P03 | Dark mode parity audit | All 404 stories pass in both light and dark modes |
+| P03 | Component edge cases | V2 components and Element Plus overrides verified |
+| P03 | Cross-browser testing | Session 04 validated compatibility |
+| P03 | Performance verification | Session 05 passed all quality gates |
+| P03 | Storybook documentation QA | 168 stories sampled, 100% pass rate |
 
 ---
 
