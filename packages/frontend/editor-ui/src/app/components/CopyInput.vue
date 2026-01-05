@@ -75,7 +75,7 @@ function copy() {
 <style lang="scss" module>
 .copyText {
 	span {
-		font-family: Monaco, Consolas;
+		font-family: var(--font-family--monospace);
 		color: var(--color--text);
 		overflow-wrap: break-word;
 	}

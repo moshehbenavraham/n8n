@@ -855,7 +855,7 @@ const modifiers = [
 		transform: translate(-50%, -50%);
 		border-radius: 4px;
 		color: var(--color--text--tint-3);
-		font-family: Inter, var(--font-family);
+		font-family: var(--font-family);
 		font-size: 10px;
 		font-weight: 700;
 		z-index: 1;

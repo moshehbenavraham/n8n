@@ -287,7 +287,7 @@ const onValueDrop = (droppedExpression: string) => {
 		bottom: calc(var(--spacing--sm) * -1);
 		left: 0;
 		right: 0;
-		font-family: monospace;
+		font-family: var(--font-family--monospace);
 	}
 
 	.optionsPadding {

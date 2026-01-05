@@ -139,7 +139,7 @@ const handleCopy = async (value: string) => {
 		align-items: center;
 
 		input {
-			font-family: monospace;
+			font-family: var(--font-family--monospace);
 			font-size: var(--font-size--2xs);
 			border: none;
 			color: var(--color--text);
