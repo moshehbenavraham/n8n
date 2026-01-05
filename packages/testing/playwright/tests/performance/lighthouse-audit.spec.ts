@@ -13,18 +13,23 @@
  * @module lighthouse-audit
  */
 
+/* eslint-disable playwright/no-networkidle, playwright/no-wait-for-timeout, playwright/no-wait-for-selector, playwright/no-conditional-in-test */
+// Lighthouse-like audits require networkidle to ensure complete page load
+// waitForTimeout is used for measurement stabilization
+// waitForSelector ensures elements are ready
+// Conditionals are used for metric reporting and threshold evaluation
+
 import { test, expect } from '../../fixtures/base';
 import { attachMetric } from '../../utils/performance-helper';
 import {
 	collectPageLoadMetrics,
 	setupLCPObserver,
 	getLCPValue,
-	PERFORMANCE_THRESHOLDS,
 } from '../../utils/performance-metrics';
 
 // Configure for local testing
 test.use({
-	baseURL: process.env.N8N_BASE_URL || 'http://localhost:5678',
+	baseURL: process.env.N8N_BASE_URL ?? 'http://localhost:5678',
 });
 
 /**
@@ -47,7 +52,7 @@ function calculatePerformanceScore(metrics: {
 	loadComplete: number | null;
 }): number {
 	let score = 100;
-	const penalties: { metric: string; penalty: number; reason: string }[] = [];
+	const penalties: Array<{ metric: string; penalty: number; reason: string }> = [];
 
 	// FCP scoring (10% weight)
 	if (metrics.fcp !== null) {
@@ -147,10 +152,10 @@ test.describe('Lighthouse-like Performance Audit @performance', () => {
 
 		// Log results
 		console.log(`Performance Score: ${score}/100`);
-		console.log(`FCP: ${metrics.fcp?.toFixed(0) || 'N/A'}ms`);
-		console.log(`LCP: ${metrics.lcp?.toFixed(0) || 'N/A'}ms`);
-		console.log(`TTI: ${metrics.tti?.toFixed(0) || 'N/A'}ms`);
-		console.log(`Load: ${metrics.loadComplete?.toFixed(0) || 'N/A'}ms`);
+		console.log(`FCP: ${metrics.fcp?.toFixed(0) ?? 'N/A'}ms`);
+		console.log(`LCP: ${metrics.lcp?.toFixed(0) ?? 'N/A'}ms`);
+		console.log(`TTI: ${metrics.tti?.toFixed(0) ?? 'N/A'}ms`);
+		console.log(`Load: ${metrics.loadComplete?.toFixed(0) ?? 'N/A'}ms`);
 
 		// Assert score meets critical threshold
 		expect(score, `Performance score (${score}) should be >= 85`).toBeGreaterThanOrEqual(85);
@@ -227,9 +232,9 @@ test.describe('Lighthouse-like Performance Audit @performance', () => {
 			contentType: 'application/json',
 		});
 
-		console.log(`Core Web Vitals:`);
-		console.log(`  FCP: ${metrics.fcp?.toFixed(0) || 'N/A'}ms - ${vitalsStatus.fcp}`);
-		console.log(`  LCP: ${metrics.lcp?.toFixed(0) || 'N/A'}ms - ${vitalsStatus.lcp}`);
+		console.log('Core Web Vitals:');
+		console.log(`  FCP: ${metrics.fcp?.toFixed(0) ?? 'N/A'}ms - ${vitalsStatus.fcp}`);
+		console.log(`  LCP: ${metrics.lcp?.toFixed(0) ?? 'N/A'}ms - ${vitalsStatus.lcp}`);
 
 		// At minimum, vitals should not be "Poor"
 		expect(vitalsStatus.fcp).not.toBe('Poor');

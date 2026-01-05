@@ -11,6 +11,14 @@
  * @module theme-parity
  */
 
+/* eslint-disable playwright/no-networkidle, playwright/no-wait-for-timeout, playwright/no-wait-for-selector, playwright/no-conditional-in-test */
+// Performance tests require networkidle to ensure complete page load for accurate measurements
+// waitForTimeout is used for FPS measurement stabilization
+// waitForSelector ensures elements are ready before measurement
+// Conditionals are used for metric collection
+
+import type { Page } from '@playwright/test';
+
 import { test, expect } from '../../fixtures/base';
 import { attachMetric } from '../../utils/performance-helper';
 import {
@@ -25,14 +33,14 @@ import {
 
 // Configure for local testing
 test.use({
-	baseURL: process.env.N8N_BASE_URL || 'http://localhost:5678',
+	baseURL: process.env.N8N_BASE_URL ?? 'http://localhost:5678',
 });
 
 test.describe('Dark Mode vs Light Mode Performance Parity @performance', () => {
 	/**
 	 * Helper to set theme mode via localStorage
 	 */
-	async function setThemeMode(page: ReturnType<typeof test.expect.any>, mode: 'dark' | 'light') {
+	async function setThemeMode(page: Page, mode: 'dark' | 'light') {
 		await page.addInitScript((themeMode) => {
 			localStorage.setItem('vueuse-color-scheme', themeMode);
 		}, mode);
@@ -87,7 +95,7 @@ test.describe('Dark Mode vs Light Mode Performance Parity @performance', () => {
 		await attachMetric(testInfo, 'theme-fcp-difference', difference, 'ms');
 		await attachMetric(testInfo, 'theme-fcp-percent-diff', percentDiff, '%');
 
-		console.log(`Theme Performance Comparison (FCP):`);
+		console.log('Theme Performance Comparison (FCP):');
 		console.log(`  Light mode: ${lightMedian.toFixed(0)}ms`);
 		console.log(`  Dark mode: ${darkMedian.toFixed(0)}ms`);
 		console.log(`  Difference: ${difference.toFixed(0)}ms (${percentDiff.toFixed(1)}%)`);
@@ -163,7 +171,7 @@ test.describe('Dark Mode vs Light Mode Performance Parity @performance', () => {
 		await attachMetric(testInfo, 'dark-mode-canvas-fps', darkFps, 'fps');
 		await attachMetric(testInfo, 'theme-fps-difference', fpsDiff, 'fps');
 
-		console.log(`Theme Performance Comparison (Canvas FPS):`);
+		console.log('Theme Performance Comparison (Canvas FPS):');
 		console.log(`  Light mode: ${lightFps} fps`);
 		console.log(`  Dark mode: ${darkFps} fps`);
 		console.log(`  Difference: ${fpsDiff} fps`);
@@ -173,7 +181,7 @@ test.describe('Dark Mode vs Light Mode Performance Parity @performance', () => {
 		expect(darkFps).toBeGreaterThanOrEqual(50);
 
 		// Difference should be minimal (within 10 fps)
-		expect(fpsDiff, `FPS difference between themes should be < 10`).toBeLessThan(15);
+		expect(fpsDiff, 'FPS difference between themes should be < 10').toBeLessThan(15);
 	});
 
 	test('T021: Memory usage should be equivalent between themes', async ({ browser }, testInfo) => {
@@ -212,7 +220,7 @@ test.describe('Dark Mode vs Light Mode Performance Parity @performance', () => {
 		await attachMetric(testInfo, 'theme-memory-diff-mb', memoryDiff, 'MB');
 		await attachMetric(testInfo, 'theme-memory-percent-diff', percentDiff, '%');
 
-		console.log(`Theme Memory Comparison:`);
+		console.log('Theme Memory Comparison:');
 		console.log(`  Light mode: ${lightMemory.jsHeapSizeUsed.toFixed(2)} MB`);
 		console.log(`  Dark mode: ${darkMemory.jsHeapSizeUsed.toFixed(2)} MB`);
 		console.log(`  Difference: ${memoryDiff.toFixed(2)} MB (${percentDiff.toFixed(1)}%)`);
@@ -258,12 +266,12 @@ test.describe('Dark Mode vs Light Mode Performance Parity @performance', () => {
 		await attachMetric(testInfo, 'dark-mode-dom-nodes', darkMetrics.domNodes, 'nodes');
 		await attachMetric(testInfo, 'theme-dom-node-diff', nodeDiff, 'nodes');
 
-		console.log(`Theme DOM Node Comparison:`);
+		console.log('Theme DOM Node Comparison:');
 		console.log(`  Light mode: ${lightMetrics.domNodes} nodes`);
 		console.log(`  Dark mode: ${darkMetrics.domNodes} nodes`);
 		console.log(`  Difference: ${nodeDiff} nodes`);
 
 		// DOM structure should be identical or nearly so
-		expect(nodeDiff, `DOM node difference should be minimal`).toBeLessThan(100);
+		expect(nodeDiff, 'DOM node difference should be minimal').toBeLessThan(100);
 	});
 });

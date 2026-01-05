@@ -12,6 +12,12 @@
  * @module page-load-metrics
  */
 
+/* eslint-disable playwright/no-networkidle, playwright/no-wait-for-timeout, playwright/no-wait-for-selector, playwright/no-conditional-in-test, playwright/no-conditional-expect */
+// Page load metrics require networkidle for complete load measurement
+// waitForTimeout is used for cold cache simulation
+// waitForSelector ensures page content is ready
+// Conditionals are used for threshold-based reporting
+
 import { test, expect } from '../../fixtures/base';
 import { attachMetric } from '../../utils/performance-helper';
 import {
@@ -25,7 +31,7 @@ import {
 
 // Configure for local testing without containers
 test.use({
-	baseURL: process.env.N8N_BASE_URL || 'http://localhost:5678',
+	baseURL: process.env.N8N_BASE_URL ?? 'http://localhost:5678',
 });
 
 test.describe('Page Load Performance Metrics @performance', () => {
@@ -166,7 +172,7 @@ test.describe('Page Load Performance Metrics @performance', () => {
 			await attachMetric(testInfo, 'tti-median', medianTTI, 'ms');
 
 			// TTI should be reasonable (under 3 seconds)
-			expect.soft(medianTTI, `TTI median should be under 3000ms`).toBeLessThan(3000);
+			expect.soft(medianTTI, 'TTI median should be under 3000ms').toBeLessThan(3000);
 		}
 
 		if (ttfbValues.length > 0) {
@@ -174,7 +180,7 @@ test.describe('Page Load Performance Metrics @performance', () => {
 			await attachMetric(testInfo, 'ttfb-median', medianTTFB, 'ms');
 
 			// TTFB should be fast for local dev server
-			expect.soft(medianTTFB, `TTFB median should be under 500ms`).toBeLessThan(500);
+			expect.soft(medianTTFB, 'TTFB median should be under 500ms').toBeLessThan(500);
 		}
 	});
 

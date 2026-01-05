@@ -22,3 +22,6 @@ CHANGELOG.md
 **/components.d.ts
 
 justfile
+
+# Build output
+storybook-static/

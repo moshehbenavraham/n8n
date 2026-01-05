@@ -10,6 +10,9 @@
  * @module animation-performance
  */
 
+/* eslint-disable playwright/no-wait-for-timeout */
+// Animation tests require waitForTimeout for animation stabilization
+
 import { test, expect } from '../../fixtures/base';
 import { attachMetric } from '../../utils/performance-helper';
 import {
@@ -21,7 +24,7 @@ import {
 
 // Configure for local testing
 test.use({
-	baseURL: process.env.N8N_BASE_URL || 'http://localhost:5678',
+	baseURL: process.env.N8N_BASE_URL ?? 'http://localhost:5678',
 });
 
 test.describe('Animation Performance @performance', () => {

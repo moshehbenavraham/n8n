@@ -11,17 +11,19 @@
  * @module css-coverage
  */
 
+/* eslint-disable playwright/no-networkidle, playwright/no-wait-for-timeout, playwright/no-wait-for-selector, playwright/no-conditional-in-test */
+// CSS coverage tests require networkidle to ensure all CSS is loaded before analysis
+// waitForTimeout is used for interaction stabilization
+// waitForSelector ensures elements are ready
+// Conditionals are used for visibility checks before interactions
+
 import { test, expect } from '../../fixtures/base';
 import { attachMetric } from '../../utils/performance-helper';
-import {
-	startCSSCoverage,
-	stopCSSCoverage,
-	PERFORMANCE_THRESHOLDS,
-} from '../../utils/performance-metrics';
+import { startCSSCoverage, stopCSSCoverage } from '../../utils/performance-metrics';
 
 // Configure for local testing
 test.use({
-	baseURL: process.env.N8N_BASE_URL || 'http://localhost:5678',
+	baseURL: process.env.N8N_BASE_URL ?? 'http://localhost:5678',
 });
 
 test.describe('CSS Coverage Analysis @performance', () => {
@@ -46,7 +48,7 @@ test.describe('CSS Coverage Analysis @performance', () => {
 		await attachMetric(testInfo, 'css-usage-percent', coverage.usagePercent, '%');
 
 		// Log summary
-		console.log(`CSS Coverage Summary (Workflows Page):`);
+		console.log('CSS Coverage Summary (Workflows Page):');
 		console.log(`  Total CSS: ${(coverage.totalBytes / 1024).toFixed(2)} KB`);
 		console.log(`  Used CSS: ${(coverage.usedBytes / 1024).toFixed(2)} KB`);
 		console.log(`  Unused CSS: ${(coverage.unusedBytes / 1024).toFixed(2)} KB`);
@@ -56,7 +58,7 @@ test.describe('CSS Coverage Analysis @performance', () => {
 		const topUnused = coverage.files
 			.filter((f) => f.totalBytes > 1000) // Only files > 1KB
 			.map((f) => ({
-				file: f.url.split('/').pop() || f.url,
+				file: f.url.split('/').pop() ?? f.url,
 				total: `${(f.totalBytes / 1024).toFixed(1)}KB`,
 				used: `${(f.usedBytes / 1024).toFixed(1)}KB`,
 				unused: `${((f.totalBytes - f.usedBytes) / 1024).toFixed(1)}KB`,
@@ -101,7 +103,7 @@ test.describe('CSS Coverage Analysis @performance', () => {
 		await attachMetric(testInfo, 'editor-css-used-bytes', coverage.usedBytes, 'bytes');
 		await attachMetric(testInfo, 'editor-css-usage-percent', coverage.usagePercent, '%');
 
-		console.log(`CSS Coverage Summary (Editor Page):`);
+		console.log('CSS Coverage Summary (Editor Page):');
 		console.log(`  Total CSS: ${(coverage.totalBytes / 1024).toFixed(2)} KB`);
 		console.log(`  Used CSS: ${(coverage.usedBytes / 1024).toFixed(2)} KB`);
 		console.log(`  Usage: ${coverage.usagePercent.toFixed(1)}%`);
@@ -144,7 +146,7 @@ test.describe('CSS Coverage Analysis @performance', () => {
 		const fileBreakdown = coverage.files
 			.filter((f) => f.totalBytes > 500)
 			.map((f) => {
-				const filename = f.url.split('/').pop() || f.url;
+				const filename = f.url.split('/').pop() ?? f.url;
 				const usagePercent = (f.usedBytes / f.totalBytes) * 100;
 				return {
 					file: filename.substring(0, 40),
@@ -160,7 +162,7 @@ test.describe('CSS Coverage Analysis @performance', () => {
 			contentType: 'application/json',
 		});
 
-		console.log(`CSS Coverage (Full Journey):`);
+		console.log('CSS Coverage (Full Journey):');
 		console.log(`  Total: ${(coverage.totalBytes / 1024).toFixed(2)} KB`);
 		console.log(`  Used: ${(coverage.usedBytes / 1024).toFixed(2)} KB`);
 		console.log(`  Usage: ${coverage.usagePercent.toFixed(1)}%`);

@@ -12,6 +12,10 @@
  * @module canvas-performance
  */
 
+/* eslint-disable playwright/no-wait-for-timeout, playwright/no-conditional-in-test */
+// Performance tests require waitForTimeout for FPS measurement stabilization
+// Conditionals are used for node creation logic and threshold reporting
+
 import { test, expect } from '../../fixtures/base';
 import { attachMetric } from '../../utils/performance-helper';
 import {
@@ -23,43 +27,13 @@ import {
 
 // Configure for local testing
 test.use({
-	baseURL: process.env.N8N_BASE_URL || 'http://localhost:5678',
+	baseURL: process.env.N8N_BASE_URL ?? 'http://localhost:5678',
 });
 
 test.describe('Canvas Performance - Zoom/Pan/Drag @performance', () => {
 	const MEASUREMENT_RUNS = 3;
 
-	/**
-	 * Helper to create multiple nodes on the canvas programmatically
-	 */
-	async function createNodesOnCanvas(page: ReturnType<typeof test.expect.any>, count: number) {
-		// Use the workflow API to create nodes quickly
-		await page.evaluate((nodeCount: number) => {
-			// Access the workflow store through the Vue app
-			const app = (document.querySelector('#app') as unknown as { __vue_app__?: unknown })
-				?.__vue_app__;
-			if (!app) return;
-
-			// Create nodes at grid positions
-			const nodes = [];
-			const cols = 10;
-			for (let i = 0; i < nodeCount; i++) {
-				const row = Math.floor(i / cols);
-				const col = i % cols;
-				nodes.push({
-					id: `node-${i}`,
-					name: `Set ${i}`,
-					type: 'n8n-nodes-base.set',
-					typeVersion: 3.4,
-					position: [col * 200, row * 200],
-					parameters: {},
-				});
-			}
-
-			// Store nodes for retrieval
-			(window as unknown as { __testNodes: unknown[] }).__testNodes = nodes;
-		}, count);
-	}
+	// Note: For programmatic node creation optimization, see utils/canvas-helpers.ts
 
 	test('T006/T011: Zoom performance with 50+ nodes should maintain 60fps', async ({
 		n8n,

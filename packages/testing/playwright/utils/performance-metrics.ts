@@ -10,7 +10,12 @@
  * @module performance-metrics
  */
 
+/* eslint-disable @typescript-eslint/naming-convention */
+// Performance metrics utility uses __prefixed window properties for browser-side data collection
+// These must be prefixed to avoid conflicts with existing window properties
+
 import type { Page, CDPSession, TestInfo } from '@playwright/test';
+
 import { attachMetric } from './performance-helper';
 
 // Performance metric types
@@ -117,7 +122,7 @@ export async function setupLCPObserver(page: Page): Promise<void> {
  */
 export async function getLCPValue(page: Page): Promise<number | null> {
 	return await page.evaluate(
-		() => (window as unknown as { __lcpValue?: number }).__lcpValue || null,
+		() => (window as unknown as { __lcpValue?: number }).__lcpValue ?? null,
 	);
 }
 
@@ -243,7 +248,7 @@ export async function stopCSSCoverage(page: Page): Promise<CSSCoverageResult> {
 	const files: Array<{ url: string; totalBytes: number; usedBytes: number }> = [];
 
 	for (const entry of coverage) {
-		const entryTotalBytes = entry.text.length;
+		const entryTotalBytes = entry.text?.length ?? 0;
 		let entryUsedBytes = 0;
 
 		for (const range of entry.ranges) {

@@ -11,6 +11,12 @@
  * @module memory-profiling
  */
 
+/* eslint-disable playwright/no-networkidle, playwright/no-wait-for-timeout, playwright/no-wait-for-selector, playwright/no-conditional-in-test */
+// Memory profiling requires networkidle for accurate baseline measurements
+// waitForTimeout is used for GC stabilization and measurement intervals
+// waitForSelector ensures app is ready before measurement
+// Conditionals are used for metric threshold reporting
+
 import { test, expect } from '../../fixtures/base';
 import { attachMetric } from '../../utils/performance-helper';
 import {
@@ -23,7 +29,7 @@ import {
 
 // Configure for local testing
 test.use({
-	baseURL: process.env.N8N_BASE_URL || 'http://localhost:5678',
+	baseURL: process.env.N8N_BASE_URL ?? 'http://localhost:5678',
 });
 
 test.describe('Memory Profiling @performance', () => {
