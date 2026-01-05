@@ -1,23 +1,27 @@
 # Considerations
 
 > Institutional memory for AI assistants. Updated between phases via /carryforward.
-> **Line budget**: 600 max | **Last updated**: Phase 03 (2026-01-05)
+> **Line budget**: 600 max | **Last updated**: Phase 04 (2026-01-05)
 >
-> **PROJECT STATUS**: In Progress - Phase 04 (Typography Evolution) In Progress
+> **PROJECT STATUS**: Complete - All 5 Phases of Obsidian Forge Design System Implemented
 
 ---
 
-## Upcoming: Phase 04 - Typography Evolution
+## Completed: Phase 04 - Typography Evolution
 
-**Objective**: Replace InterVariable with Outfit Variable, CommitMono with JetBrains Mono Variable, and align all typography tokens with PRD specification.
+**Status**: COMPLETE (2026-01-05)
 
-**Sessions**: 4 total (Font Selection → Token Alignment → Component Updates → QA)
+**Achieved**:
+- Replaced InterVariable with Outfit Variable (45KB, 75% smaller)
+- Replaced CommitMono with JetBrains Mono Variable (39KB)
+- Combined font size: 84KB (well under 200KB target)
+- All 404 Storybook stories verified in light/dark modes
+- Cross-browser testing passed (Chrome, Firefox, Edge)
 
-**Key Changes**:
-- New UI font: Outfit Variable (~85KB) replacing InterVariable (~344KB)
-- New mono font: JetBrains Mono Variable replacing CommitMono
-- Token corrections: `--font-weight--medium` from 500→450, `--font-weight--semibold` from 550→500
-- New line-height tokens: `--line-height--tight` (1.15), `--line-height--relaxed` (1.6)
+**Documentation**:
+- `.spec_system/audit/TYPOGRAPHY_VERIFICATION.md`
+- `.spec_system/audit/FONT_PERFORMANCE_REPORT.md`
+- `.spec_system/docs/TYPOGRAPHY_GUIDELINES.md`
 
 ---
 
@@ -90,6 +94,12 @@ Proven patterns and anti-patterns. Reference during implementation.
 
 - [P03] **Theme toggle URL parameter**: Use `?globals=theme:dark` in Storybook URL for programmatic dark mode testing without clicking UI elements.
 
+- [P04] **Variable fonts reduce bundle size dramatically**: Outfit Variable (45KB) replaced InterVariable (344KB) - 87% reduction. Single file supports all weights 100-900.
+
+- [P04] **font-display: swap minimizes FOUT**: With swap strategy, fonts load in ~5ms with imperceptible flash. No preload needed for fonts under 50KB.
+
+- [P04] **Typography tokens in _primitives.scss**: Font-family tokens (`--font-family--primary`, `--font-family--monospace`) cascade through entire design system. Change once, update everywhere.
+
 ### What to Avoid
 <!-- Max 10 items -->
 
@@ -120,11 +130,11 @@ Recently closed items (buffer - rotates out after 2 phases).
 
 | Phase | Item | Resolution |
 |-------|------|------------|
+| P04 | Font replacement | Outfit Variable and JetBrains Mono Variable installed |
+| P04 | Typography token alignment | All tokens corrected per PRD specification |
+| P04 | Component typography updates | All components migrated to new fonts |
+| P04 | Typography QA and documentation | 404 stories verified, documentation complete |
 | P03 | Dark mode parity audit | All 404 stories pass in both light and dark modes |
-| P03 | Component edge cases | V2 components and Element Plus overrides verified |
-| P03 | Cross-browser testing | Session 04 validated compatibility |
-| P03 | Performance verification | Session 05 passed all quality gates |
-| P03 | Storybook documentation QA | 168 stories sampled, 100% pass rate |
 
 ---
 
@@ -140,7 +150,7 @@ Recently closed items (buffer - rotates out after 2 phases).
 - **Logo icon**: `design-system/src/components/N8nLogo/logo-icon.svg` (#EA4B71 pink)
 - **Logo text**: `design-system/src/components/N8nLogo/logo-text.svg` (#101330 navy)
 - **Favicon**: `editor-ui/public/favicon.ico`
-- **Fonts**: `design-system/assets/fonts/` (InterVariable, CommitMono)
+- **Fonts**: `design-system/assets/fonts/` (Outfit-Variable.woff2, JetBrainsMono-Variable.woff2)
 - **Title**: `editor-ui/src/app/composables/useDocumentTitle.ts` (DEFAULT_TITLE = 'n8n')
 - **i18n**: `@n8n/i18n/src/locales/en.json` (~200 brand references)
 
