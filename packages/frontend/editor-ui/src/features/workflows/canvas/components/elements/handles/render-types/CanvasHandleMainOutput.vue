@@ -130,7 +130,8 @@ function onClickAdd() {
 	overflow: hidden;
 
 	// Obsidian Forge: Smooth transition for label visibility
-	transition: opacity var(--canvas-node--transition--duration, 150ms) var(--easing--ease-out, ease-out);
+	transition: opacity var(--canvas-node--transition--duration, 150ms)
+		var(--easing--ease-out, ease-out);
 
 	@media (prefers-reduced-motion: reduce) {
 		transition: none;

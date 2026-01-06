@@ -164,7 +164,8 @@ defineExpose({
 	// Forge-consistent focus styling for select trigger
 	:deep(.el-select) {
 		.el-input__wrapper {
-			transition: border-color var(--duration--fast) var(--easing--ease-out),
+			transition:
+				border-color var(--duration--fast) var(--easing--ease-out),
 				box-shadow var(--duration--fast) var(--easing--ease-out);
 		}
 

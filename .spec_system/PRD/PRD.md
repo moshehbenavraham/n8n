@@ -22,7 +22,7 @@ The n8n frontend consists of a Vue 3 SPA (editor-ui), a shared design system (@n
 - Changing n8n core business logic or API behavior
 - Migrating away from Vue 3 or the current component architecture
 - ~~Replacing the existing InterVariable/CommitMono fonts~~ **Now in scope: Phase 04 Typography Evolution**
-- Creating a completely new icon set (will use existing with targeted additions)
+- ~~Creating a completely new icon set (will use existing with targeted additions)~~ **Now in scope: Phase 05 Chrome Deco Icon System**
 
 ## Users and Use Cases
 
@@ -102,7 +102,7 @@ The n8n frontend consists of a Vue 3 SPA (editor-ui), a shared design system (@n
 
 ### Deferred Requirements
 
-- Custom icon additions beyond current 40 SVGs
+- ~~Custom icon additions beyond current 40 SVGs~~ **Now in scope: Phase 05 Chrome Deco Icon System**
 - Complete Element Plus replacement with Reka-UI
 - Visual regression testing automation
 
@@ -125,8 +125,8 @@ The n8n frontend consists of a Vue 3 SPA (editor-ui), a shared design system (@n
 
 This system delivers the product via phases. Each phase is implemented via multiple 2-4 hour sessions (12-25 tasks each).
 
-> **PROJECT STATUS**: In Progress - 25 of 29 sessions completed (86%)
-> **Current Phase**: Phase 04 - Typography Evolution (4 sessions, 0 completed)
+> **PROJECT STATUS**: In Progress - 29 of 35 sessions completed (83%)
+> **Current Phase**: Phase 05 - Retro-Futuristic Icon System (Chrome Deco)
 
 | Phase | Name | Sessions | Status |
 |-------|------|----------|--------|
@@ -134,7 +134,8 @@ This system delivers the product via phases. Each phase is implemented via multi
 | 01 | Component Library - Design System and Element Plus | 6 | ✅ Completed |
 | 02 | Application Features - Canvas, NDV, Modals | 7 | ✅ Completed |
 | 03 | Polish - Edge Cases, Testing, Dark Mode Parity | 6 | ✅ Completed |
-| 04 | Typography Evolution - Forge Type System | 4 | 🔄 In Progress |
+| 04 | Typography Evolution - Forge Type System | 4 | ✅ Completed |
+| 05 | Retro-Futuristic Icon System - Chrome Deco | 6 | 🔄 Not Started |
 
 ## Phase 00: Foundation - Colors, Typography, Branding
 
@@ -248,6 +249,56 @@ Session stubs defined in `.spec_system/PRD/phase_04/`.
 - Distinctive ligatures, increased x-height
 - The definitive "craftsman's code font"
 
+## Phase 05: Retro-Futuristic Icon System - Chrome Deco
+
+### Objectives
+
+1. Extend Icon.vue component with animation props (animation, animationState, glow, glowColor, glowIntensity, chromatic)
+2. Implement variable stroke weight system with smooth CSS transitions between states
+3. Migrate from Lucide to Phosphor icons for native variable weight support
+4. Create chrome deco visual effects (metallic shimmer, beveled edges, sunburst glow)
+5. Redesign all 40 custom SVGs with art deco aesthetic (geometric precision, stepped edges, chrome accents)
+6. Integrate icon animations with canvas workflow execution states
+
+### Sessions (6 Total)
+
+| Session | Name | Est. Tasks |
+|---------|------|------------|
+| 01 | Icon Animation Foundation | ~20 |
+| 02 | Variable Stroke Weight System | ~18 |
+| 03 | Phosphor Icon Migration | ~22 |
+| 04 | Chrome Deco Visual Effects | ~22 |
+| 05 | Custom Icon Art Deco Redesign | ~24 |
+| 06 | Integration, QA & Documentation | ~18 |
+
+Session stubs defined in `.spec_system/PRD/phase_05/`.
+
+### Design Direction: "Chrome Deco"
+
+**Visual Influences:**
+- **Art Deco (1920s-30s)**: Sharp angles (45, 60, 90 degrees), geometric precision, sunburst motifs
+- **Streamline Moderne**: Chrome accents, aerodynamic curves, metallic sheen
+- **Mid-century Futurism**: Atomic age optimism, raygun gothic aesthetic
+- **Synthwave/Outrun**: Digital nostalgia, chrome reflections
+
+**Icon State Matrix:**
+
+| State | Stroke Weight | Chrome Effect | Glow | Animation |
+|-------|---------------|---------------|------|-----------|
+| Rest | 1.5px (normal) | None | None | None |
+| Hover | 2px (medium) | Shimmer visible | Subtle amber | Gentle brighten |
+| Active | 2.5px (bold) | Full chrome | Medium amber pulse | ember-pulse |
+| Focus | 2px (medium) | Subtle shimmer | Strong amber ring | glow-breathe |
+| Success | 2px (medium) | Flash | Verdigris tint | Quick brighten |
+| Error | 2px (medium) | None | Ember glow | Attention pulse |
+
+**Key Deliverables:**
+- Phosphor icon migration (196 icons with 6 weight variants)
+- 40 custom SVGs redesigned with art deco aesthetic
+- Variable stroke weight tokens (thin, normal, medium, bold, heavy)
+- 5 animation keyframes (icon-pulse, icon-glow-breathe, icon-shimmer, icon-brighten, sunburst-radiate)
+- Chrome effect mixins (shimmer, bevel, sunburst)
+
 ## Technical Stack
 
 - **Vue 3** - Frontend framework for SPA
@@ -276,14 +327,14 @@ Session stubs defined in `.spec_system/PRD/phase_04/`.
 - [x] Existing Playwright e2e tests pass
 - [x] Zero hardcoded colors remaining (all use tokens)
 
-### Phase 04: Typography Evolution (In Progress)
-- [ ] Outfit Variable loaded and rendering as primary UI font
-- [ ] JetBrains Mono Variable loaded and rendering for monospace
-- [ ] All typography tokens match PRD specification exactly
-- [ ] Font loading performance ≤100KB combined initial load
-- [ ] All Storybook stories render correctly with new fonts
-- [ ] No layout regressions in light or dark mode
-- [ ] Typography documentation updated
+### Phase 04: Typography Evolution (Completed)
+- [x] Outfit Variable loaded and rendering as primary UI font
+- [x] JetBrains Mono Variable loaded and rendering for monospace
+- [x] All typography tokens match PRD specification exactly
+- [x] Font loading performance ≤100KB combined initial load (84KB achieved)
+- [x] All Storybook stories render correctly with new fonts
+- [x] No layout regressions in light or dark mode
+- [x] Typography documentation updated
 
 ## Risks
 

@@ -43,6 +43,41 @@ export default {
 				type: 'number',
 			},
 		},
+		// Animation props (Phase 05 - Chrome Deco)
+		animation: {
+			control: {
+				type: 'select',
+			},
+			options: ['none', 'pulse', 'glow-breathe', 'shimmer', 'brighten'],
+			description: 'Animation type to apply to the icon',
+		},
+		animationState: {
+			control: {
+				type: 'select',
+			},
+			options: ['rest', 'hover', 'active', 'focus', 'success', 'error'],
+			description: 'Animation state context (for semantic styling)',
+		},
+		glow: {
+			control: {
+				type: 'boolean',
+			},
+			description: 'Enable glow effect on the icon',
+		},
+		glowColor: {
+			control: {
+				type: 'select',
+			},
+			options: ['amber', 'verdigris', 'ember', 'steel'],
+			description: 'Glow color variant',
+		},
+		glowIntensity: {
+			control: {
+				type: 'select',
+			},
+			options: ['subtle', 'medium', 'strong'],
+			description: 'Glow intensity level',
+		},
 	},
 };
 
@@ -253,3 +288,302 @@ export const CommonIcons: StoryFn = (args, { argTypes }) => ({
 		</div>
 	`,
 });
+
+// Animation Stories (Phase 05 - Chrome Deco)
+export const AnimationPulse = Template.bind({});
+AnimationPulse.args = {
+	icon: 'spinner',
+	size: 'xlarge',
+	animation: 'pulse',
+};
+AnimationPulse.parameters = {
+	docs: {
+		description: {
+			story: 'Pulse animation - scale and opacity oscillation for loading/processing states.',
+		},
+	},
+};
+
+export const AnimationGlowBreathe = Template.bind({});
+AnimationGlowBreathe.args = {
+	icon: 'circle',
+	size: 'xlarge',
+	animation: 'glow-breathe',
+	glow: true,
+	glowColor: 'amber',
+	glowIntensity: 'medium',
+};
+AnimationGlowBreathe.parameters = {
+	docs: {
+		description: {
+			story: 'Glow breathe animation - ambient drop-shadow cycling for active indicators.',
+		},
+	},
+};
+
+export const AnimationShimmer = Template.bind({});
+AnimationShimmer.args = {
+	icon: 'star',
+	size: 'xlarge',
+	animation: 'shimmer',
+	color: 'primary',
+};
+AnimationShimmer.parameters = {
+	docs: {
+		description: {
+			story: 'Shimmer animation - chrome highlight sweep effect for premium appearance.',
+		},
+	},
+};
+
+export const AnimationBrighten = Template.bind({});
+AnimationBrighten.args = {
+	icon: 'check',
+	size: 'xlarge',
+	animation: 'brighten',
+	color: 'success',
+};
+AnimationBrighten.parameters = {
+	docs: {
+		description: {
+			story: 'Brighten animation - quick brightness flash for user feedback.',
+		},
+	},
+};
+
+export const AllAnimations: StoryFn = (args, { argTypes }) => ({
+	setup: () => ({ args }),
+	props: Object.keys(argTypes),
+	components: {
+		N8nIcon,
+	},
+	template: `
+		<div style="display: flex; align-items: center; gap: 32px; padding: 24px; background: var(--color--background);">
+			<div style="display: flex; flex-direction: column; align-items: center; gap: 12px;">
+				<n8n-icon icon="spinner" size="xlarge" animation="pulse" />
+				<span style="font-size: 12px; color: var(--color--text);">pulse</span>
+			</div>
+			<div style="display: flex; flex-direction: column; align-items: center; gap: 12px;">
+				<n8n-icon icon="circle" size="xlarge" animation="glow-breathe" :glow="true" glow-color="amber" glow-intensity="medium" />
+				<span style="font-size: 12px; color: var(--color--text);">glow-breathe</span>
+			</div>
+			<div style="display: flex; flex-direction: column; align-items: center; gap: 12px;">
+				<n8n-icon icon="star" size="xlarge" animation="shimmer" color="primary" />
+				<span style="font-size: 12px; color: var(--color--text);">shimmer</span>
+			</div>
+			<div style="display: flex; flex-direction: column; align-items: center; gap: 12px;">
+				<n8n-icon icon="check" size="xlarge" animation="brighten" color="success" />
+				<span style="font-size: 12px; color: var(--color--text);">brighten</span>
+			</div>
+		</div>
+	`,
+});
+AllAnimations.parameters = {
+	docs: {
+		description: {
+			story: 'All four animation types side by side.',
+		},
+	},
+};
+
+// Glow Color Stories
+export const GlowAmber = Template.bind({});
+GlowAmber.args = {
+	icon: 'bolt',
+	size: 'xlarge',
+	glow: true,
+	glowColor: 'amber',
+	glowIntensity: 'strong',
+	color: 'primary',
+};
+GlowAmber.parameters = {
+	docs: {
+		description: {
+			story: 'Amber glow - primary brand color, forge fire theme.',
+		},
+	},
+};
+
+export const GlowVerdigris = Template.bind({});
+GlowVerdigris.args = {
+	icon: 'check-circle',
+	size: 'xlarge',
+	glow: true,
+	glowColor: 'verdigris',
+	glowIntensity: 'strong',
+	color: 'success',
+};
+GlowVerdigris.parameters = {
+	docs: {
+		description: {
+			story: 'Verdigris glow - success/positive state, oxidized copper theme.',
+		},
+	},
+};
+
+export const GlowEmber = Template.bind({});
+GlowEmber.args = {
+	icon: 'exclamation-circle',
+	size: 'xlarge',
+	glow: true,
+	glowColor: 'ember',
+	glowIntensity: 'strong',
+	color: 'danger',
+};
+GlowEmber.parameters = {
+	docs: {
+		description: {
+			story: 'Ember glow - danger/error state, forge coals theme.',
+		},
+	},
+};
+
+export const GlowSteel = Template.bind({});
+GlowSteel.args = {
+	icon: 'cog',
+	size: 'xlarge',
+	glow: true,
+	glowColor: 'steel',
+	glowIntensity: 'strong',
+	color: 'secondary',
+};
+GlowSteel.parameters = {
+	docs: {
+		description: {
+			story: 'Steel glow - neutral/secondary state, cool metal theme.',
+		},
+	},
+};
+
+export const AllGlowColors: StoryFn = (args, { argTypes }) => ({
+	setup: () => ({ args }),
+	props: Object.keys(argTypes),
+	components: {
+		N8nIcon,
+	},
+	template: `
+		<div style="display: flex; align-items: center; gap: 32px; padding: 24px; background: var(--color--background);">
+			<div style="display: flex; flex-direction: column; align-items: center; gap: 12px;">
+				<n8n-icon icon="bolt" size="xlarge" :glow="true" glow-color="amber" glow-intensity="strong" color="primary" />
+				<span style="font-size: 12px; color: var(--color--text);">amber</span>
+			</div>
+			<div style="display: flex; flex-direction: column; align-items: center; gap: 12px;">
+				<n8n-icon icon="check-circle" size="xlarge" :glow="true" glow-color="verdigris" glow-intensity="strong" color="success" />
+				<span style="font-size: 12px; color: var(--color--text);">verdigris</span>
+			</div>
+			<div style="display: flex; flex-direction: column; align-items: center; gap: 12px;">
+				<n8n-icon icon="exclamation-circle" size="xlarge" :glow="true" glow-color="ember" glow-intensity="strong" color="danger" />
+				<span style="font-size: 12px; color: var(--color--text);">ember</span>
+			</div>
+			<div style="display: flex; flex-direction: column; align-items: center; gap: 12px;">
+				<n8n-icon icon="cog" size="xlarge" :glow="true" glow-color="steel" glow-intensity="strong" color="secondary" />
+				<span style="font-size: 12px; color: var(--color--text);">steel</span>
+			</div>
+		</div>
+	`,
+});
+AllGlowColors.parameters = {
+	docs: {
+		description: {
+			story: 'All four glow color variants with strong intensity.',
+		},
+	},
+};
+
+export const GlowIntensityLevels: StoryFn = (args, { argTypes }) => ({
+	setup: () => ({ args }),
+	props: Object.keys(argTypes),
+	components: {
+		N8nIcon,
+	},
+	template: `
+		<div style="display: flex; flex-direction: column; gap: 24px; padding: 24px; background: var(--color--background);">
+			<div style="display: flex; align-items: center; gap: 32px;">
+				<span style="font-size: 12px; color: var(--color--text); width: 60px;">amber</span>
+				<div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+					<n8n-icon icon="circle" size="xlarge" :glow="true" glow-color="amber" glow-intensity="subtle" />
+					<span style="font-size: 10px; color: var(--color--text--tint-1);">subtle</span>
+				</div>
+				<div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+					<n8n-icon icon="circle" size="xlarge" :glow="true" glow-color="amber" glow-intensity="medium" />
+					<span style="font-size: 10px; color: var(--color--text--tint-1);">medium</span>
+				</div>
+				<div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+					<n8n-icon icon="circle" size="xlarge" :glow="true" glow-color="amber" glow-intensity="strong" />
+					<span style="font-size: 10px; color: var(--color--text--tint-1);">strong</span>
+				</div>
+			</div>
+			<div style="display: flex; align-items: center; gap: 32px;">
+				<span style="font-size: 12px; color: var(--color--text); width: 60px;">verdigris</span>
+				<div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+					<n8n-icon icon="circle" size="xlarge" :glow="true" glow-color="verdigris" glow-intensity="subtle" />
+					<span style="font-size: 10px; color: var(--color--text--tint-1);">subtle</span>
+				</div>
+				<div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+					<n8n-icon icon="circle" size="xlarge" :glow="true" glow-color="verdigris" glow-intensity="medium" />
+					<span style="font-size: 10px; color: var(--color--text--tint-1);">medium</span>
+				</div>
+				<div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+					<n8n-icon icon="circle" size="xlarge" :glow="true" glow-color="verdigris" glow-intensity="strong" />
+					<span style="font-size: 10px; color: var(--color--text--tint-1);">strong</span>
+				</div>
+			</div>
+			<div style="display: flex; align-items: center; gap: 32px;">
+				<span style="font-size: 12px; color: var(--color--text); width: 60px;">ember</span>
+				<div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+					<n8n-icon icon="circle" size="xlarge" :glow="true" glow-color="ember" glow-intensity="subtle" />
+					<span style="font-size: 10px; color: var(--color--text--tint-1);">subtle</span>
+				</div>
+				<div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+					<n8n-icon icon="circle" size="xlarge" :glow="true" glow-color="ember" glow-intensity="medium" />
+					<span style="font-size: 10px; color: var(--color--text--tint-1);">medium</span>
+				</div>
+				<div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+					<n8n-icon icon="circle" size="xlarge" :glow="true" glow-color="ember" glow-intensity="strong" />
+					<span style="font-size: 10px; color: var(--color--text--tint-1);">strong</span>
+				</div>
+			</div>
+			<div style="display: flex; align-items: center; gap: 32px;">
+				<span style="font-size: 12px; color: var(--color--text); width: 60px;">steel</span>
+				<div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+					<n8n-icon icon="circle" size="xlarge" :glow="true" glow-color="steel" glow-intensity="subtle" />
+					<span style="font-size: 10px; color: var(--color--text--tint-1);">subtle</span>
+				</div>
+				<div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+					<n8n-icon icon="circle" size="xlarge" :glow="true" glow-color="steel" glow-intensity="medium" />
+					<span style="font-size: 10px; color: var(--color--text--tint-1);">medium</span>
+				</div>
+				<div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+					<n8n-icon icon="circle" size="xlarge" :glow="true" glow-color="steel" glow-intensity="strong" />
+					<span style="font-size: 10px; color: var(--color--text--tint-1);">strong</span>
+				</div>
+			</div>
+		</div>
+	`,
+});
+GlowIntensityLevels.parameters = {
+	docs: {
+		description: {
+			story: 'Matrix showing all glow colors at all intensity levels.',
+		},
+	},
+};
+
+// Combined animation and glow
+export const AnimatedGlow = Template.bind({});
+AnimatedGlow.args = {
+	icon: 'bolt',
+	size: 'xlarge',
+	animation: 'glow-breathe',
+	glow: true,
+	glowColor: 'amber',
+	glowIntensity: 'strong',
+	color: 'primary',
+};
+AnimatedGlow.parameters = {
+	docs: {
+		description: {
+			story: 'Combined glow-breathe animation with amber glow - for active/running states.',
+		},
+	},
+};

@@ -3,7 +3,14 @@ import { computed, useCssModule } from 'vue';
 
 import type { IconName } from './icons';
 import { deprecatedIconSet, updatedIconSet } from './icons';
-import type { IconSize, IconColor } from '../../types/icon';
+import type {
+	IconSize,
+	IconColor,
+	IconAnimation,
+	IconAnimationState,
+	IconGlowColor,
+	IconGlowIntensity,
+} from '../../types/icon';
 
 interface IconProps {
 	// component supports both deprecated and updated icon set to support project icons
@@ -13,6 +20,12 @@ interface IconProps {
 	spin?: boolean;
 	color?: IconColor;
 	strokeWidth?: number | undefined;
+	// Animation props (Phase 05 - Chrome Deco)
+	animation?: IconAnimation;
+	animationState?: IconAnimationState;
+	glow?: boolean;
+	glowColor?: IconGlowColor;
+	glowIntensity?: IconGlowIntensity;
 }
 
 defineOptions({ name: 'N8nIcon' });
@@ -21,9 +34,39 @@ const props = withDefaults(defineProps<IconProps>(), {
 	spin: false,
 	size: undefined,
 	color: undefined,
+	animation: 'none',
+	animationState: 'rest',
+	glow: false,
+	glowColor: 'amber',
+	glowIntensity: 'medium',
 });
 
 const $style = useCssModule();
+
+// Animation class mapping
+const animationClassMap: Record<IconAnimation, string> = {
+	none: '',
+	pulse: 'animatePulse',
+	'glow-breathe': 'animateGlowBreathe',
+	shimmer: 'animateShimmer',
+	brighten: 'animateBrighten',
+};
+
+// Glow intensity class mapping
+const glowIntensityClassMap: Record<IconGlowIntensity, string> = {
+	subtle: 'glowSubtle',
+	medium: 'glowMedium',
+	strong: 'glowStrong',
+};
+
+// Glow color class mapping
+const glowColorClassMap: Record<IconGlowColor, string> = {
+	amber: 'glowAmber',
+	verdigris: 'glowVerdigris',
+	ember: 'glowEmber',
+	steel: 'glowSteel',
+};
+
 const classes = computed(() => {
 	const applied: string[] = [];
 	if (props.spin) {
@@ -32,6 +75,21 @@ const classes = computed(() => {
 
 	if (props.strokeWidth) {
 		applied.push('strokeWidth');
+	}
+
+	// Add animation class if set
+	if (props.animation && props.animation !== 'none') {
+		const animClass = animationClassMap[props.animation];
+		if (animClass) {
+			applied.push(animClass);
+		}
+	}
+
+	// Add glow classes if glow is enabled
+	if (props.glow) {
+		applied.push('glow');
+		applied.push(glowIntensityClassMap[props.glowIntensity]);
+		applied.push(glowColorClassMap[props.glowColor]);
 	}
 
 	return ['n8n-icon', ...applied.map((c) => $style[c])];
@@ -128,5 +186,145 @@ const styles = computed(() => {
 	to {
 		transform: rotate(360deg);
 	}
+}
+
+// Animation keyframes (Phase 05 - Chrome Deco)
+@keyframes icon-pulse {
+	0%,
+	100% {
+		transform: scale(1);
+		opacity: 1;
+	}
+	50% {
+		transform: scale(1.1);
+		opacity: 0.8;
+	}
+}
+
+@keyframes icon-glow-breathe {
+	0%,
+	100% {
+		filter: drop-shadow(
+			var(--icon--glow--shadow--current, var(--icon--glow--shadow--base))
+				var(--icon--glow--color--current, var(--icon--glow--color--amber))
+		);
+		opacity: 0.85;
+	}
+	50% {
+		filter: drop-shadow(
+			var(--icon--glow--shadow--strong)
+				var(--icon--glow--color--current, var(--icon--glow--color--amber))
+		);
+		opacity: 1;
+	}
+}
+
+@keyframes icon-shimmer {
+	0% {
+		filter: brightness(1);
+	}
+	25% {
+		filter: brightness(1.15);
+	}
+	50% {
+		filter: brightness(1.3);
+	}
+	75% {
+		filter: brightness(1.15);
+	}
+	100% {
+		filter: brightness(1);
+	}
+}
+
+@keyframes icon-brighten {
+	0% {
+		filter: brightness(1);
+	}
+	50% {
+		filter: brightness(1.4);
+	}
+	100% {
+		filter: brightness(1);
+	}
+}
+
+// Animation classes
+.animatePulse {
+	will-change: transform, opacity;
+	animation: icon-pulse var(--icon--animation--duration--pulse)
+		var(--icon--animation--easing--pulse) infinite;
+
+	@media (prefers-reduced-motion: reduce) {
+		animation: none;
+	}
+}
+
+.animateGlowBreathe {
+	will-change: filter, opacity;
+	animation: icon-glow-breathe var(--icon--animation--duration--glow)
+		var(--icon--animation--easing--glow) infinite;
+
+	@media (prefers-reduced-motion: reduce) {
+		animation: none;
+	}
+}
+
+.animateShimmer {
+	will-change: filter;
+	animation: icon-shimmer var(--icon--animation--duration--shimmer)
+		var(--icon--animation--easing--shimmer) infinite;
+
+	@media (prefers-reduced-motion: reduce) {
+		animation: none;
+	}
+}
+
+.animateBrighten {
+	will-change: filter;
+	animation: icon-brighten var(--icon--animation--duration--brighten)
+		var(--icon--animation--easing--brighten) 1;
+
+	@media (prefers-reduced-motion: reduce) {
+		animation: none;
+	}
+}
+
+// Glow intensity classes
+.glowSubtle {
+	--icon--glow--shadow--current: var(--icon--glow--shadow--subtle);
+}
+
+.glowMedium {
+	--icon--glow--shadow--current: var(--icon--glow--shadow--base);
+}
+
+.glowStrong {
+	--icon--glow--shadow--current: var(--icon--glow--shadow--strong);
+}
+
+// Glow color classes
+.glowAmber {
+	--icon--glow--color--current: var(--icon--glow--color--amber);
+}
+
+.glowVerdigris {
+	--icon--glow--color--current: var(--icon--glow--color--verdigris);
+}
+
+.glowEmber {
+	--icon--glow--color--current: var(--icon--glow--color--ember);
+}
+
+.glowSteel {
+	--icon--glow--color--current: var(--icon--glow--color--steel);
+}
+
+// Static glow class (non-animated)
+.glow {
+	filter: drop-shadow(
+		var(--icon--glow--shadow--current, var(--icon--glow--shadow--base))
+			var(--icon--glow--color--current, var(--icon--glow--color--amber))
+	);
 }
 </style>

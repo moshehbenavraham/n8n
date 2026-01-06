@@ -368,6 +368,29 @@
 	--duration--slow: 300ms;
 	--duration--slower: 500ms;
 	--duration--slowest: 800ms;
+
+	// Icon Animation - Durations
+	--icon--animation--duration--pulse: 2s;
+	--icon--animation--duration--glow: 3s;
+	--icon--animation--duration--shimmer: 2.5s;
+	--icon--animation--duration--brighten: 0.3s;
+
+	// Icon Animation - Easing
+	--icon--animation--easing--pulse: ease-in-out;
+	--icon--animation--easing--glow: var(--easing--forge-glow);
+	--icon--animation--easing--shimmer: ease-in-out;
+	--icon--animation--easing--brighten: ease-out;
+
+	// Icon Glow - Shadow intensity (drop-shadow spread values)
+	--icon--glow--shadow--subtle: 0 0 4px;
+	--icon--glow--shadow--base: 0 0 8px;
+	--icon--glow--shadow--strong: 0 0 16px;
+
+	// Icon Glow - Color mappings (use alpha variants for glow effect)
+	--icon--glow--color--amber: var(--color--amber-alpha-500);
+	--icon--glow--color--verdigris: var(--color--verdigris-alpha-200);
+	--icon--glow--color--ember: var(--color--ember-alpha-200);
+	--icon--glow--color--steel: var(--color--steel-alpha-200);
 }
 
 :root {

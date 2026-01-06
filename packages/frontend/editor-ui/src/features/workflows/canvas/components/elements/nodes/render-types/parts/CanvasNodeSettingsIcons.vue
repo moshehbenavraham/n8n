@@ -100,7 +100,8 @@ const size = 'medium';
 	color: var(--color--foreground--shade-1);
 
 	// Obsidian Forge: Smooth transition for icon visibility
-	transition: opacity var(--canvas-node--transition--duration, 150ms) var(--easing--ease-out, ease-out);
+	transition: opacity var(--canvas-node--transition--duration, 150ms)
+		var(--easing--ease-out, ease-out);
 
 	@media (prefers-reduced-motion: reduce) {
 		transition: none;

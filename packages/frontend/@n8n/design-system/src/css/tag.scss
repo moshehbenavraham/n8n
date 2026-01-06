@@ -7,7 +7,8 @@
 	background-color: var(--color--amber-50);
 	color: var(--color--text--shade-1);
 	font-weight: var(--font-weight--regular);
-	transition: background-color var(--duration--fast) var(--easing--ease-out),
+	transition:
+		background-color var(--duration--fast) var(--easing--ease-out),
 		border-color var(--duration--fast) var(--easing--ease-out);
 
 	&:hover {
@@ -21,7 +22,8 @@
 
 	.el-tag__close {
 		color: var(--color--amber-500);
-		transition: background-color var(--duration--fast) var(--easing--ease-out),
+		transition:
+			background-color var(--duration--fast) var(--easing--ease-out),
 			color var(--duration--fast) var(--easing--ease-out);
 		&:hover {
 			color: var(--color--neutral-white);
@@ -35,7 +37,8 @@
 		color: var(--callout--color--text--info);
 		border-width: 1px;
 		border-style: solid;
-		transition: background-color var(--duration--fast) var(--easing--ease-out),
+		transition:
+			background-color var(--duration--fast) var(--easing--ease-out),
 			border-color var(--duration--fast) var(--easing--ease-out);
 
 		@include mixins.when(hit) {
@@ -48,7 +51,8 @@
 
 		.el-tag__close {
 			color: var(--color--steel-400);
-			transition: background-color var(--duration--fast) var(--easing--ease-out),
+			transition:
+				background-color var(--duration--fast) var(--easing--ease-out),
 				color var(--duration--fast) var(--easing--ease-out);
 			&:hover {
 				color: var(--color--neutral-white);
@@ -63,7 +67,8 @@
 		color: var(--callout--color--text--success);
 		border-width: 1px;
 		border-style: solid;
-		transition: background-color var(--duration--fast) var(--easing--ease-out),
+		transition:
+			background-color var(--duration--fast) var(--easing--ease-out),
 			border-color var(--duration--fast) var(--easing--ease-out);
 
 		.svg-inline--fa {
@@ -76,7 +81,8 @@
 
 		.el-tag__close {
 			color: var(--color--verdigris-400);
-			transition: background-color var(--duration--fast) var(--easing--ease-out),
+			transition:
+				background-color var(--duration--fast) var(--easing--ease-out),
 				color var(--duration--fast) var(--easing--ease-out);
 			&:hover {
 				color: var(--color--neutral-white);
@@ -91,7 +97,8 @@
 		color: var(--callout--color--text--warning);
 		border-width: 1px;
 		border-style: solid;
-		transition: background-color var(--duration--fast) var(--easing--ease-out),
+		transition:
+			background-color var(--duration--fast) var(--easing--ease-out),
 			border-color var(--duration--fast) var(--easing--ease-out);
 
 		@include mixins.when(hit) {
@@ -104,7 +111,8 @@
 
 		.el-tag__close {
 			color: var(--color--gold-400);
-			transition: background-color var(--duration--fast) var(--easing--ease-out),
+			transition:
+				background-color var(--duration--fast) var(--easing--ease-out),
 				color var(--duration--fast) var(--easing--ease-out);
 			&:hover {
 				color: var(--color--neutral-white);
@@ -119,7 +127,8 @@
 		color: var(--callout--color--text--danger);
 		border-width: 1px;
 		border-style: solid;
-		transition: background-color var(--duration--fast) var(--easing--ease-out),
+		transition:
+			background-color var(--duration--fast) var(--easing--ease-out),
 			border-color var(--duration--fast) var(--easing--ease-out);
 
 		@include mixins.when(hit) {
@@ -132,7 +141,8 @@
 
 		.el-tag__close {
 			color: var(--color--ember-400);
-			transition: background-color var(--duration--fast) var(--easing--ease-out),
+			transition:
+				background-color var(--duration--fast) var(--easing--ease-out),
 				color var(--duration--fast) var(--easing--ease-out);
 			&:hover {
 				color: var(--color--neutral-white);

@@ -19,7 +19,8 @@
 		align-items: center;
 		border-radius: var(--radius);
 		margin: var(--spacing--5xs) var(--spacing--4xs);
-		transition: background-color var(--duration--fast) var(--easing--ease-out),
+		transition:
+			background-color var(--duration--fast) var(--easing--ease-out),
 			color var(--duration--fast) var(--easing--ease-out);
 
 		@include mixins.when(disabled) {

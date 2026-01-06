@@ -31,7 +31,8 @@ withDefaults(defineProps<TagProps>(), {
 	border-radius: var(--radius--full);
 	font-size: var(--tag--font-size);
 	font-weight: var(--tag--font-weight);
-	transition: background-color var(--duration--fast) var(--easing--ease-out),
+	transition:
+		background-color var(--duration--fast) var(--easing--ease-out),
 		border-color var(--duration--fast) var(--easing--ease-out),
 		transform var(--duration--instant) var(--easing--ease-out);
 

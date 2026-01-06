@@ -169,7 +169,8 @@ function onClick(event: MouseEvent) {
 			oklch(var(--canvas-handle-plus-line--color--lightness--dark) 0 0)
 		);
 		// Obsidian Forge: Smooth transition for line color
-		transition: stroke var(--canvas-node--transition--duration, 150ms) var(--easing--ease-out, ease-out);
+		transition: stroke var(--canvas-node--transition--duration, 150ms)
+			var(--easing--ease-out, ease-out);
 	}
 
 	&.success {
@@ -183,7 +184,8 @@ function onClick(event: MouseEvent) {
 		color: var(--canvas-handle--plus--color);
 
 		// Obsidian Forge: Smooth transition for plus button
-		transition: color var(--canvas-node--transition--duration, 150ms) var(--easing--ease-out, ease-out);
+		transition: color var(--canvas-node--transition--duration, 150ms)
+			var(--easing--ease-out, ease-out);
 
 		&:hover {
 			cursor: pointer;

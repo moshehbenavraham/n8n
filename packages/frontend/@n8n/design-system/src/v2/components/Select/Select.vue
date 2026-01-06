@@ -207,7 +207,8 @@ const groups = computed<SelectItemProps[]>(() => {
 	position: relative;
 	gap: var(--spacing--3xs);
 	color: var(--color--text--shade-1);
-	transition: border-color var(--duration--fast) var(--easing--ease-out),
+	transition:
+		border-color var(--duration--fast) var(--easing--ease-out),
 		background-color var(--duration--fast) var(--easing--ease-out),
 		box-shadow var(--duration--fast) var(--easing--ease-out);
 
@@ -316,7 +317,8 @@ const groups = computed<SelectItemProps[]>(() => {
 	user-select: none;
 	color: var(--color--text--shade-1);
 	gap: var(--spacing--3xs);
-	transition: background-color var(--duration--fast) var(--easing--ease-out),
+	transition:
+		background-color var(--duration--fast) var(--easing--ease-out),
 		color var(--duration--fast) var(--easing--ease-out);
 
 	&:not([data-disabled]) {

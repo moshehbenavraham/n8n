@@ -395,8 +395,16 @@ function onActivate(event: MouseEvent) {
 		from var(--node--gradient-angle),
 		var(--canvas-node--border-color--running-gradient-start, var(--color--orange-400)),
 		var(--canvas-node--border-color--running-gradient-start, var(--color--orange-400)) 20%,
-		var(--canvas-node--border-color--running-gradient-mid, oklch(from var(--color--orange-400) l c h / 0.2)) 35%,
-		var(--canvas-node--border-color--running-gradient-mid, oklch(from var(--color--orange-400) l c h / 0.2)) 65%,
+		var(
+				--canvas-node--border-color--running-gradient-mid,
+				oklch(from var(--color--orange-400) l c h / 0.2)
+			)
+			35%,
+		var(
+				--canvas-node--border-color--running-gradient-mid,
+				oklch(from var(--color--orange-400) l c h / 0.2)
+			)
+			65%,
 		var(--canvas-node--border-color--running-gradient-start, var(--color--orange-400)) 90%,
 		var(--canvas-node--border-color--running-gradient-start, var(--color--orange-400))
 	);

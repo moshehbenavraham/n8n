@@ -38,7 +38,8 @@
 	.el-input__inner {
 		cursor: pointer;
 		padding-right: 35px;
-		transition: border-color var(--duration--fast) var(--easing--ease-out),
+		transition:
+			border-color var(--duration--fast) var(--easing--ease-out),
 			box-shadow var(--duration--fast) var(--easing--ease-out);
 
 		&:focus {
@@ -153,7 +154,8 @@
 		color: var(--color--text--shade-1);
 		border-radius: var(--radius--full);
 		font-weight: var(--font-weight--regular);
-		transition: background-color var(--duration--fast) var(--easing--ease-out),
+		transition:
+			background-color var(--duration--fast) var(--easing--ease-out),
 			border-color var(--duration--fast) var(--easing--ease-out);
 
 		&:hover {

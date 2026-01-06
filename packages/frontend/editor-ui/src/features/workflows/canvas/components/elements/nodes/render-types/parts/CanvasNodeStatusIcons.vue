@@ -148,7 +148,8 @@ const groupedExecutionErrors = computed(() => {
 	font-weight: var(--font-weight--bold);
 
 	// Obsidian Forge: Smooth transition for status icon changes
-	transition: color var(--canvas-node--transition--duration, 150ms) var(--easing--ease-out, ease-out);
+	transition: color var(--canvas-node--transition--duration, 150ms)
+		var(--easing--ease-out, ease-out);
 
 	@media (prefers-reduced-motion: reduce) {
 		transition: none;

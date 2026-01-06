@@ -174,7 +174,8 @@ async function onClickTemplatesLink() {
 	border-radius: var(--radius--lg);
 
 	// Obsidian Forge: Smooth transition for highlight state
-	transition: box-shadow var(--canvas-node--transition--duration, 150ms) var(--easing--ease-out, ease-out);
+	transition: box-shadow var(--canvas-node--transition--duration, 150ms)
+		var(--easing--ease-out, ease-out);
 
 	&.highlighted {
 		// Obsidian Forge: Amber glow for highlighted state

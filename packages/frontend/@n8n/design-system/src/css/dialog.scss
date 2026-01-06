@@ -54,28 +54,28 @@
 	// T014: Modal size variants (Forge)
 	// Small modal - compact dialogs like confirmations
 	&.el-dialog--small,
-	&[data-size="small"] {
+	&[data-size='small'] {
 		max-width: 400px;
 		width: 90%;
 	}
 
 	// Medium modal - default size for most dialogs
 	&.el-dialog--medium,
-	&[data-size="medium"] {
+	&[data-size='medium'] {
 		max-width: 560px;
 		width: 90%;
 	}
 
 	// Large modal - complex forms, settings
 	&.el-dialog--large,
-	&[data-size="large"] {
+	&[data-size='large'] {
 		max-width: 800px;
 		width: 90%;
 	}
 
 	// Extra large modal - tables, previews
 	&.el-dialog--xlarge,
-	&[data-size="xlarge"] {
+	&[data-size='xlarge'] {
 		max-width: 1024px;
 		width: 95%;
 	}
