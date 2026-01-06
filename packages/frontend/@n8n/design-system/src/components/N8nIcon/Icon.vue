@@ -11,6 +11,7 @@ import type {
 	IconGlowColor,
 	IconGlowIntensity,
 	StrokeWeightToken,
+	IconChromaticState,
 } from '../../types/icon';
 import { isStrokeWeightToken } from '../../types/icon';
 
@@ -28,6 +29,9 @@ interface IconProps {
 	glow?: boolean;
 	glowColor?: IconGlowColor;
 	glowIntensity?: IconGlowIntensity;
+	// Chrome Deco Effect props (Phase 05 - Session 04)
+	chromatic?: boolean;
+	chromaticState?: IconChromaticState;
 }
 
 defineOptions({ name: 'N8nIcon' });
@@ -41,6 +45,8 @@ const props = withDefaults(defineProps<IconProps>(), {
 	glow: false,
 	glowColor: 'amber',
 	glowIntensity: 'medium',
+	chromatic: false,
+	chromaticState: 'default',
 });
 
 const $style = useCssModule();
@@ -68,6 +74,21 @@ const glowColorClassMap: Record<IconGlowColor, string> = {
 	ember: 'glowEmber',
 	steel: 'glowSteel',
 };
+
+// Chromatic state class mapping (Phase 05 - Session 04)
+const chromaticStateClassMap: Record<IconChromaticState, string> = {
+	default: '',
+	active: 'is-active',
+	success: 'is-success',
+	disabled: 'is-disabled',
+};
+
+// Chromatic wrapper classes (applied to wrapper span)
+const chromaticClasses = computed(() => {
+	if (!props.chromatic) return [];
+	const stateClass = chromaticStateClassMap[props.chromaticState];
+	return ['n8n-icon--chromatic', stateClass].filter(Boolean);
+});
 
 const classes = computed(() => {
 	const applied: string[] = [];
@@ -164,12 +185,38 @@ const styles = computed(() => {
 </script>
 
 <template>
+	<!-- Chromatic wrapper for ::after pseudo-element effects -->
+	<span
+		v-if="
+			chromatic &&
+			(updatedIconSet[icon as keyof typeof updatedIconSet] ??
+				deprecatedIconSet[icon as keyof typeof deprecatedIconSet])
+		"
+		:class="chromaticClasses"
+		:style="{ height: size.height, width: size.width }"
+	>
+		<Component
+			:is="
+				updatedIconSet[icon as keyof typeof updatedIconSet] ??
+				deprecatedIconSet[icon as keyof typeof deprecatedIconSet]
+			"
+			:class="classes"
+			aria-hidden="true"
+			focusable="false"
+			role="img"
+			:height="size.height"
+			:width="size.width"
+			:data-icon="props.icon"
+			:style="styles"
+		/>
+	</span>
+	<!-- Standard icon without chromatic effects -->
 	<Component
-		:is="
+		v-else-if="
 			updatedIconSet[icon as keyof typeof updatedIconSet] ??
 			deprecatedIconSet[icon as keyof typeof deprecatedIconSet]
 		"
-		v-if="
+		:is="
 			updatedIconSet[icon as keyof typeof updatedIconSet] ??
 			deprecatedIconSet[icon as keyof typeof deprecatedIconSet]
 		"

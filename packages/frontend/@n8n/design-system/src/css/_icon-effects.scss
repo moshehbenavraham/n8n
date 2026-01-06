@@ -1,0 +1,222 @@
+// _icon-effects.scss
+// Obsidian Forge Design System - Chrome Deco Icon Effects
+// Session: phase05-session04-chrome-deco-effects
+//
+// Implements the signature "Chrome Deco" visual effects for the retro-futuristic
+// icon aesthetic. These effects layer on top of Phosphor icons to add:
+// - Metallic chrome gradient overlays
+// - Hover-triggered shimmer animations
+// - Sunburst glow for success states
+// - Beveled edge depth perception
+//
+// Architecture:
+// 1. Base layer: Phosphor icon SVG content (from session 03)
+// 2. Effect layer: ::after pseudo-element with chrome gradient overlay
+// 3. Filter layer: Drop-shadow filters for bevel and glow effects
+//
+// All effects respect prefers-reduced-motion and use GPU-composited properties.
+// ASCII-only encoding (0-127 characters).
+
+// =============================================================================
+// KEYFRAMES
+// =============================================================================
+
+// Chrome Shimmer Keyframe
+// Moves the gradient highlight across the icon on hover
+// Uses background-position shift for smooth gradient movement
+@keyframes chrome-shimmer {
+	0% {
+		background-position: -100% 0;
+	}
+	100% {
+		background-position: 200% 0;
+	}
+}
+
+// Sunburst Glow Keyframe
+// Radial expansion effect for success state feedback
+// Quick flash with fade-out for immediate visual confirmation
+@keyframes chrome-sunburst {
+	0% {
+		opacity: 0;
+		transform: scale(0.8);
+	}
+	30% {
+		opacity: 1;
+		transform: scale(1.2);
+	}
+	100% {
+		opacity: 0;
+		transform: scale(1.5);
+	}
+}
+
+// =============================================================================
+// MIXINS - Chrome Effect Base
+// =============================================================================
+
+// Base mixin for chrome effect wrapper positioning
+// Establishes the relative positioning context for ::after overlay
+@mixin chrome-effect-base {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+}
+
+// Chrome gradient overlay pseudo-element
+// Creates the metallic sheen effect on top of the icon
+@mixin chrome-gradient-overlay {
+	&::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+		border-radius: inherit;
+		background: linear-gradient(
+			135deg,
+			transparent 0%,
+			var(--icon--chrome--gradient--start, hsla(0, 0%, 100%, 0.1)) 20%,
+			var(--icon--chrome--gradient--mid, hsla(0, 0%, 100%, 0.3)) 50%,
+			var(--icon--chrome--gradient--end, hsla(0, 0%, 100%, 0.1)) 80%,
+			transparent 100%
+		);
+		mix-blend-mode: overlay;
+		opacity: var(--icon--chrome--opacity, 0.5);
+		transition: opacity var(--icon--chrome--transition--duration, 0.2s)
+			var(--icon--chrome--transition--easing, ease-out);
+	}
+}
+
+// =============================================================================
+// MIXINS - Shimmer Animation
+// =============================================================================
+
+// Shimmer effect mixin - activates on hover/active states
+// Uses background-position animation for gradient sweep
+@mixin chrome-shimmer-animation {
+	&::after {
+		background-size: 200% 100%;
+		background-position: -100% 0;
+	}
+
+	&:hover::after,
+	&:focus-visible::after,
+	&.is-active::after {
+		animation: chrome-shimmer var(--icon--chrome--shimmer--duration, 2.5s)
+			var(--icon--chrome--shimmer--easing, ease-in-out) 1;
+	}
+
+	// Respect reduced motion preference
+	@media (prefers-reduced-motion: reduce) {
+		&:hover::after,
+		&:focus-visible::after,
+		&.is-active::after {
+			animation: none;
+		}
+	}
+}
+
+// =============================================================================
+// MIXINS - Sunburst Glow
+// =============================================================================
+
+// Sunburst glow effect for success state feedback
+// Radial glow expansion triggered by .is-success class
+@mixin chrome-sunburst-glow {
+	// Sunburst overlay layer (separate from chrome gradient)
+	&::before {
+		content: '';
+		position: absolute;
+		inset: -50%;
+		pointer-events: none;
+		border-radius: 50%;
+		background: radial-gradient(
+			circle at center,
+			var(--icon--chrome--sunburst--color, var(--color--success)) 0%,
+			transparent 70%
+		);
+		opacity: 0;
+		transform: scale(0.8);
+	}
+
+	&.is-success::before {
+		animation: chrome-sunburst var(--icon--chrome--sunburst--duration, 0.6s)
+			var(--icon--chrome--sunburst--easing, ease-out) 1 forwards;
+	}
+
+	// Respect reduced motion preference
+	@media (prefers-reduced-motion: reduce) {
+		&.is-success::before {
+			animation: none;
+			opacity: 0.3;
+			transform: scale(1);
+		}
+	}
+}
+
+// =============================================================================
+// MIXINS - Beveled Edge
+// =============================================================================
+
+// Beveled edge effect using dual drop-shadows
+// Creates subtle 3D depth perception on the icon
+@mixin chrome-beveled-edge {
+	filter: drop-shadow(
+			var(--icon--chrome--bevel--light--offset, 1px 1px 0)
+				var(--icon--chrome--bevel--light--color, hsla(0, 0%, 100%, 0.3))
+		)
+		drop-shadow(
+			var(--icon--chrome--bevel--dark--offset, -1px -1px 0)
+				var(--icon--chrome--bevel--dark--color, hsla(0, 0%, 0%, 0.15))
+		);
+
+	transition: filter var(--icon--chrome--transition--duration, 0.2s)
+		var(--icon--chrome--transition--easing, ease-out);
+
+	// Respect reduced motion preference - keep static bevel
+	@media (prefers-reduced-motion: reduce) {
+		transition: none;
+	}
+}
+
+// =============================================================================
+// COMPOSITE MIXIN - Full Chrome Effect
+// =============================================================================
+
+// Complete chrome deco effect combining all sub-effects
+// Use this on the .n8n-icon--chromatic wrapper class
+@mixin chrome-deco-effect {
+	@include chrome-effect-base;
+	@include chrome-gradient-overlay;
+	@include chrome-shimmer-animation;
+	@include chrome-sunburst-glow;
+	@include chrome-beveled-edge;
+
+	// GPU compositing optimization
+	will-change: filter, opacity;
+}
+
+// =============================================================================
+// UTILITY CLASSES
+// =============================================================================
+
+// Main chromatic wrapper class
+// Applied when chromatic prop is true on Icon.vue
+.n8n-icon--chromatic {
+	@include chrome-deco-effect;
+}
+
+// State modifier classes
+.n8n-icon--chromatic.is-active {
+	--icon--chrome--opacity: 0.7;
+}
+
+.n8n-icon--chromatic.is-success {
+	// Sunburst animation triggers via ::before
+}
+
+.n8n-icon--chromatic.is-disabled {
+	--icon--chrome--opacity: 0.2;
+	filter: none;
+}

@@ -909,6 +909,32 @@
 	--icon--stroke-width--focus: var(--icon--stroke-width--thick);
 	--icon--stroke-width--disabled: var(--icon--stroke-width--thin);
 
+	// Icon Chrome Effect tokens (Phase 05 - Session 04)
+	// Metallic chrome gradient overlay for retro-futuristic aesthetic
+	--icon--chrome--opacity: 0.5;
+	--icon--chrome--opacity--hover: 0.7;
+	--icon--chrome--opacity--active: 0.8;
+	--icon--chrome--gradient--start: hsla(0, 0%, 100%, 0.1);
+	--icon--chrome--gradient--mid: hsla(0, 0%, 100%, 0.3);
+	--icon--chrome--gradient--end: hsla(0, 0%, 100%, 0.1);
+	--icon--chrome--transition--duration: 0.2s;
+	--icon--chrome--transition--easing: ease-out;
+
+	// Shimmer animation tokens
+	--icon--chrome--shimmer--duration: 2.5s;
+	--icon--chrome--shimmer--easing: ease-in-out;
+
+	// Sunburst glow tokens
+	--icon--chrome--sunburst--color: var(--color--success);
+	--icon--chrome--sunburst--duration: 0.6s;
+	--icon--chrome--sunburst--easing: ease-out;
+
+	// Beveled edge effect tokens (dual drop-shadow)
+	--icon--chrome--bevel--light--offset: 1px 1px 0;
+	--icon--chrome--bevel--light--color: hsla(0, 0%, 100%, 0.3);
+	--icon--chrome--bevel--dark--offset: -1px -1px 0;
+	--icon--chrome--bevel--dark--color: hsla(0, 0%, 0%, 0.15);
+
 	/* Ag Grid */
 	--grid--row--color--background--selected: var(--color--purple-200);
 	--grid--cell--border-color--editing: 2px solid var(--color--secondary);

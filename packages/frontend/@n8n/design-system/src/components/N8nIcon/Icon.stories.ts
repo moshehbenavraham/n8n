@@ -80,6 +80,20 @@ export default {
 			options: ['subtle', 'medium', 'strong'],
 			description: 'Glow intensity level',
 		},
+		// Chromatic props (Phase 05 - Session 04)
+		chromatic: {
+			control: {
+				type: 'boolean',
+			},
+			description: 'Enable chrome deco effect overlay',
+		},
+		chromaticState: {
+			control: {
+				type: 'select',
+			},
+			options: ['default', 'active', 'success', 'disabled'],
+			description: 'Chromatic effect state modifier',
+		},
 	},
 };
 
@@ -781,6 +795,226 @@ StrokeWeightComparison.parameters = {
 		description: {
 			story:
 				'Visual comparison of stroke weight tokens for Chrome Deco retro-futuristic aesthetic.',
+		},
+	},
+};
+
+// Chromatic Effect Stories (Phase 05 - Session 04)
+export const ChromaticDefault = Template.bind({});
+ChromaticDefault.args = {
+	icon: 'bolt',
+	size: 'xlarge',
+	chromatic: true,
+	chromaticState: 'default',
+	color: 'primary',
+};
+ChromaticDefault.parameters = {
+	docs: {
+		description: {
+			story:
+				'Chrome Deco effect - metallic gradient overlay with beveled edges. Hover to see shimmer animation.',
+		},
+	},
+};
+
+export const ChromaticActive = Template.bind({});
+ChromaticActive.args = {
+	icon: 'bolt',
+	size: 'xlarge',
+	chromatic: true,
+	chromaticState: 'active',
+	color: 'primary',
+};
+ChromaticActive.parameters = {
+	docs: {
+		description: {
+			story: 'Chrome Deco effect in active state - enhanced opacity for emphasis.',
+		},
+	},
+};
+
+export const ChromaticSuccess = Template.bind({});
+ChromaticSuccess.args = {
+	icon: 'check',
+	size: 'xlarge',
+	chromatic: true,
+	chromaticState: 'success',
+	color: 'success',
+};
+ChromaticSuccess.parameters = {
+	docs: {
+		description: {
+			story: 'Chrome Deco effect with success state - triggers sunburst glow animation.',
+		},
+	},
+};
+
+export const ChromaticDisabled = Template.bind({});
+ChromaticDisabled.args = {
+	icon: 'bolt',
+	size: 'xlarge',
+	chromatic: true,
+	chromaticState: 'disabled',
+	color: 'text-xlight',
+};
+ChromaticDisabled.parameters = {
+	docs: {
+		description: {
+			story: 'Chrome Deco effect in disabled state - reduced opacity, no bevel filter.',
+		},
+	},
+};
+
+export const AllChromaticStates: StoryFn = (args, { argTypes }) => ({
+	setup: () => ({ args }),
+	props: Object.keys(argTypes),
+	components: {
+		N8nIcon,
+	},
+	template: `
+		<div style="display: flex; align-items: center; gap: 32px; padding: 24px; background: var(--color--background);">
+			<div style="display: flex; flex-direction: column; align-items: center; gap: 12px;">
+				<n8n-icon icon="bolt" size="xlarge" :chromatic="true" chromatic-state="default" color="primary" />
+				<span style="font-size: 12px; color: var(--color--text);">default</span>
+			</div>
+			<div style="display: flex; flex-direction: column; align-items: center; gap: 12px;">
+				<n8n-icon icon="bolt" size="xlarge" :chromatic="true" chromatic-state="active" color="primary" />
+				<span style="font-size: 12px; color: var(--color--text);">active</span>
+			</div>
+			<div style="display: flex; flex-direction: column; align-items: center; gap: 12px;">
+				<n8n-icon icon="check" size="xlarge" :chromatic="true" chromatic-state="success" color="success" />
+				<span style="font-size: 12px; color: var(--color--text);">success</span>
+			</div>
+			<div style="display: flex; flex-direction: column; align-items: center; gap: 12px;">
+				<n8n-icon icon="bolt" size="xlarge" :chromatic="true" chromatic-state="disabled" color="text-xlight" />
+				<span style="font-size: 12px; color: var(--color--text);">disabled</span>
+			</div>
+		</div>
+	`,
+});
+AllChromaticStates.parameters = {
+	docs: {
+		description: {
+			story: 'All chromatic state variants - default, active, success, and disabled.',
+		},
+	},
+};
+
+export const ChromaticSizeVariations: StoryFn = (args, { argTypes }) => ({
+	setup: () => ({ args }),
+	props: Object.keys(argTypes),
+	components: {
+		N8nIcon,
+	},
+	template: `
+		<div style="display: flex; align-items: center; gap: 32px; padding: 24px; background: var(--color--background);">
+			<div style="display: flex; flex-direction: column; align-items: center; gap: 12px;">
+				<n8n-icon icon="bolt" size="xsmall" :chromatic="true" color="primary" />
+				<span style="font-size: 12px; color: var(--color--text);">xsmall</span>
+			</div>
+			<div style="display: flex; flex-direction: column; align-items: center; gap: 12px;">
+				<n8n-icon icon="bolt" size="small" :chromatic="true" color="primary" />
+				<span style="font-size: 12px; color: var(--color--text);">small</span>
+			</div>
+			<div style="display: flex; flex-direction: column; align-items: center; gap: 12px;">
+				<n8n-icon icon="bolt" size="medium" :chromatic="true" color="primary" />
+				<span style="font-size: 12px; color: var(--color--text);">medium</span>
+			</div>
+			<div style="display: flex; flex-direction: column; align-items: center; gap: 12px;">
+				<n8n-icon icon="bolt" size="large" :chromatic="true" color="primary" />
+				<span style="font-size: 12px; color: var(--color--text);">large</span>
+			</div>
+			<div style="display: flex; flex-direction: column; align-items: center; gap: 12px;">
+				<n8n-icon icon="bolt" size="xlarge" :chromatic="true" color="primary" />
+				<span style="font-size: 12px; color: var(--color--text);">xlarge</span>
+			</div>
+			<div style="display: flex; flex-direction: column; align-items: center; gap: 12px;">
+				<n8n-icon icon="bolt" size="xxlarge" :chromatic="true" color="primary" />
+				<span style="font-size: 12px; color: var(--color--text);">xxlarge</span>
+			</div>
+		</div>
+	`,
+});
+ChromaticSizeVariations.parameters = {
+	docs: {
+		description: {
+			story: 'Chrome Deco effect at all icon sizes - gradient scales proportionally.',
+		},
+	},
+};
+
+export const ChromaticWithGlow: StoryFn = (args, { argTypes }) => ({
+	setup: () => ({ args }),
+	props: Object.keys(argTypes),
+	components: {
+		N8nIcon,
+	},
+	template: `
+		<div style="display: flex; align-items: center; gap: 32px; padding: 32px; background: var(--color--background);">
+			<div style="display: flex; flex-direction: column; align-items: center; gap: 12px;">
+				<n8n-icon icon="bolt" size="xlarge" :chromatic="true" :glow="true" glow-color="amber" glow-intensity="strong" color="primary" />
+				<span style="font-size: 12px; color: var(--color--text);">chrome + amber glow</span>
+			</div>
+			<div style="display: flex; flex-direction: column; align-items: center; gap: 12px;">
+				<n8n-icon icon="check" size="xlarge" :chromatic="true" :glow="true" glow-color="verdigris" glow-intensity="strong" color="success" />
+				<span style="font-size: 12px; color: var(--color--text);">chrome + verdigris glow</span>
+			</div>
+			<div style="display: flex; flex-direction: column; align-items: center; gap: 12px;">
+				<n8n-icon icon="x" size="xlarge" :chromatic="true" :glow="true" glow-color="ember" glow-intensity="strong" color="danger" />
+				<span style="font-size: 12px; color: var(--color--text);">chrome + ember glow</span>
+			</div>
+			<div style="display: flex; flex-direction: column; align-items: center; gap: 12px;">
+				<n8n-icon icon="cog" size="xlarge" :chromatic="true" :glow="true" glow-color="steel" glow-intensity="strong" color="secondary" />
+				<span style="font-size: 12px; color: var(--color--text);">chrome + steel glow</span>
+			</div>
+		</div>
+	`,
+});
+ChromaticWithGlow.parameters = {
+	docs: {
+		description: {
+			story: 'Chrome Deco effect combined with glow - maximum retro-futuristic impact.',
+		},
+	},
+};
+
+export const ChromaticInteractive: StoryFn = (args, { argTypes }) => ({
+	setup: () => ({ args }),
+	props: Object.keys(argTypes),
+	components: {
+		N8nIcon,
+	},
+	template: `
+		<div style="display: flex; flex-direction: column; gap: 24px; padding: 24px; background: var(--color--background);">
+			<p style="margin: 0; font-size: 14px; color: var(--color--text);">
+				<strong>Hover over the icons</strong> to see the shimmer animation effect.
+			</p>
+			<div style="display: flex; align-items: center; gap: 32px;">
+				<div style="display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 16px; border-radius: 8px; cursor: pointer;">
+					<n8n-icon icon="play" size="xlarge" :chromatic="true" color="success" />
+					<span style="font-size: 12px; color: var(--color--text);">play</span>
+				</div>
+				<div style="display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 16px; border-radius: 8px; cursor: pointer;">
+					<n8n-icon icon="pause" size="xlarge" :chromatic="true" color="warning" />
+					<span style="font-size: 12px; color: var(--color--text);">pause</span>
+				</div>
+				<div style="display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 16px; border-radius: 8px; cursor: pointer;">
+					<n8n-icon icon="stop" size="xlarge" :chromatic="true" color="danger" />
+					<span style="font-size: 12px; color: var(--color--text);">stop</span>
+				</div>
+				<div style="display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 16px; border-radius: 8px; cursor: pointer;">
+					<n8n-icon icon="cog" size="xlarge" :chromatic="true" color="secondary" />
+					<span style="font-size: 12px; color: var(--color--text);">settings</span>
+				</div>
+			</div>
+		</div>
+	`,
+});
+ChromaticInteractive.parameters = {
+	docs: {
+		description: {
+			story:
+				'Interactive demo - hover over icons to trigger shimmer animation. Focus states also work.',
 		},
 	},
 };

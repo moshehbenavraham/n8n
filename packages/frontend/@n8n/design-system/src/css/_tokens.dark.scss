@@ -680,6 +680,18 @@
 	--icon--color: var(--color--text--tint-1);
 	--icon--color--hover: var(--color--amber-500);
 
+	// Icon Chrome Effect tokens - Dark mode overrides (Phase 05 - Session 04)
+	// Reduced opacity for dark backgrounds, adjusted gradient for visibility
+	--icon--chrome--opacity: 0.35;
+	--icon--chrome--opacity--hover: 0.5;
+	--icon--chrome--opacity--active: 0.6;
+	--icon--chrome--gradient--start: hsla(0, 0%, 100%, 0.05);
+	--icon--chrome--gradient--mid: hsla(0, 0%, 100%, 0.2);
+	--icon--chrome--gradient--end: hsla(0, 0%, 100%, 0.05);
+	// Beveled edge - lighter highlight, darker shadow for dark mode
+	--icon--chrome--bevel--light--color: hsla(0, 0%, 100%, 0.2);
+	--icon--chrome--bevel--dark--color: hsla(0, 0%, 0%, 0.3);
+
 	--menu--color--background: var(--color--neutral-900);
 	--menu--color--background--hover: var(--color--neutral-700);
 	--menu--color--background--active: var(--color--neutral-700);

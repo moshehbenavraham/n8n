@@ -29,3 +29,8 @@ export type StrokeWeightToken = (typeof STROKE_WEIGHT_TOKEN)[number];
 export function isStrokeWeightToken(value: unknown): value is StrokeWeightToken {
 	return typeof value === 'string' && STROKE_WEIGHT_TOKEN.includes(value as StrokeWeightToken);
 }
+
+// Chrome Deco Effect State (Phase 05 - Session 04)
+// Used for chromatic icon effect state modifiers
+const ICON_CHROMATIC_STATE = ['default', 'active', 'success', 'disabled'] as const;
+export type IconChromaticState = (typeof ICON_CHROMATIC_STATE)[number];
