@@ -20,3 +20,12 @@ export type IconGlowColor = (typeof ICON_GLOW_COLOR)[number];
 
 const ICON_GLOW_INTENSITY = ['subtle', 'medium', 'strong'] as const;
 export type IconGlowIntensity = (typeof ICON_GLOW_INTENSITY)[number];
+
+// Stroke Weight Tokens (Phase 05 - Chrome Deco)
+const STROKE_WEIGHT_TOKEN = ['thin', 'normal', 'standard', 'thick', 'heavy'] as const;
+export type StrokeWeightToken = (typeof STROKE_WEIGHT_TOKEN)[number];
+
+// Type guard for StrokeWeightToken
+export function isStrokeWeightToken(value: unknown): value is StrokeWeightToken {
+	return typeof value === 'string' && STROKE_WEIGHT_TOKEN.includes(value as StrokeWeightToken);
+}

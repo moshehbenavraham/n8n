@@ -901,6 +901,14 @@
 	--icon--color: var(--color--text--tint-1);
 	--icon--color--hover: var(--color--amber-500);
 
+	// Icon Stroke Width - State tokens (Phase 05 - Chrome Deco)
+	// Maps interaction states to stroke width primitives
+	--icon--stroke-width--rest: var(--icon--stroke-width--normal);
+	--icon--stroke-width--hover: var(--icon--stroke-width--standard);
+	--icon--stroke-width--active: var(--icon--stroke-width--thick);
+	--icon--stroke-width--focus: var(--icon--stroke-width--thick);
+	--icon--stroke-width--disabled: var(--icon--stroke-width--thin);
+
 	/* Ag Grid */
 	--grid--row--color--background--selected: var(--color--purple-200);
 	--grid--cell--border-color--editing: 2px solid var(--color--secondary);

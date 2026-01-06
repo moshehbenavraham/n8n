@@ -10,7 +10,9 @@ import type {
 	IconAnimationState,
 	IconGlowColor,
 	IconGlowIntensity,
+	StrokeWeightToken,
 } from '../../types/icon';
+import { isStrokeWeightToken } from '../../types/icon';
 
 interface IconProps {
 	// component supports both deprecated and updated icon set to support project icons
@@ -19,7 +21,7 @@ interface IconProps {
 	size?: IconSize | number;
 	spin?: boolean;
 	color?: IconColor;
-	strokeWidth?: number | undefined;
+	strokeWidth?: number | StrokeWeightToken;
 	// Animation props (Phase 05 - Chrome Deco)
 	animation?: IconAnimation;
 	animationState?: IconAnimationState;
@@ -131,6 +133,15 @@ const colorMap: Record<IconColor, string> = {
 	'foreground-xdark': '--color--foreground--shade-2',
 };
 
+// Stroke weight token to CSS variable mapping
+const strokeWeightTokenMap: Record<StrokeWeightToken, string> = {
+	thin: '--icon--stroke-width--thin',
+	normal: '--icon--stroke-width--normal',
+	standard: '--icon--stroke-width--standard',
+	thick: '--icon--stroke-width--thick',
+	heavy: '--icon--stroke-width--heavy',
+};
+
 const styles = computed(() => {
 	const stylesToApply: Record<string, string> = {};
 
@@ -138,8 +149,14 @@ const styles = computed(() => {
 		stylesToApply.color = `var(${colorMap[props.color]})`;
 	}
 
-	if (props.strokeWidth) {
-		stylesToApply['--icon--stroke-width'] = `${props.strokeWidth}px`;
+	if (props.strokeWidth !== undefined) {
+		if (isStrokeWeightToken(props.strokeWidth)) {
+			// Token value - reference CSS variable
+			stylesToApply['--icon--stroke-width'] = `var(${strokeWeightTokenMap[props.strokeWidth]})`;
+		} else {
+			// Numeric value - apply directly with px unit
+			stylesToApply['--icon--stroke-width'] = `${props.strokeWidth}px`;
+		}
 	}
 
 	return stylesToApply;
@@ -168,10 +185,33 @@ const styles = computed(() => {
 </template>
 
 <style lang="scss" module>
+// Stroke width application (Phase 05 - Chrome Deco)
+// Applies to all SVG shape elements with smooth transitions
 .strokeWidth {
+	// All SVG shape elements that can have stroke-width
+	path,
 	rect,
-	path {
+	circle,
+	ellipse,
+	line,
+	polyline,
+	polygon {
+		// Apply stroke-width with transition for smooth weight changes
 		stroke-width: var(--icon--stroke-width);
+		transition: stroke-width
+			var(--icon--stroke-width--transition--duration, var(--duration--normal))
+			var(--icon--stroke-width--transition--easing, var(--easing--forge-enter));
+
+		// Respect user motion preferences
+		@media (prefers-reduced-motion: reduce) {
+			transition: none;
+		}
+	}
+
+	// Override inline stroke-width from third-party icons (Lucide, Phosphor)
+	// Using !important to ensure CSS wins over SVG attribute
+	[stroke-width] {
+		stroke-width: var(--icon--stroke-width) !important;
 	}
 }
 

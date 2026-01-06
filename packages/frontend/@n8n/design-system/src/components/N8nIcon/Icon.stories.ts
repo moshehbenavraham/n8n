@@ -40,8 +40,10 @@ export default {
 		},
 		strokeWidth: {
 			control: {
-				type: 'number',
+				type: 'select',
 			},
+			options: [1, 1.5, 2, 2.5, 3, 'thin', 'normal', 'standard', 'thick', 'heavy'],
+			description: 'Stroke width - numeric (px) or token name',
 		},
 		// Animation props (Phase 05 - Chrome Deco)
 		animation: {
@@ -584,6 +586,201 @@ AnimatedGlow.parameters = {
 	docs: {
 		description: {
 			story: 'Combined glow-breathe animation with amber glow - for active/running states.',
+		},
+	},
+};
+
+// Stroke Weight Token Stories (Phase 05 - Chrome Deco)
+export const StrokeWeightThin = Template.bind({});
+StrokeWeightThin.args = {
+	icon: 'circle',
+	size: 'xlarge',
+	strokeWidth: 'thin',
+};
+StrokeWeightThin.parameters = {
+	docs: {
+		description: {
+			story: 'Thin stroke weight (1px) - subtle decorative strokes.',
+		},
+	},
+};
+
+export const StrokeWeightNormal = Template.bind({});
+StrokeWeightNormal.args = {
+	icon: 'circle',
+	size: 'xlarge',
+	strokeWidth: 'normal',
+};
+StrokeWeightNormal.parameters = {
+	docs: {
+		description: {
+			story: 'Normal stroke weight (1.5px) - default rest state.',
+		},
+	},
+};
+
+export const StrokeWeightStandard = Template.bind({});
+StrokeWeightStandard.args = {
+	icon: 'circle',
+	size: 'xlarge',
+	strokeWidth: 'standard',
+};
+StrokeWeightStandard.parameters = {
+	docs: {
+		description: {
+			story: 'Standard stroke weight (2px) - hover state.',
+		},
+	},
+};
+
+export const StrokeWeightThick = Template.bind({});
+StrokeWeightThick.args = {
+	icon: 'circle',
+	size: 'xlarge',
+	strokeWidth: 'thick',
+};
+StrokeWeightThick.parameters = {
+	docs: {
+		description: {
+			story: 'Thick stroke weight (2.5px) - active/pressed state.',
+		},
+	},
+};
+
+export const StrokeWeightHeavy = Template.bind({});
+StrokeWeightHeavy.args = {
+	icon: 'circle',
+	size: 'xlarge',
+	strokeWidth: 'heavy',
+};
+StrokeWeightHeavy.parameters = {
+	docs: {
+		description: {
+			story: 'Heavy stroke weight (3px) - emphasis, focus states.',
+		},
+	},
+};
+
+export const AllStrokeWeights: StoryFn = (args, { argTypes }) => ({
+	setup: () => ({ args }),
+	props: Object.keys(argTypes),
+	components: {
+		N8nIcon,
+	},
+	template: `
+		<div style="display: flex; align-items: center; gap: 32px; padding: 24px; background: var(--color--background);">
+			<div style="display: flex; flex-direction: column; align-items: center; gap: 12px;">
+				<n8n-icon icon="circle" size="xlarge" stroke-width="thin" />
+				<span style="font-size: 12px; color: var(--color--text);">thin (1px)</span>
+			</div>
+			<div style="display: flex; flex-direction: column; align-items: center; gap: 12px;">
+				<n8n-icon icon="circle" size="xlarge" stroke-width="normal" />
+				<span style="font-size: 12px; color: var(--color--text);">normal (1.5px)</span>
+			</div>
+			<div style="display: flex; flex-direction: column; align-items: center; gap: 12px;">
+				<n8n-icon icon="circle" size="xlarge" stroke-width="standard" />
+				<span style="font-size: 12px; color: var(--color--text);">standard (2px)</span>
+			</div>
+			<div style="display: flex; flex-direction: column; align-items: center; gap: 12px;">
+				<n8n-icon icon="circle" size="xlarge" stroke-width="thick" />
+				<span style="font-size: 12px; color: var(--color--text);">thick (2.5px)</span>
+			</div>
+			<div style="display: flex; flex-direction: column; align-items: center; gap: 12px;">
+				<n8n-icon icon="circle" size="xlarge" stroke-width="heavy" />
+				<span style="font-size: 12px; color: var(--color--text);">heavy (3px)</span>
+			</div>
+		</div>
+	`,
+});
+AllStrokeWeights.parameters = {
+	docs: {
+		description: {
+			story: 'All five stroke weight tokens side by side - thin through heavy.',
+		},
+	},
+};
+
+export const StrokeWeightNumeric: StoryFn = (args, { argTypes }) => ({
+	setup: () => ({ args }),
+	props: Object.keys(argTypes),
+	components: {
+		N8nIcon,
+	},
+	template: `
+		<div style="display: flex; align-items: center; gap: 32px; padding: 24px; background: var(--color--background);">
+			<div style="display: flex; flex-direction: column; align-items: center; gap: 12px;">
+				<n8n-icon icon="circle" size="xlarge" :stroke-width="1" />
+				<span style="font-size: 12px; color: var(--color--text);">1px</span>
+			</div>
+			<div style="display: flex; flex-direction: column; align-items: center; gap: 12px;">
+				<n8n-icon icon="circle" size="xlarge" :stroke-width="2" />
+				<span style="font-size: 12px; color: var(--color--text);">2px</span>
+			</div>
+			<div style="display: flex; flex-direction: column; align-items: center; gap: 12px;">
+				<n8n-icon icon="circle" size="xlarge" :stroke-width="3" />
+				<span style="font-size: 12px; color: var(--color--text);">3px</span>
+			</div>
+			<div style="display: flex; flex-direction: column; align-items: center; gap: 12px;">
+				<n8n-icon icon="circle" size="xlarge" :stroke-width="4" />
+				<span style="font-size: 12px; color: var(--color--text);">4px</span>
+			</div>
+			<div style="display: flex; flex-direction: column; align-items: center; gap: 12px;">
+				<n8n-icon icon="circle" size="xlarge" :stroke-width="5" />
+				<span style="font-size: 12px; color: var(--color--text);">5px</span>
+			</div>
+		</div>
+	`,
+});
+StrokeWeightNumeric.parameters = {
+	docs: {
+		description: {
+			story: 'Numeric stroke width values (backwards compatible) - custom pixel values.',
+		},
+	},
+};
+
+export const StrokeWeightComparison: StoryFn = (args, { argTypes }) => ({
+	setup: () => ({ args }),
+	props: Object.keys(argTypes),
+	components: {
+		N8nIcon,
+	},
+	template: `
+		<div style="display: flex; flex-direction: column; gap: 24px; padding: 24px; background: var(--color--background);">
+			<h3 style="margin: 0; font-size: 14px; color: var(--color--text);">Tokens vs Numeric Values</h3>
+			<div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px;">
+				<div style="display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 16px; background: var(--color--background--light-3); border-radius: 8px;">
+					<n8n-icon icon="check" size="xlarge" stroke-width="thin" color="success" />
+					<span style="font-size: 10px; color: var(--color--text);">thin token</span>
+				</div>
+				<div style="display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 16px; background: var(--color--background--light-3); border-radius: 8px;">
+					<n8n-icon icon="check" size="xlarge" stroke-width="normal" color="success" />
+					<span style="font-size: 10px; color: var(--color--text);">normal token</span>
+				</div>
+				<div style="display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 16px; background: var(--color--background--light-3); border-radius: 8px;">
+					<n8n-icon icon="check" size="xlarge" stroke-width="standard" color="success" />
+					<span style="font-size: 10px; color: var(--color--text);">standard token</span>
+				</div>
+				<div style="display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 16px; background: var(--color--background--light-3); border-radius: 8px;">
+					<n8n-icon icon="check" size="xlarge" stroke-width="thick" color="success" />
+					<span style="font-size: 10px; color: var(--color--text);">thick token</span>
+				</div>
+				<div style="display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 16px; background: var(--color--background--light-3); border-radius: 8px;">
+					<n8n-icon icon="check" size="xlarge" stroke-width="heavy" color="success" />
+					<span style="font-size: 10px; color: var(--color--text);">heavy token</span>
+				</div>
+			</div>
+			<p style="margin: 0; font-size: 12px; color: var(--color--text--tint-1);">
+				Token values: thin=1px, normal=1.5px, standard=2px, thick=2.5px, heavy=3px
+			</p>
+		</div>
+	`,
+});
+StrokeWeightComparison.parameters = {
+	docs: {
+		description: {
+			story:
+				'Visual comparison of stroke weight tokens for Chrome Deco retro-futuristic aesthetic.',
 		},
 	},
 };

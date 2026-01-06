@@ -6,7 +6,7 @@ export type * from './callout';
 export type * from './datatable';
 export type * from './form';
 export type * from './i18n';
-export type * from './icon';
+export * from './icon';
 export type * from './input';
 export type * from './keyboardshortcut';
 export * from './menu';

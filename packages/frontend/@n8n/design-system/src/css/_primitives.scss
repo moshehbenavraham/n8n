@@ -391,6 +391,18 @@
 	--icon--glow--color--verdigris: var(--color--verdigris-alpha-200);
 	--icon--glow--color--ember: var(--color--ember-alpha-200);
 	--icon--glow--color--steel: var(--color--steel-alpha-200);
+
+	// Icon Stroke Width - Primitive values (Phase 05 - Chrome Deco)
+	// Raw stroke-width values for the retro-futuristic icon aesthetic
+	--icon--stroke-width--thin: 1px;
+	--icon--stroke-width--normal: 1.5px;
+	--icon--stroke-width--standard: 2px;
+	--icon--stroke-width--thick: 2.5px;
+	--icon--stroke-width--heavy: 3px;
+
+	// Icon Stroke Width - Transition
+	--icon--stroke-width--transition--duration: var(--duration--normal);
+	--icon--stroke-width--transition--easing: var(--easing--forge-enter);
 }
 
 :root {
