@@ -75,7 +75,8 @@
 		"phase05-session01-icon-animation-foundation",
 		"phase05-session02-variable-stroke-weight",
 		"phase05-session03-phosphor-migration",
-		"phase05-session04-chrome-deco-effects"
+		"phase05-session04-chrome-deco-effects",
+		"phase05-session05-custom-icon-redesign"
 	],
 	"next_session_history": [
 		{
@@ -241,6 +242,11 @@
 		{
 			"date": "2026-01-07",
 			"session": "phase05-session04-chrome-deco-effects",
+			"status": "completed"
+		},
+		{
+			"date": "2026-01-07",
+			"session": "phase05-session05-custom-icon-redesign",
 			"status": "completed"
 		}
 	]
