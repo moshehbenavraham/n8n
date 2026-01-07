@@ -224,12 +224,39 @@ function onFocusNode() {
 	transition: opacity var(--canvas-node--transition--duration, 150ms)
 		var(--easing--ease-out, ease-out);
 
+	// Chrome Deco: Toolbar button interaction states (Phase 05 - Session 06)
 	:global(.button) {
 		--button--color--text: var(--color--text--tint-1);
 
-		// Obsidian Forge: Button hover effect
+		// Smooth transition for hover/focus effects
+		transition:
+			color var(--canvas-node--transition--duration, 150ms) var(--easing--ease-out, ease-out),
+			filter var(--canvas-node--transition--duration, 150ms) var(--easing--ease-out, ease-out);
+
+		// Obsidian Forge: Button hover effect with subtle glow
 		&:hover {
 			--button--color--text: var(--color--text);
+			filter: drop-shadow(var(--icon--glow--shadow--subtle) var(--icon--glow--color--amber));
+		}
+
+		// Chrome Deco: Focus visible state for keyboard navigation
+		&:focus-visible {
+			--button--color--text: var(--color--primary);
+			filter: drop-shadow(var(--icon--glow--shadow--base) var(--icon--glow--color--amber));
+			outline: 2px solid var(--color--primary);
+			outline-offset: 2px;
+			border-radius: var(--radius--sm);
+		}
+
+		// Chrome Deco: Active/pressed state
+		&:active {
+			--button--color--text: var(--color--primary);
+			filter: drop-shadow(var(--icon--glow--shadow--strong) var(--icon--glow--color--amber));
+		}
+
+		@media (prefers-reduced-motion: reduce) {
+			transition: none;
+			filter: none !important;
 		}
 	}
 
@@ -240,6 +267,60 @@ function onFocusNode() {
 
 .forceVisible {
 	opacity: 1 !important;
+}
+
+// Chrome Deco: Chromatic effect for execute button (Phase 05 - Session 06)
+// Primary action icon gets the full chrome treatment
+.canvasNodeToolbarItems :global([data-test-id='execute-node-button']) {
+	position: relative;
+
+	// Metallic gradient overlay via ::after pseudo-element
+	&::after {
+		content: '';
+		position: absolute;
+		inset: 4px; // Inset to match button padding
+		pointer-events: none;
+		border-radius: var(--radius--sm);
+		background: linear-gradient(
+			135deg,
+			transparent 0%,
+			hsla(0, 0%, 100%, 0.1) 20%,
+			hsla(0, 0%, 100%, 0.25) 50%,
+			hsla(0, 0%, 100%, 0.1) 80%,
+			transparent 100%
+		);
+		mix-blend-mode: overlay;
+		opacity: 0.4;
+		background-size: 200% 100%;
+		background-position: -100% 0;
+		transition: opacity 0.2s ease-out;
+	}
+
+	// Shimmer animation on hover
+	&:hover::after {
+		opacity: 0.6;
+		animation: chrome-shimmer-toolbar 2s ease-in-out 1;
+	}
+
+	&:focus-visible::after {
+		opacity: 0.7;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		&::after {
+			animation: none !important;
+		}
+	}
+}
+
+@keyframes chrome-shimmer-toolbar {
+	0% {
+		background-position: -100% 0;
+	}
+
+	100% {
+		background-position: 200% 0;
+	}
 }
 
 .statusIcons {

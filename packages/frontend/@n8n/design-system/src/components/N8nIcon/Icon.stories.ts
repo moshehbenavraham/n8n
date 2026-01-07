@@ -1018,3 +1018,203 @@ ChromaticInteractive.parameters = {
 		},
 	},
 };
+
+// =============================================================================
+// Canvas Node State Mapping Stories (Phase 05 - Session 06)
+// =============================================================================
+// These stories demonstrate the icon animation mappings used in canvas node
+// status icons during workflow execution.
+
+export const NodeStateIdle: StoryFn = (args, { argTypes }) => ({
+	setup: () => ({ args }),
+	props: Object.keys(argTypes),
+	components: {
+		N8nIcon,
+	},
+	template: `
+		<div style="display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 24px; background: var(--color--background);">
+			<n8n-icon icon="node-success" size="xlarge" animation="none" :glow="false" stroke-width="normal" />
+			<span style="font-size: 14px; color: var(--color--text); font-weight: 600;">Idle State</span>
+			<span style="font-size: 12px; color: var(--color--text--tint-1);">No animation, normal stroke weight</span>
+		</div>
+	`,
+});
+NodeStateIdle.parameters = {
+	docs: {
+		description: {
+			story:
+				'Idle state - default appearance when node has not executed. No animation, no glow, normal stroke weight.',
+		},
+	},
+};
+
+export const NodeStateSelected: StoryFn = (args, { argTypes }) => ({
+	setup: () => ({ args }),
+	props: Object.keys(argTypes),
+	components: {
+		N8nIcon,
+	},
+	template: `
+		<div style="display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 24px; background: var(--color--background);">
+			<n8n-icon icon="node-success" size="xlarge" animation="glow-breathe" :glow="true" glow-color="amber" glow-intensity="medium" stroke-width="standard" />
+			<span style="font-size: 14px; color: var(--color--text); font-weight: 600;">Selected State</span>
+			<span style="font-size: 12px; color: var(--color--text--tint-1);">Glow-breathe animation with amber glow</span>
+		</div>
+	`,
+});
+NodeStateSelected.parameters = {
+	docs: {
+		description: {
+			story:
+				'Selected state - node is selected on the canvas. Glow-breathe animation with amber glow, standard stroke weight.',
+		},
+	},
+};
+
+export const NodeStateRunning: StoryFn = (args, { argTypes }) => ({
+	setup: () => ({ args }),
+	props: Object.keys(argTypes),
+	components: {
+		N8nIcon,
+	},
+	template: `
+		<div style="display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 24px; background: var(--color--background);">
+			<n8n-icon icon="spinner" size="xlarge" animation="pulse" :glow="true" glow-color="amber" glow-intensity="strong" stroke-width="thick" />
+			<span style="font-size: 14px; color: var(--color--text); font-weight: 600;">Running State</span>
+			<span style="font-size: 12px; color: var(--color--text--tint-1);">Pulse animation with strong amber glow</span>
+		</div>
+	`,
+});
+NodeStateRunning.parameters = {
+	docs: {
+		description: {
+			story:
+				'Running state - node is currently executing. Pulse animation with strong amber glow, thick stroke weight.',
+		},
+	},
+};
+
+export const NodeStateSuccess: StoryFn = (args, { argTypes }) => ({
+	setup: () => ({ args }),
+	props: Object.keys(argTypes),
+	components: {
+		N8nIcon,
+	},
+	template: `
+		<div style="display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 24px; background: var(--color--background);">
+			<n8n-icon icon="node-success" size="xlarge" animation="brighten" :glow="true" glow-color="verdigris" glow-intensity="medium" stroke-width="standard" color="success" />
+			<span style="font-size: 14px; color: var(--color--text); font-weight: 600;">Success State</span>
+			<span style="font-size: 12px; color: var(--color--text--tint-1);">Brighten animation with verdigris glow</span>
+		</div>
+	`,
+});
+NodeStateSuccess.parameters = {
+	docs: {
+		description: {
+			story:
+				'Success state - node executed successfully. Brief brighten animation with verdigris (oxidized copper) glow.',
+		},
+	},
+};
+
+export const NodeStateError: StoryFn = (args, { argTypes }) => ({
+	setup: () => ({ args }),
+	props: Object.keys(argTypes),
+	components: {
+		N8nIcon,
+	},
+	template: `
+		<div style="display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 24px; background: var(--color--background);">
+			<n8n-icon icon="node-execution-error" size="xlarge" animation="pulse" :glow="true" glow-color="ember" glow-intensity="strong" stroke-width="standard" color="danger" />
+			<span style="font-size: 14px; color: var(--color--text); font-weight: 600;">Error State</span>
+			<span style="font-size: 12px; color: var(--color--text--tint-1);">Pulse animation with ember glow</span>
+		</div>
+	`,
+});
+NodeStateError.parameters = {
+	docs: {
+		description: {
+			story:
+				'Error state - node encountered an error. Pulse animation with ember glow to draw attention.',
+		},
+	},
+};
+
+export const NodeStateDisabled: StoryFn = (args, { argTypes }) => ({
+	setup: () => ({ args }),
+	props: Object.keys(argTypes),
+	components: {
+		N8nIcon,
+	},
+	template: `
+		<div style="display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 24px; background: var(--color--background);">
+			<n8n-icon icon="power" size="xlarge" animation="none" :glow="false" stroke-width="thin" color="text-xlight" />
+			<span style="font-size: 14px; color: var(--color--text); font-weight: 600;">Disabled State</span>
+			<span style="font-size: 12px; color: var(--color--text--tint-1);">No animation, thin stroke weight</span>
+		</div>
+	`,
+});
+NodeStateDisabled.parameters = {
+	docs: {
+		description: {
+			story:
+				'Disabled state - node is deactivated. No animation, no glow, thin stroke weight for reduced visual emphasis.',
+		},
+	},
+};
+
+export const AllNodeStates: StoryFn = (args, { argTypes }) => ({
+	setup: () => ({ args }),
+	props: Object.keys(argTypes),
+	components: {
+		N8nIcon,
+	},
+	template: `
+		<div style="display: flex; flex-direction: column; gap: 24px; padding: 24px; background: var(--color--background);">
+			<h3 style="margin: 0; font-size: 16px; color: var(--color--text);">Canvas Node State Animation Mapping</h3>
+			<p style="margin: 0; font-size: 12px; color: var(--color--text--tint-1);">
+				These icons demonstrate how N8nIcon props are mapped to canvas node execution states.
+			</p>
+			<div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;">
+				<div style="display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 16px; background: var(--color--background--light-3); border-radius: 8px;">
+					<n8n-icon icon="node-success" size="xlarge" animation="none" :glow="false" stroke-width="normal" />
+					<span style="font-size: 12px; color: var(--color--text); font-weight: 600;">Idle</span>
+					<span style="font-size: 10px; color: var(--color--text--tint-1);">none / normal</span>
+				</div>
+				<div style="display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 16px; background: var(--color--background--light-3); border-radius: 8px;">
+					<n8n-icon icon="node-success" size="xlarge" animation="glow-breathe" :glow="true" glow-color="amber" glow-intensity="medium" stroke-width="standard" />
+					<span style="font-size: 12px; color: var(--color--text); font-weight: 600;">Selected</span>
+					<span style="font-size: 10px; color: var(--color--text--tint-1);">glow-breathe / amber</span>
+				</div>
+				<div style="display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 16px; background: var(--color--background--light-3); border-radius: 8px;">
+					<n8n-icon icon="spinner" size="xlarge" animation="pulse" :glow="true" glow-color="amber" glow-intensity="strong" stroke-width="thick" />
+					<span style="font-size: 12px; color: var(--color--text); font-weight: 600;">Running</span>
+					<span style="font-size: 10px; color: var(--color--text--tint-1);">pulse / amber</span>
+				</div>
+				<div style="display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 16px; background: var(--color--background--light-3); border-radius: 8px;">
+					<n8n-icon icon="node-success" size="xlarge" animation="brighten" :glow="true" glow-color="verdigris" glow-intensity="medium" stroke-width="standard" color="success" />
+					<span style="font-size: 12px; color: var(--color--text); font-weight: 600;">Success</span>
+					<span style="font-size: 10px; color: var(--color--text--tint-1);">brighten / verdigris</span>
+				</div>
+				<div style="display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 16px; background: var(--color--background--light-3); border-radius: 8px;">
+					<n8n-icon icon="node-execution-error" size="xlarge" animation="pulse" :glow="true" glow-color="ember" glow-intensity="strong" stroke-width="standard" color="danger" />
+					<span style="font-size: 12px; color: var(--color--text); font-weight: 600;">Error</span>
+					<span style="font-size: 10px; color: var(--color--text--tint-1);">pulse / ember</span>
+				</div>
+				<div style="display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 16px; background: var(--color--background--light-3); border-radius: 8px;">
+					<n8n-icon icon="power" size="xlarge" animation="none" :glow="false" stroke-width="thin" color="text-xlight" />
+					<span style="font-size: 12px; color: var(--color--text); font-weight: 600;">Disabled</span>
+					<span style="font-size: 10px; color: var(--color--text--tint-1);">none / thin</span>
+				</div>
+			</div>
+		</div>
+	`,
+});
+AllNodeStates.parameters = {
+	docs: {
+		description: {
+			story:
+				'Complete overview of all canvas node state animations. Each state has specific animation, glow color, and stroke weight mappings.',
+		},
+	},
+};
