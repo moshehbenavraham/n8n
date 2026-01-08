@@ -109,10 +109,14 @@ n8n/
 
 3. **Python task runner warning** - Only appears if Python venv not configured. Not required for most development.
 
+4. **Vite dependency scan failure** - First-run timing issue where Vite starts before some dependencies (`@n8n/stores`, `@n8n/rest-api-client`) are built. Shows "Failed to run dependency scan. Skipping dependency pre-bundling." - this is harmless as Vite falls back to on-demand bundling.
+
 ### Fixed Issues
 
 - `optimizeDeps.esbuildOptions` deprecation - Removed from vite.config.mts (Vite 7 uses Rolldown)
 - `baseline-browser-mapping` stale data - Updated to 2.9.11 via pnpm override
+- `@n8n/extension-sdk` infinite rebuild loop - Added `--ignore-watch dist` to dev script to prevent watch mode from detecting its own output
+- `EMPTY_IMPORT_META` warning in `@n8n/stores` and `@n8n/rest-api-client` - Suppressed via `inputOptions.checks.emptyImportMeta: false` in tsdown config (import.meta.env is automatically replaced with `{}` for CJS output; warning was just noise)
 
 ---
 

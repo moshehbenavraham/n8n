@@ -31,7 +31,7 @@
   },
   "scripts": {
     "clean": "rimraf dist",
-    "dev": "tsdown --watch",
+    "dev": "tsdown --watch --ignore-watch dist",
     "lint": "eslint . --quiet",
     "typecheck:frontend": "vue-tsc --noEmit --project tsconfig.frontend.json",
     "typecheck:backend": "tsc --noEmit --project tsconfig.backend.json",
