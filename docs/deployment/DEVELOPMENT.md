@@ -74,11 +74,17 @@ n8n/
 │   │   └── @n8n/
 │   │       ├── design-system/  # UI components
 │   │       ├── i18n/           # Translations
-│   │       └── stores/         # Pinia stores
+│   │       ├── stores/         # Pinia stores
+│   │       ├── composables/    # Vue composables
+│   │       └── rest-api-client/ # API client
 │   ├── @n8n/
 │   │   ├── config/             # Configuration schemas
 │   │   ├── db/                 # Database layer
+│   │   ├── extension-sdk/      # Extension development SDK
+│   │   ├── utils/              # Shared utilities
 │   │   └── nodes-langchain/    # AI/LangChain nodes
+│   ├── extensions/
+│   │   └── insights/           # Insights extension
 │   └── nodes-base/             # Core workflow nodes
 ├── .n8n-dev/                   # Dev data directory (gitignored)
 ├── logs/                       # Build logs (gitignored)
@@ -105,18 +111,17 @@ n8n/
 
 1. **`esbuild.banner` deprecation** - Upstream issue in `vite-plugin-node-polyfills`. Waiting for plugin update for Vite 7+ compatibility.
 
-2. **npm env config warnings** - pnpm/npm compatibility noise. Harmless.
+2. **Python task runner warning** - Only appears if Python venv not configured. Not required for most development.
 
-3. **Python task runner warning** - Only appears if Python venv not configured. Not required for most development.
-
-4. **Vite dependency scan failure** - First-run timing issue where Vite starts before some dependencies (`@n8n/stores`, `@n8n/rest-api-client`) are built. Shows "Failed to run dependency scan. Skipping dependency pre-bundling." - this is harmless as Vite falls back to on-demand bundling.
+3. **Vite dependency scan failure** - First-run timing issue where Vite starts before some dependencies (`@n8n/stores`, `@n8n/rest-api-client`) are built. Shows "Failed to run dependency scan. Skipping dependency pre-bundling." - this is harmless as Vite falls back to on-demand bundling.
 
 ### Fixed Issues
 
 - `optimizeDeps.esbuildOptions` deprecation - Removed from vite.config.mts (Vite 7 uses Rolldown)
 - `baseline-browser-mapping` stale data - Updated to 2.9.11 via pnpm override
-- `@n8n/extension-sdk` infinite rebuild loop - Added `--ignore-watch dist` to dev script to prevent watch mode from detecting its own output
+- tsdown infinite rebuild loop - Added `--ignore-watch dist` to all packages using tsdown watch (extension-sdk, utils, i18n, composables, stores, rest-api-client, insights) to prevent watch mode from detecting its own output
 - `EMPTY_IMPORT_META` warning in `@n8n/stores` and `@n8n/rest-api-client` - Suppressed via `inputOptions.checks.emptyImportMeta: false` in tsdown config (import.meta.env is automatically replaced with `{}` for CJS output; warning was just noise)
+- npm env config warnings in `@n8n/n8n-nodes-langchain` - Changed `npx tsc-alias` to `tsc-alias` in post-build.js (npx invokes npm which warns about pnpm-specific env vars)
 
 ---
 
@@ -142,6 +147,23 @@ pnpm install
 ### Reset dev data
 ```bash
 rm -rf .n8n-dev
+```
+
+### Build hangs during `n8n-dev`
+If the build hangs (especially after "Watching for changes" messages), check:
+
+1. **tsdown packages missing `--ignore-watch dist`** - All packages using `tsdown --watch` must include `--ignore-watch dist` to prevent infinite rebuild loops. The fix has been applied to: extension-sdk, utils, i18n, composables, stores, rest-api-client, insights.
+
+2. **Multiple "Watching for changes" messages** - This is normal for `@n8n/extension-sdk` which has 3 build configurations (root, backend, frontend). Each spawns its own watch instance.
+
+3. **Kill stuck processes and restart**:
+```bash
+# Kill any stuck turbo/node processes
+pkill -f "turbo.*dev"
+pkill -f "tsdown.*watch"
+
+# Then restart
+n8n-dev
 ```
 
 ---

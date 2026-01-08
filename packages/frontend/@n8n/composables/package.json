@@ -13,7 +13,7 @@
     }
   },
   "scripts": {
-    "dev": "tsdown --watch",
+    "dev": "tsdown --watch --ignore-watch dist",
     "build": "tsdown",
     "preview": "vite preview",
     "typecheck": "vue-tsc --noEmit",
