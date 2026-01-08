@@ -1,6 +1,9 @@
 @use 'mixins/mixins';
 @use './common/var';
 
+// Obsidian Forge Notification Styling
+// Toast notifications with semantic state colors and forge-inspired elevation
+
 @include mixins.b(notification) {
 	display: flex;
 	width: var.$notification-width;
@@ -8,16 +11,19 @@
 	border-radius: var.$notification-radius;
 	box-sizing: border-box;
 	border: 1px solid var.$notification-border-color;
+	// Left accent stripe for semantic state indication
+	border-left-width: 4px;
 	position: fixed;
 	background-color: var(--notification--color--background);
 	box-shadow: var.$notification-shadow;
+	// Forge-inspired smooth transitions
 	transition:
-		opacity 0.3s,
-		transform 0.3s,
-		left 0.3s,
-		right 0.3s,
-		top 0.4s,
-		bottom 0.3s;
+		opacity var(--duration--normal) var(--easing--forge-exit),
+		transform var(--duration--normal) var(--easing--forge-enter),
+		left var(--duration--fast) var(--easing--ease-out),
+		right var(--duration--fast) var(--easing--ease-out),
+		top var(--duration--normal) var(--easing--ease-out),
+		bottom var(--duration--fast) var(--easing--ease-out);
 	overflow: hidden;
 
 	&.right {
@@ -30,6 +36,30 @@
 
 	&.content-toast {
 		position: absolute;
+	}
+
+	// Semantic state styling - Success (Verdigris)
+	&.el-notification--success {
+		background-color: var.$notification-success-background-color;
+		border-left-color: var.$notification-success-border-color;
+	}
+
+	// Semantic state styling - Error (Ember)
+	&.el-notification--error {
+		background-color: var.$notification-error-background-color;
+		border-left-color: var.$notification-error-border-color;
+	}
+
+	// Semantic state styling - Warning (Gold)
+	&.el-notification--warning {
+		background-color: var.$notification-warning-background-color;
+		border-left-color: var.$notification-warning-border-color;
+	}
+
+	// Semantic state styling - Info (Steel)
+	&.el-notification--info {
+		background-color: var.$notification-info-background-color;
+		border-left-color: var.$notification-info-border-color;
 	}
 
 	@include mixins.e(group) {
@@ -66,6 +96,7 @@
 		height: var.$notification-icon-size;
 		width: var.$notification-icon-size;
 		font-size: var.$notification-icon-size;
+		flex-shrink: 0;
 	}
 
 	@include mixins.e(closeBtn) {
@@ -75,12 +106,14 @@
 		cursor: pointer;
 		color: var.$notification-close-color;
 		font-size: var.$notification-close-font-size;
+		transition: color var(--duration--fast) var(--easing--ease-out);
 
 		&:hover {
 			color: var.$notification-close-hover-color;
 		}
 	}
 
+	// Icon colors for semantic states
 	.el-icon.el-notification--success {
 		color: var.$notification-success-icon-color;
 	}
@@ -98,7 +131,10 @@
 	}
 }
 
+// Entrance animation - slide in from edge with forge easing
 .el-notification-fade-enter-from {
+	opacity: 0;
+
 	&.right {
 		right: 0;
 		transform: translateX(100%);
@@ -110,6 +146,22 @@
 	}
 }
 
+// Active entrance state
+.el-notification-fade-enter-active {
+	transition:
+		opacity var(--duration--normal) var(--easing--forge-enter),
+		transform var(--duration--normal) var(--easing--forge-enter);
+}
+
+// Exit animation - smooth fade out
 .el-notification-fade-leave-active {
 	opacity: 0;
+	transition:
+		opacity var(--duration--fast) var(--easing--forge-exit),
+		transform var(--duration--fast) var(--easing--forge-exit);
+}
+
+.el-notification-fade-leave-to {
+	opacity: 0;
+	transform: translateY(-10px);
 }

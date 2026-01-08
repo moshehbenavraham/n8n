@@ -154,6 +154,8 @@ defineExpose({
 				:suppress-interaction="suppressInteraction"
 				v-bind="$attrs"
 			/>
+			<!-- Vignette overlay for forge atmosphere -->
+			<div class="canvas-vignette" aria-hidden="true" />
 		</div>
 		<slot />
 	</div>

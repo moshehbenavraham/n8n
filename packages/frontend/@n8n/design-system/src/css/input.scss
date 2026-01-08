@@ -1,5 +1,6 @@
 @use 'mixins/mixins';
 @use './common/var';
+@use './_forge-mixins' as forge;
 
 @include mixins.b(textarea) {
 	position: relative;
@@ -40,6 +41,8 @@
 			outline: none;
 			border-color: var.$input-focus-border;
 		}
+
+		@include forge.focus-ring;
 	}
 
 	& .el-input__count {
@@ -140,6 +143,8 @@
 			outline: none;
 			border-color: var.$input-focus-border;
 		}
+
+		@include forge.focus-ring;
 	}
 
 	@include mixins.e(suffix) {
@@ -149,7 +154,7 @@
 		top: 0;
 		text-align: center;
 		color: var(--color--text--tint-1);
-		transition: all 0.3s;
+		transition: all var(--duration--fast) var(--easing--ease-out);
 		pointer-events: none;
 		display: flex;
 		align-items: center;
@@ -167,7 +172,7 @@
 		top: 0;
 		text-align: center;
 		color: var.$input-icon-color;
-		transition: all 0.3s;
+		transition: all var(--duration--fast) var(--easing--ease-out);
 		display: flex;
 		align-items: center;
 	}
@@ -175,7 +180,7 @@
 	@include mixins.e(icon) {
 		height: 100%;
 		text-align: center;
-		transition: all 0.3s;
+		transition: all var(--duration--fast) var(--easing--ease-out);
 		line-height: var.$input-height;
 
 		&:after {

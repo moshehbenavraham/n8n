@@ -44,7 +44,7 @@ const props = withDefaults(defineProps<PaginationProps>(), {
 const emit = defineEmits<PaginationEmits>();
 const slots = defineSlots<PaginationSlots>();
 
-// Prop mapping: Element+ → Reka UI
+// Prop mapping: Element+ -> Reka UI
 const page = computed(
 	() => props.currentPage ?? props.page ?? props.defaultCurrentPage ?? props.defaultPage,
 );
@@ -401,7 +401,7 @@ const handleJumperSubmit = () => {
 	&[data-selected] {
 		background-color: var(--color--primary);
 		border-color: var(--color--primary);
-		color: white;
+		color: var(--color--foreground--tint-2);
 	}
 }
 

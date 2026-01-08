@@ -126,9 +126,10 @@ async function handleClickExecute() {
 		margin-right: var(--spacing--sm);
 		opacity: 0;
 		translate: -12px 0;
+		// Obsidian Forge: Smooth transition for trigger button reveal
 		transition:
-			translate 0.1s ease-in,
-			opacity 0.1s ease-in;
+			translate var(--canvas-node--transition--duration, 150ms) var(--easing--ease-out, ease-out),
+			opacity var(--canvas-node--transition--duration, 150ms) var(--easing--ease-out, ease-out);
 		/* stylelint-disable-next-line @n8n/css-var-naming */
 		transform: scale(var(--canvas-zoom-compensation-factor, 1));
 		transform-origin: center right;
@@ -143,6 +144,13 @@ async function handleClickExecute() {
 	&.isExperimentalNdvActive {
 		height: var(--spacing--2xl);
 	}
+
+	// Respect reduced motion preference
+	@media (prefers-reduced-motion: reduce) {
+		& button {
+			transition: none;
+		}
+	}
 }
 
 .bolt {
@@ -152,13 +160,19 @@ async function handleClickExecute() {
 	padding: var(--spacing--sm);
 	opacity: 1;
 	translate: 0 0;
+	// Obsidian Forge: Smooth transition for bolt icon
 	transition:
-		translate 0.1s ease-in,
-		opacity 0.1s ease-in;
+		translate var(--canvas-node--transition--duration, 150ms) var(--easing--ease-out, ease-out),
+		opacity var(--canvas-node--transition--duration, 150ms) var(--easing--ease-out, ease-out);
 
 	.container.interactive.hovered & {
 		translate: -12px 0;
 		opacity: 0;
+	}
+
+	// Respect reduced motion preference
+	@media (prefers-reduced-motion: reduce) {
+		transition: none;
 	}
 }
 </style>

@@ -120,3 +120,6 @@ packages/cli/THIRD_PARTY_LICENSES.md
 _START_PACKAGE
 packages/cli/src/modules/my-feature/
 packages/cli/src/commands/export/outputs/
+
+# Dev instance data (isolated from production)
+.n8n-dev/

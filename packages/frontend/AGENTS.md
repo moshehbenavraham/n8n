@@ -83,24 +83,74 @@ application. These variables cover colors, spacing, typography, and borders.
 ```
 
 #### Typography
+
+##### Forge Type System
+
+The design system uses variable fonts for optimal performance and flexibility:
+
+| Purpose | Font | Token |
+|---------|------|-------|
+| UI Text | Outfit Variable | `--font-family--primary` |
+| Code | JetBrains Mono Variable | `--font-family--monospace` |
+
+##### Font Family Tokens
+```css
+/* Primary UI font - Outfit Variable */
+--font-family--primary: Outfit, -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell,
+    'Helvetica Neue', sans-serif;
+
+/* Monospace font for code - JetBrains Mono Variable */
+--font-family--monospace: 'JetBrains Mono', ui-monospace, Menlo,
+    Consolas, 'DejaVu Sans Mono', monospace;
+```
+
+##### Font Sizes
 ```css
 --font-size--3xs: 10px
---font-size--2xs: 12px
---font-size--xs: 13px
---font-size--sm: 14px
---font-size--md: 16px
---font-size--lg: 18px
---font-size--xl: 20px
---font-size--2xl: 28px
+--font-size--2xs: 11px
+--font-size--xs: 12px
+--font-size--s: 13px
+--font-size--m: 14px   /* Default body text */
+--font-size--l: 16px
+--font-size--xl: 18px
+--font-size--2xl: 20px
+--font-size--3xl: 24px
+--font-size--4xl: 28px
+--font-size--5xl: 32px
+```
 
---line-height--sm: 1.25
---line-height--md: 1.3
---line-height--lg: 1.35
---line-height--xl: 1.5
+##### Line Heights
+```css
+--line-height--compact: 1.25
+--line-height--default: 1.5
+--line-height--loose: 1.75
+```
 
+##### Font Weights
+```css
+--font-weight--light: 300
 --font-weight--regular: 400
---font-weight--bold: 600
---font-family: InterVariable, sans-serif
+--font-weight--medium: 500
+--font-weight--semibold: 600
+--font-weight--bold: 700
+--font-weight--extrabold: 800
+```
+
+##### Usage Examples
+```scss
+/* Body text */
+.body-text {
+  font-family: var(--font-family--primary);
+  font-size: var(--font-size--m);
+  font-weight: var(--font-weight--regular);
+}
+
+/* Code block */
+.code-block {
+  font-family: var(--font-family--monospace);
+  font-size: var(--font-size--s);
+}
 ```
 
 #### Borders

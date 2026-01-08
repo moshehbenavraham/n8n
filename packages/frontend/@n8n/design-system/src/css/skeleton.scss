@@ -39,7 +39,7 @@
 	-webkit-box-pack: center;
 	-ms-flex-pack: center;
 	justify-content: center;
-	border-radius: 8px !important;
+	border-radius: var(--radius--lg) !important;
 	color: var(--color--foreground--shade-1);
 }
 

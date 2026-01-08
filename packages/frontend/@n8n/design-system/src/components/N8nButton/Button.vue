@@ -311,6 +311,11 @@ $loading-overlay-background-color: rgba(255, 255, 255, 0);
 	position: relative;
 	pointer-events: none;
 
+	// Forge amber loading indicator
+	.icon {
+		color: var(--spinner--color);
+	}
+
 	&:before {
 		pointer-events: none;
 		content: '';

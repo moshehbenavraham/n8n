@@ -170,11 +170,9 @@ watch(
 <style lang="scss" module>
 .popoverContent {
 	border-radius: var(--radius);
-	background-color: var(--color--foreground--tint-2);
-	border: var(--border);
-	box-shadow:
-		rgba(0, 0, 0, 0.1) 0 10px 15px -3px,
-		rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+	background-color: var(--popover--color--background);
+	border: var(--border-width) var(--border-style) var(--popover--border-color);
+	box-shadow: var(--popover--shadow);
 	will-change: transform, opacity;
 
 	&.enableSlideIn {
@@ -248,8 +246,8 @@ watch(
 }
 
 .popoverArrow {
-	fill: var(--color--foreground--tint-2);
-	stroke: var(--color--foreground);
+	fill: var(--popover--color--background);
+	stroke: var(--popover--border-color);
 	stroke-width: 1px;
 }
 </style>

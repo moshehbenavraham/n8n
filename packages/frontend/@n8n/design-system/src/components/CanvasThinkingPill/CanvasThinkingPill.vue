@@ -50,7 +50,7 @@ const $style = useCssModule();
 	gap: var(--spacing--2xs);
 	border-radius: 22px;
 	border: 1px solid var(--color--neutral-850);
-	background: rgba(65, 66, 68, 0.92);
+	background: color-mix(in srgb, var(--color--neutral-800) 92%, transparent);
 	cursor: default;
 
 	// Disable text selection
@@ -63,7 +63,11 @@ const $style = useCssModule();
 	width: 20px;
 	height: 20px;
 	border-radius: 50%;
-	background: radial-gradient(83.1% 83.1% at 30% 30%, #7a6bea 0%, #d57bae 100%);
+	background: radial-gradient(
+		83.1% 83.1% at 30% 30%,
+		var(--assistant--color--highlight-1) 0%,
+		var(--assistant--color--highlight-2) 100%
+	);
 
 	display: flex;
 	align-items: center;
@@ -74,7 +78,7 @@ const $style = useCssModule();
 	margin-left: var(--spacing--xs);
 }
 .text {
-	color: white;
+	color: var(--color--neutral-white);
 	font-size: var(--font-size--sm);
 	font-weight: var(--font-weight--medium);
 	white-space: nowrap;

@@ -136,6 +136,17 @@ async function onClickTemplatesLink() {
 	flex-direction: column;
 	align-items: center;
 	width: 100px;
+
+	// Obsidian Forge: Hover effect on option container
+	&:hover .button {
+		transform: translateY(-2px);
+		border-color: var(--color--primary);
+		box-shadow: var(--canvas-node--shadow--hover);
+
+		svg path {
+			fill: var(--color--primary);
+		}
+	}
 }
 
 .button {
@@ -143,17 +154,38 @@ async function onClickTemplatesLink() {
 	border: 2px dashed var(--color--foreground--shade-2);
 	border-radius: var(--radius--lg);
 	padding: 0;
-
 	min-width: 100px;
 	min-height: 100px;
 	cursor: pointer;
+
+	// Obsidian Forge: GPU-accelerated transitions
+	transition:
+		transform var(--canvas-node--transition--duration, 150ms) var(--easing--ease-out, ease-out),
+		border-color var(--canvas-node--transition--duration, 150ms) var(--easing--ease-out, ease-out),
+		box-shadow var(--canvas-node--transition--duration, 150ms) var(--easing--ease-out, ease-out);
+
+	// Respect reduced motion preference
+	@media (prefers-reduced-motion: reduce) {
+		transition: none;
+	}
 }
 
 .selectedButtonHighlight {
 	border-radius: var(--radius--lg);
 
+	// Obsidian Forge: Smooth transition for highlight state
+	transition: box-shadow var(--canvas-node--transition--duration, 150ms)
+		var(--easing--ease-out, ease-out);
+
 	&.highlighted {
-		box-shadow: 0 0 0 7px var(--canvas--color--selected);
+		// Obsidian Forge: Amber glow for highlighted state
+		box-shadow:
+			var(--canvas-node--shadow--selected),
+			0 0 0 7px var(--canvas--color--selected);
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		transition: none;
 	}
 }
 

@@ -1106,3 +1106,32 @@ defineExpose({
 	opacity: 0;
 }
 </style>
+
+<style lang="scss">
+// Canvas Selection Rectangle - Obsidian Forge Theme
+// Semi-transparent amber fill with steel border for marquee selection
+.vue-flow__selection {
+	background: var(--canvas-selection--color--background);
+	border: var(--canvas-selection--border-width) solid var(--canvas-selection--border-color);
+	border-radius: var(--radius--sm);
+}
+
+// Canvas viewport smooth transitions for pan/zoom
+.vue-flow__viewport {
+	transition: transform 0.1s ease-out;
+}
+
+// Canvas keyboard focus indicators
+.vue-flow__node:focus-visible,
+.vue-flow__edge:focus-visible {
+	outline: 2px solid var(--color--amber-500);
+	outline-offset: 2px;
+}
+
+// Smooth edge path transitions
+.vue-flow__edge-path {
+	transition:
+		stroke var(--canvas-edge--transition--duration, 150ms) var(--easing--ease-out),
+		stroke-width var(--canvas-edge--transition--duration, 150ms) var(--easing--ease-out);
+}
+</style>

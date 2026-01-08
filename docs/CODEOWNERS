@@ -1,0 +1,45 @@
+# CODEOWNERS - n8n Custom Fork
+#
+# These owners will be requested for review when changes are made
+# to the corresponding paths.
+#
+# Format: <pattern> <owner1> <owner2> ...
+#
+# Documentation: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# Default owner for everything
+* @moshehbenavraham
+
+# Frontend / Design System
+packages/frontend/@n8n/design-system/ @moshehbenavraham
+packages/frontend/editor-ui/ @moshehbenavraham
+
+# Theming and branding
+packages/frontend/@n8n/design-system/src/css/ @moshehbenavraham
+packages/frontend/@n8n/i18n/ @moshehbenavraham
+
+# Backend / Core
+packages/cli/ @moshehbenavraham
+packages/core/ @moshehbenavraham
+packages/workflow/ @moshehbenavraham
+
+# Nodes
+packages/nodes-base/ @moshehbenavraham
+packages/@n8n/nodes-langchain/ @moshehbenavraham
+
+# Infrastructure / CI/CD
+.github/ @moshehbenavraham
+docker/ @moshehbenavraham
+
+# Documentation
+docs/ @moshehbenavraham
+README.md @moshehbenavraham
+CONTRIBUTING.md @moshehbenavraham
+
+# Spec System
+.spec_system/ @moshehbenavraham
+
+# Configuration files (require careful review)
+package.json @moshehbenavraham
+pnpm-lock.yaml @moshehbenavraham
+turbo.json @moshehbenavraham

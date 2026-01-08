@@ -47,13 +47,14 @@ const classes = computed(() => ({
 <style lang="scss" module>
 .card {
 	border-radius: var(--radius--lg);
-	border: var(--border);
-	background-color: var(--color--background--light-3);
+	border: var(--border-width) var(--border-style) var(--card--border-color);
+	background-color: var(--card--color--background);
 	padding: var(--card--padding, var(--spacing--sm));
 	display: flex;
 	flex-direction: row;
 	width: 100%;
 	align-items: center;
+	box-shadow: var(--card--shadow);
 }
 
 .header,
@@ -90,14 +91,13 @@ const classes = computed(() => ({
 
 .hoverable {
 	cursor: pointer;
-	transition-property: border, color;
-	transition-duration: 0.3s;
-	transition-timing-function: ease;
+	transition: var(--card--duration);
 
 	&:hover,
 	&:focus {
 		color: var(--color--primary);
-		border-color: var(--color--primary);
+		border-color: var(--card--border-color--hover);
+		box-shadow: var(--card--shadow--hover);
 	}
 }
 

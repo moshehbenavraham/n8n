@@ -127,13 +127,39 @@ onBeforeUnmount(() => {
 .sticky {
 	position: relative;
 
+	// Obsidian Forge: Subtle shadow for sticky note elevation
+	box-shadow: var(--canvas-node--shadow);
+
+	// Obsidian Forge: Smooth transition for hover and selection states
+	transition:
+		transform var(--canvas-node--transition--duration, 150ms) var(--easing--ease-out, ease-out),
+		box-shadow var(--canvas-node--transition--duration, 150ms) var(--easing--ease-out, ease-out);
+
+	// Obsidian Forge: Hover lift effect
+	&:hover:not(.selected) {
+		transform: translateY(-1px);
+		box-shadow: var(--canvas-node--shadow--hover);
+	}
+
 	/**
 	 * State classes
 	 * The reverse order defines the priority in case multiple states are active
 	 */
 
 	&.selected {
-		box-shadow: 0 0 0 4px var(--canvas--color--selected);
+		// Obsidian Forge: Amber glow ring for selected state
+		box-shadow:
+			var(--canvas-node--shadow--selected),
+			0 0 0 4px var(--canvas--color--selected);
+	}
+
+	// Respect reduced motion preference
+	@media (prefers-reduced-motion: reduce) {
+		transition: none;
+
+		&:hover:not(.selected) {
+			transform: none;
+		}
 	}
 }
 </style>

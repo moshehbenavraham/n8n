@@ -1,0 +1,101 @@
+name: Scheduled Backup
+
+on:
+  schedule:
+    # Run daily at 02:00 UTC
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+    inputs:
+      database_type:
+        description: 'Database type'
+        required: true
+        default: 'sqlite'
+        type: choice
+        options:
+          - sqlite
+          - postgres
+      upload:
+        description: 'Upload to remote storage'
+        required: false
+        default: false
+        type: boolean
+
+env:
+  BACKUP_RETENTION_DAYS: 7
+
+jobs:
+  backup:
+    name: Database Backup
+    runs-on: ubuntu-latest
+    # Only run on the main repository, not forks
+    if: github.repository == 'moshehbenavraham/n8n' || github.event_name == 'workflow_dispatch'
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up backup script
+        run: |
+          chmod +x docs/deployment/backup.sh
+          mkdir -p backups
+
+      - name: Configure AWS CLI (if S3 configured)
+        if: env.AWS_ACCESS_KEY_ID != ''
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.BACKUP_AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.BACKUP_AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: ${{ vars.BACKUP_AWS_REGION || 'us-east-1' }}
+        run: |
+          aws configure set aws_access_key_id "$AWS_ACCESS_KEY_ID"
+          aws configure set aws_secret_access_key "$AWS_SECRET_ACCESS_KEY"
+          aws configure set default.region "$AWS_DEFAULT_REGION"
+
+      - name: Run backup
+        env:
+          BACKUP_DIR: ./backups
+          N8N_CONTAINER: ${{ vars.N8N_CONTAINER || 'n8n-custom' }}
+          POSTGRES_CONTAINER: ${{ vars.POSTGRES_CONTAINER || 'n8n-postgres' }}
+          S3_BUCKET: ${{ secrets.BACKUP_S3_BUCKET }}
+          S3_ENDPOINT: ${{ secrets.BACKUP_S3_ENDPOINT }}
+        run: |
+          # Note: This workflow is a template for self-hosted runners
+          # with access to the production Docker containers.
+          # For GitHub-hosted runners, you'll need to:
+          # 1. Use a self-hosted runner with Docker access
+          # 2. Or use SSH to connect to your production server
+
+          echo "Backup workflow triggered"
+          echo "Database type: ${{ inputs.database_type || 'sqlite' }}"
+          echo "Upload enabled: ${{ inputs.upload || 'false' }}"
+
+          # Check if running on self-hosted runner with Docker
+          if command -v docker &> /dev/null && docker info &> /dev/null; then
+            ARGS=""
+            if [ "${{ inputs.database_type }}" = "postgres" ]; then
+              ARGS="$ARGS --postgres"
+            fi
+            if [ "${{ inputs.upload }}" = "true" ]; then
+              ARGS="$ARGS --upload"
+            fi
+            ./docs/deployment/backup.sh "$ARGS"
+          else
+            echo "Note: Docker not available on this runner."
+            echo "For production backups, use a self-hosted runner or"
+            echo "run the backup script directly on your server:"
+            echo ""
+            echo "  ./docs/deployment/backup.sh [--postgres] [--upload]"
+          fi
+
+      - name: Upload backup artifact
+        if: success() && hashFiles('backups/n8n_*') != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: n8n-backup-${{ github.run_id }}
+          path: backups/n8n_*
+          retention-days: ${{ env.BACKUP_RETENTION_DAYS }}
+
+      - name: Notify on failure
+        if: failure()
+        run: |
+          echo "::error::Backup failed! Check the logs for details."
+          # Add notification integration here (Slack, Discord, email, etc.)

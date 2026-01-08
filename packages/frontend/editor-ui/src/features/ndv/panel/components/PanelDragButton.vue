@@ -74,8 +74,9 @@ const onDragStart = () => {
 .dragContainer {
 	pointer-events: all;
 }
+
 .dragButton {
-	background-color: var(--ndv--header--color);
+	background-color: var(--ndv--drag-handle--color--background);
 	width: 64px;
 	height: 21px;
 	border-top-left-radius: var(--radius);
@@ -87,6 +88,7 @@ const onDragStart = () => {
 	overflow: visible;
 	position: relative;
 	z-index: 3;
+	transition: background-color var(--duration--fast) var(--easing--ease-out);
 
 	&:hover {
 		.leftArrow,
@@ -102,7 +104,7 @@ const onDragStart = () => {
 
 .arrow {
 	position: absolute;
-	color: var(--color--background--light-3);
+	color: var(--ndv--drag-handle--arrow--color);
 	font-size: var(--font-size--3xs);
 	visibility: hidden;
 	top: 0;
@@ -132,7 +134,7 @@ const onDragStart = () => {
 			height: 2px;
 			width: 2px;
 			border-radius: 50%;
-			background-color: var(--color--foreground--shade-2);
+			background-color: var(--ndv--drag-handle--dot--color);
 			margin-right: 4px;
 
 			&:last-child {

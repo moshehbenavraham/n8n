@@ -120,7 +120,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           branch: ${{ steps.create-branch.outputs.sync_branch }}
           base: ${{ steps.check-changes.outputs.target_branch }}
-          title: "chore: Sync with upstream n8n (${{ steps.upstream-version.outputs.latest_tag }})"
+          title: 'chore: Sync with upstream n8n (${{ steps.upstream-version.outputs.latest_tag }})'
           body: |
             ## Upstream Sync
 

@@ -8,7 +8,7 @@
  *
  * To maintain backwards compatibility for users (for example embed customers that customize n8n)
  * we use CSS variable fallbacks:
- * --color--primary: var(--color-primary, var(--color--orange-300))
+ * --color--primary: var(--color-primary, var(--color--amber-500))
  *
  * This ensures:
  * 1. New code using --color--primary--* works correctly
@@ -20,49 +20,49 @@
 
 @mixin theme {
 	/* stylelint-disable-next-line @n8n/css-var-naming */
-	--color--primary--h: 7;
+	--color--primary--h: 38;
 	/* stylelint-disable-next-line @n8n/css-var-naming */
-	--color--primary--s: 100%;
+	--color--primary--s: 92%;
 	/* stylelint-disable-next-line @n8n/css-var-naming */
-	--color--primary--l: 68%;
+	--color--primary--l: 55%;
 
 	// Primary tokens
 
-	// Primary
+	// Primary (Amber - Forge Fire)
 	/* stylelint-disable-next-line @n8n/css-var-naming */
-	--color--primary--shade-1: var(--color-primary-shade-1, var(--color--orange-400));
+	--color--primary--shade-1: var(--color-primary-shade-1, var(--color--amber-600));
 	/* stylelint-disable-next-line @n8n/css-var-naming */
-	--color--primary: var(--color-primary, var(--color--orange-300));
+	--color--primary: var(--color-primary, var(--color--amber-500));
 	/* stylelint-disable-next-line @n8n/css-var-naming */
-	--color--primary--tint-1: var(--color-primary-tint-1, var(--color--orange-200));
+	--color--primary--tint-1: var(--color-primary-tint-1, var(--color--amber-300));
 	/* stylelint-disable-next-line @n8n/css-var-naming */
-	--color--primary--tint-2: var(--color-primary-tint-2, var(--color--orange-150));
+	--color--primary--tint-2: var(--color-primary-tint-2, var(--color--amber-200));
 	/* stylelint-disable-next-line @n8n/css-var-naming */
-	--color--primary--tint-3: var(--color-primary-tint-3, var(--color--orange-50));
+	--color--primary--tint-3: var(--color-primary-tint-3, var(--color--amber-50));
 
-	// Secondary
+	// Secondary (Steel - Cool Metal)
 	/* stylelint-disable-next-line @n8n/css-var-naming */
-	--color--secondary--shade-1: var(--color-secondary-shade-1, var(--color--purple-700));
+	--color--secondary--shade-1: var(--color-secondary-shade-1, var(--color--steel-700));
 	/* stylelint-disable-next-line @n8n/css-var-naming */
-	--color--secondary: var(--color-secondary, var(--color--purple-600));
+	--color--secondary: var(--color-secondary, var(--color--steel-500));
 	/* stylelint-disable-next-line @n8n/css-var-naming */
-	--color--secondary--tint-1: var(--color-secondary-tint-1, var(--color--purple-300));
+	--color--secondary--tint-1: var(--color-secondary-tint-1, var(--color--steel-300));
 	/* stylelint-disable-next-line @n8n/css-var-naming */
-	--color--secondary--tint-2: var(--color-secondary-tint-3, var(--color--purple-200));
+	--color--secondary--tint-2: var(--color-secondary-tint-3, var(--color--steel-200));
 
-	// Success
+	// Success (Verdigris - Oxidized Copper)
 	/* stylelint-disable-next-line @n8n/css-var-naming */
-	--color--success--shade-1: var(--color-success-shade-1, var(--color--green-700));
+	--color--success--shade-1: var(--color-success-shade-1, var(--color--verdigris-700));
 	/* stylelint-disable-next-line @n8n/css-var-naming */
-	--color--success: var(--color-success, var(--color--green-600));
+	--color--success: var(--color-success, var(--color--verdigris-500));
 	/* stylelint-disable-next-line @n8n/css-var-naming */
-	--color--success--tint-1: var(--color-success-light, var(--color--green-300));
+	--color--success--tint-1: var(--color-success-light, var(--color--verdigris-300));
 	/* stylelint-disable-next-line @n8n/css-var-naming */
-	--color--success--tint-2: var(--color-success-light-2, var(--color--green-200));
+	--color--success--tint-2: var(--color-success-light-2, var(--color--verdigris-200));
 	/* stylelint-disable-next-line @n8n/css-var-naming */
-	--color--success--tint-3: var(--color-success-tint-1, var(--color--green-100));
+	--color--success--tint-3: var(--color-success-tint-1, var(--color--verdigris-100));
 	/* stylelint-disable-next-line @n8n/css-var-naming */
-	--color--success--tint-4: var(--color-success-tint-2, var(--color--green-50));
+	--color--success--tint-4: var(--color-success-tint-2, var(--color--verdigris-50));
 
 	// Warning
 	/* stylelint-disable-next-line @n8n/css-var-naming */
@@ -74,19 +74,19 @@
 	/* stylelint-disable-next-line @n8n/css-var-naming */
 	--color--warning--tint-2: var(--color-warning-tint-2, var(--color--gold-50));
 
-	// Danger
+	// Danger (Ember - Forge Coals)
 	/* stylelint-disable-next-line @n8n/css-var-naming */
-	--color--danger--shade-1: var(--color-danger-shade-1, var(--color--red-700));
+	--color--danger--shade-1: var(--color-danger-shade-1, var(--color--ember-700));
 	/* stylelint-disable-next-line @n8n/css-var-naming */
-	--color--danger: var(--color-danger, var(--color--red-600));
+	--color--danger: var(--color-danger, var(--color--ember-500));
 	/* stylelint-disable-next-line @n8n/css-var-naming */
-	--color--danger--tint-1: var(--color-danger-light, var(--color--red-400));
+	--color--danger--tint-1: var(--color-danger-light, var(--color--ember-400));
 	/* stylelint-disable-next-line @n8n/css-var-naming */
-	--color--danger--tint-2: var(--color-danger-light-2, var(--color--red-300));
+	--color--danger--tint-2: var(--color-danger-light-2, var(--color--ember-300));
 	/* stylelint-disable-next-line @n8n/css-var-naming */
-	--color--danger--tint-3: var(--color-danger-tint-1, var(--color--red-100));
+	--color--danger--tint-3: var(--color-danger-tint-1, var(--color--ember-100));
 	/* stylelint-disable-next-line @n8n/css-var-naming */
-	--color--danger--tint-4: var(--color-danger-tint-2, var(--color--red-50));
+	--color--danger--tint-4: var(--color-danger-tint-2, var(--color--ember-50));
 
 	// Text
 	/* stylelint-disable-next-line @n8n/css-var-naming */
@@ -138,6 +138,36 @@
 	/* stylelint-disable-next-line @n8n/css-var-naming */
 	--shadow--light: var(--box-shadow-light, 0 2px 12px 0 rgba(0, 0, 0, 0.07));
 
+	// Shadow depth scale (Forge system)
+	--shadow--xs: 0 1px 2px rgba(0, 0, 0, 0.05);
+	--shadow--sm: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+	--shadow--md: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+	--shadow--lg: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
+	--shadow--xl: 0 20px 25px rgba(0, 0, 0, 0.1), 0 10px 10px rgba(0, 0, 0, 0.04);
+
+	// Amber glow shadows (Forge fire effect)
+	--shadow--glow--subtle: 0 0 8px var(--color--amber-alpha-100);
+	--shadow--glow--medium: 0 0 16px var(--color--amber-alpha-200);
+	--shadow--glow--strong: 0 0 24px var(--color--amber-alpha-300);
+
+	// Action component focus ring (spread-style glow for buttons/links)
+	--shadow--glow-sm: 0 0 0 3px var(--color--amber-alpha-300);
+
+	// Action component interaction tokens
+	/* stylelint-disable-next-line @n8n/css-var-naming */
+	--action--transition:
+		transform var(--duration--fast) var(--easing--ease-in-out),
+		box-shadow var(--duration--fast) var(--easing--ease-in-out);
+	--action--hover--transform: translateY(-1px);
+	--action--active--transform: translateY(0);
+
+	// Border tokens (Forge system)
+	--border--subtle: 1px solid var(--color--obsidian-200);
+	--border--default: 1px solid var(--color--obsidian-300);
+	--border--strong: 1px solid var(--color--obsidian-400);
+	--border--focus: 2px solid var(--color--amber-500);
+	--border--error: 1px solid var(--color--ember-500);
+
 	/* stylelint-disable-next-line @n8n/css-var-naming */
 	--radius--xl: var(--border-radius-xlarge, 12px);
 	/* stylelint-disable-next-line @n8n/css-var-naming */
@@ -158,6 +188,34 @@
 	/* stylelint-disable-next-line @n8n/css-var-naming */
 	--border: var(--border-base, var(--border-width) var(--border-style) var(--color--foreground));
 
+	// Animation tokens (Forge motion language)
+	// Semantic animation durations for consistent motion across the application
+	--animation--duration--reveal: var(--duration--normal);
+	--animation--duration--hover: var(--duration--fast);
+	--animation--duration--active: var(--duration--instant);
+	--animation--duration--pulse: 2s;
+	--animation--duration--flow: 1s;
+
+	// Animation easing tokens
+	--animation--easing--enter: var(--easing--forge-enter);
+	--animation--easing--exit: var(--easing--forge-exit);
+	--animation--easing--glow: var(--easing--forge-glow);
+
+	// Atmosphere tokens (Forge visual atmosphere - light mode)
+	// Gradient mesh colors for light mode surfaces
+	--atmosphere--gradient--primary: var(--color--obsidian-100);
+	--atmosphere--gradient--secondary: var(--color--steel-100);
+	--atmosphere--gradient--accent: var(--color--amber-alpha-100);
+	--atmosphere--noise--opacity: 0.02;
+
+	// Focus ring configuration
+	--focus--glow--color: var(--color--amber-alpha-300);
+	--focus--glow--spread: 12px;
+
+	// Interactive element feedback
+	--interactive--hover--brightness: 1.05;
+	--interactive--active--scale: 0.98;
+
 	// Secondary tokens
 
 	// LangChain
@@ -166,14 +224,60 @@
 	--lm-chat--user--color--background: var(--color--green-600);
 	--lm-chat--user--color: var(--color--text--tint-3);
 
-	// Canvas
-	--canvas--color--background: var(--color--neutral-125);
-	--canvas--dot--color: var(--color--neutral-500);
-	--canvas--read-only-line--color: var(--color--neutral-100);
-	--canvas--color--selected: var(--color--neutral-150);
-	--canvas--color--selected-transparent: hsla(220, 47%, 30%, 0.1);
-	--canvas--label--color: var(--color--neutral-600);
+	// Canvas (Obsidian Forge - Light Mode)
+	// Warm forge atmosphere with subtle steel undertones
+	--canvas--color--background: var(--color--obsidian-50);
+	--canvas--dot--color: var(--color--steel-300);
+	--canvas--read-only-line--color: var(--color--obsidian-100);
+	--canvas--color--selected: var(--color--obsidian-100);
+	--canvas--color--selected-transparent: var(--color--obsidian-alpha-100);
+	--canvas--label--color: var(--color--obsidian-500);
 	--canvas--label--color--background: oklch(from var(--canvas--color--background) l c h / 0.85);
+
+	// Canvas Nodes (Obsidian Forge - Light Mode)
+	// Elevated forge-crafted node containers with warm shadows
+	--canvas-node--shadow:
+		0 2px 4px var(--color--obsidian-alpha-100), 0 1px 2px var(--color--obsidian-alpha-100);
+	--canvas-node--shadow--hover:
+		0 4px 8px var(--color--obsidian-alpha-100), 0 2px 4px var(--color--obsidian-alpha-100);
+	--canvas-node--shadow--selected: var(--shadow--glow-sm);
+	--canvas-node--border-color--running: var(--color--orange-400);
+	--canvas-node--border-color--running-gradient-start: var(--color--orange-400);
+	--canvas-node--border-color--running-gradient-mid: oklch(
+		from var(--color--orange-400) l c h / 0.2
+	);
+	--canvas-node--transition--duration: var(--duration--fast);
+
+	// Canvas Handles (Obsidian Forge - Light Mode)
+	--canvas-handle--color--background: var(--color--neutral-white);
+	--canvas-handle--color--background--hover: var(--color--neutral-100);
+	--canvas-handle--border-color: var(--color--steel-300);
+	--canvas-handle--border-color--hover: var(--color--steel-400);
+	--canvas-handle--plus--color: var(--color--steel-600);
+	--canvas-handle--plus--color--hover: var(--color--steel-800);
+	--canvas-handle--plus--color--background: var(--color--neutral-200);
+	--canvas-handle--plus--color--background--hover: var(--color--neutral-250);
+
+	// Canvas Edges/Connections (Obsidian Forge - Light Mode)
+	// Steel default connections that pulse with amber energy when active
+	--canvas-edge--color--default: var(--color--steel-400);
+	--canvas-edge--color--hover: var(--color--steel-500);
+	--canvas-edge--color--selected: var(--color--amber-500);
+	--canvas-edge--color--running: var(--color--amber-400);
+	--canvas-edge--color--error: var(--color--danger);
+	--canvas-edge--color--success: var(--color--success);
+	--canvas-edge--color--pinned: var(--color--secondary);
+	--canvas-edge--stroke-width--default: 2px;
+	--canvas-edge--stroke-width--active: 3px;
+	--canvas-edge--shadow--selected: 0 0 8px var(--color--amber-alpha-300);
+	--canvas-edge--shadow--running: 0 0 12px var(--color--amber-alpha-300);
+	--canvas-edge--transition--duration: var(--duration--fast);
+
+	// Canvas Selection Rectangle (Obsidian Forge - Light Mode)
+	// Semi-transparent amber fill with steel border for marquee selection
+	--canvas-selection--color--background: var(--color--amber-alpha-100);
+	--canvas-selection--border-color: var(--color--steel-400);
+	--canvas-selection--border-width: 1px;
 
 	// Nodes
 	--node--color--background: var(--color--background--light-3);
@@ -274,19 +378,19 @@
 	--node--icon--color--crimson: #724;
 
 	// Expressions, autocomplete, infobox
-	--expression-editor--resolvable--color--foreground--valid: var(--color--green-600);
-	--expression-editor--resolvable--color--background--valid: var(--color--green-100);
-	--expression-editor--resolvable--color--foreground--invalid: var(--color--red-600);
-	--expression-editor--resolvable--color--background--invalid: var(--color--red-50);
+	--expression-editor--resolvable--color--foreground--valid: var(--color--verdigris-600);
+	--expression-editor--resolvable--color--background--valid: var(--color--verdigris-alpha-100);
+	--expression-editor--resolvable--color--foreground--invalid: var(--color--ember-600);
+	--expression-editor--resolvable--color--background--invalid: var(--color--ember-alpha-100);
 	--expression-editor--resolvable--color--foreground--pending: var(--color--text);
-	--expression-editor--resolvable--color--background--pending: var(--color--neutral-125);
+	--expression-editor--resolvable--color--background--pending: var(--color--steel-alpha-100);
 	--expression-editor--color--background: var(--color--neutral-white);
 	--expression-editor--modal--color--background: var(--color--background);
-	--expression-editor--syntax-example--color: var(--color--neutral-125);
-	--autocomplete--item--color--selected: var(--color--secondary);
-	--autocomplete--section-header--border-color: var(--color--foreground--tint-1);
-	--autocomplete--infobox--color--background: var(--color--background--light-1);
-	--autocomplete--infobox--examples--border-color: var(--color--foreground--tint-1);
+	--expression-editor--syntax-example--color: var(--color--obsidian-200);
+	--autocomplete--item--color--selected: var(--color--amber-600);
+	--autocomplete--section-header--border-color: var(--color--obsidian-200);
+	--autocomplete--infobox--color--background: var(--color--obsidian-50);
+	--autocomplete--infobox--examples--border-color: var(--color--obsidian-200);
 
 	// Code
 	--code-tags--string--color: #032f62;
@@ -314,17 +418,17 @@
 	--json--line--color: var(--color--neutral-250);
 	--json--highlight--color: var(--color--background);
 	--code--color--background: var(--color--neutral-white);
-	--code--color--background--readonly: var(--color--neutral-125);
-	--code--line-highlight--color: var(--color--neutral-300-alpha-100);
-	--code--color--foreground: var(--color--neutral-700);
-	--code--caret--color: var(--color--neutral-950);
-	--code--selection--color: #0366d625;
-	--code--selection--color--highlight: #34d05840;
+	--code--color--background--readonly: var(--color--obsidian-100);
+	--code--line-highlight--color: var(--color--amber-alpha-100);
+	--code--color--foreground: var(--color--obsidian-700);
+	--code--caret--color: var(--color--amber-500);
+	--code--selection--color: var(--color--amber-alpha-200);
+	--code--selection--color--highlight: var(--color--verdigris-alpha-200);
 	--code--gutter--color--background: var(--color--neutral-white);
-	--code--gutter--color--foreground: var(--color--neutral-300);
-	--code--gutter--color--foreground--active: var(--color--neutral-700);
-	--code--indentation-marker--color: var(--color--neutral-150);
-	--code--indentation-marker--color--active: var(--color--neutral-250);
+	--code--gutter--color--foreground: var(--color--obsidian-300);
+	--code--gutter--color--foreground--active: var(--color--obsidian-700);
+	--code--indentation-marker--color: var(--color--obsidian-200);
+	--code--indentation-marker--color--active: var(--color--obsidian-300);
 	--line-break--color: var(--color--neutral-300);
 	--code--line-break--color: var(--color--purple-400);
 
@@ -347,23 +451,23 @@
 
 	// Button primary
 	--button--color--text--primary: var(--color--neutral-white);
-	--button--border-color--primary: var(--color--orange-300);
-	--button--color--background--primary: var(--color--orange-300);
-	--button--border-color--primary--hover-active: var(--color--orange-400);
-	--button--color--background--primary--hover-active-focus: var(--color--orange-400);
-	--button--outline-color--primary--focus: var(--color--orange-alpha-300);
+	--button--border-color--primary: var(--color--amber-500);
+	--button--color--background--primary: var(--color--amber-500);
+	--button--border-color--primary--hover-active: var(--color--amber-600);
+	--button--color--background--primary--hover-active-focus: var(--color--amber-600);
+	--button--outline-color--primary--focus: var(--color--amber-alpha-300);
 	--button--color--text--primary--disabled: var(--color--white-alpha-800);
-	--button--border-color--primary--disabled: var(--color--orange-200);
-	--button--color--background--primary--disabled: var(--color--orange-200);
+	--button--border-color--primary--disabled: var(--color--amber-300);
+	--button--color--background--primary--disabled: var(--color--amber-300);
 
 	// Button secondary
 	--button--color--text--secondary: var(--color--neutral-700);
 	--button--border-color--secondary: var(--color--neutral-300);
 	--button--color--background--secondary: var(--color--neutral-white);
-	--button--color--text--secondary--hover-active-focus: var(--color--orange-400);
-	--button--border-color--secondary--hover-active-focus: var(--color--orange-300);
-	--button--color--background--secondary--hover: var(--color--orange-50);
-	--button--color--background--secondary--active-focus: var(--color--orange-100);
+	--button--color--text--secondary--hover-active-focus: var(--color--amber-600);
+	--button--border-color--secondary--hover-active-focus: var(--color--amber-500);
+	--button--color--background--secondary--hover: var(--color--amber-50);
+	--button--color--background--secondary--active-focus: var(--color--amber-100);
 	--button--outline-color--secondary--focus: var(--color--neutral-200);
 	--button--color--text--secondary--disabled: var(--color--neutral-250);
 	--button--border-color--secondary--disabled: var(--color--neutral-250);
@@ -372,7 +476,7 @@
 	--button--color--text--highlight: var(--color--neutral-700);
 	--button--border-color--highlight: transparent;
 	--button--color--background--highlight: transparent;
-	--button--color--text--highlight--hover-active-focus: var(--color--orange-400);
+	--button--color--text--highlight--hover-active-focus: var(--color--amber-600);
 	--button--border-color--highlight--hover-active-focus: var(--color--neutral-125);
 	--button--color--background--highlight--hover: var(--color--neutral-125);
 	--button--color--background--highlight--active-focus: var(--color--neutral-125);
@@ -393,13 +497,16 @@
 	--button--border-color--danger--disabled: var(--color--danger--tint-3);
 	--button--color--background--danger--disabled: var(--color--danger--tint-3);
 
+	// Loading spinner color (Forge amber accent)
+	--spinner--color: var(--color--amber-500);
+
 	// Text button
 	--text-button--color--text--secondary: var(--color--neutral-700);
 
 	// Node Creator Button
 	--node-creator--button--color--text: var(--color--neutral-600);
-	--node-creator--button--color--text--hover: var(--color--orange-300);
-	--node-creator--button--border-color--hover: var(--color--orange-300);
+	--node-creator--button--color--text--hover: var(--color--amber-500);
+	--node-creator--button--border-color--hover: var(--color--amber-500);
 	--node-creator--button--color--background: var(--color--neutral-white);
 
 	// Table
@@ -409,8 +516,23 @@
 	--table--row--color--background--hover: var(--color--primary--tint-3);
 	--table--row--color--background--highlight: var(--color--warning--tint-1);
 
-	// Notification
+	// Notification (Obsidian Forge - semantic state styling)
 	--notification--color--background: var(--color--background--light-3);
+	--notification--border-color: var(--color--obsidian-200);
+	--notification--shadow: var(--shadow--lg);
+	// Semantic state backgrounds (subtle tints for light mode)
+	--notification--color--background--success: var(--color--verdigris-50);
+	--notification--color--background--error: var(--color--ember-50);
+	--notification--color--background--warning: var(--color--gold-50);
+	--notification--color--background--info: var(--color--neutral-100);
+	// Semantic state border colors (left accent stripe)
+	--notification--border-color--success: var(--color--verdigris-500);
+	--notification--border-color--error: var(--color--ember-500);
+	--notification--border-color--warning: var(--color--gold-500);
+	--notification--border-color--info: var(--color--steel-400);
+
+	// Loading overlay (Obsidian Forge - backdrop)
+	--color--loading-mask--background: var(--color--white-alpha-900);
 
 	// Execution
 	--execution-card--border-color--new: var(--color--neutral-250);
@@ -426,7 +548,7 @@
 	--execution-selector--color--text: var(--color--text--tint-3);
 	--execution-select-all--color--text: var(--color--danger);
 
-	// NDV
+	// NDV (Node Details View - Obsidian Forge theming)
 	--run-data--color--background: var(--color--neutral-150);
 	--ndvv2--run-data--color--background: var(--color--neutral-125);
 	--ndv--droppable-parameter--color: var(--color--secondary);
@@ -435,6 +557,40 @@
 	--ndv--back--color--text: var(--color--neutral-white);
 	--ndv--background--color: var(--color--background--light-3);
 	--ndv--header--color: var(--color--background);
+
+	// NDV Layout Structure (Obsidian Forge - Light Mode)
+	// Modal overlay - semi-transparent obsidian backdrop
+	--ndv--overlay--color--background: var(--color--obsidian-alpha-600);
+
+	// Container (forge-crafted modal)
+	--ndv--container--color--background: var(--color--neutral-white);
+	--ndv--container--border-color: var(--color--obsidian-200);
+	--ndv--container--radius: var(--radius--xl);
+
+	// Panel shadows (forge-crafted elevation hierarchy)
+	--ndv--panel--shadow: 0 4px 16px var(--color--obsidian-alpha-100);
+	--ndv--panel--shadow--hover: 0 6px 20px var(--color--obsidian-alpha-200);
+	--ndv--panel--shadow--dragging: 0 6px 16px var(--color--amber-alpha-200);
+
+	// Panel backgrounds
+	--ndv--panel--color--background: var(--color--neutral-white);
+	--ndv--panel--color--background--secondary: var(--color--neutral-100);
+	--ndv--panel--border-color: var(--color--obsidian-200);
+
+	// Header (forge-crafted tab area)
+	--ndv--header--color--background: var(--color--neutral-125);
+	--ndv--header--border-color: var(--color--obsidian-200);
+
+	// Drag handle (forge metal grip)
+	--ndv--drag-handle--color--background: var(--color--neutral-125);
+	--ndv--drag-handle--dot--color: var(--color--steel-400);
+	--ndv--drag-handle--arrow--color: var(--color--steel-500);
+
+	// Back to canvas link (Obsidian Forge accent)
+	--ndv--back-link--color--text: var(--color--amber-500);
+	--ndv--back-link--color--text--hover: var(--color--amber-600);
+	--ndv--back-link--color--background: var(--color--obsidian-800);
+	--ndv--back-link--color--background--hover: var(--color--obsidian-700);
 
 	// Notice
 	--notice--border-color--warning: var(--color--warning--tint-1);
@@ -469,8 +625,47 @@
 	--dialog--overlay--color--background--dark: var(--color--black-alpha-600);
 	--block-ui--overlay--color: var(--color--neutral-950);
 
+	// Modal backdrop tokens (Forge)
+	--modal--backdrop--opacity: 0.8;
+	--modal--backdrop--blur: 2px;
+
+	// Modal container tokens (Forge elevation)
+	--modal--color--background: var(--color--foreground--tint-2);
+	--modal--border-color: var(--color--border--light);
+	--modal--radius: var(--radius--md);
+	--modal--shadow: var(--shadow--xl);
+
+	// Modal animation tokens (Forge motion)
+	--modal--animation--duration--enter: var(--duration--normal);
+	--modal--animation--duration--exit: var(--duration--fast);
+	--modal--animation--easing--enter: var(--easing--forge-enter);
+	--modal--animation--easing--exit: var(--easing--forge-exit);
+
 	// Avatar
 	--avatar--color--text: var(--color--text--tint-3);
+	--avatar--border-color--active: var(--color--amber-300);
+	--avatar--border-width--active: 2px;
+
+	// Card (Forge elevation system)
+	--card--shadow: var(--shadow--sm);
+	--card--shadow--hover: var(--shadow--md);
+	--card--border-color: var(--color--foreground);
+	--card--border-color--hover: var(--color--primary);
+	--card--color--background: var(--color--background--light-3);
+	--card--duration:
+		box-shadow var(--duration--fast) var(--easing--ease-out),
+		border-color var(--duration--fast) var(--easing--ease-out);
+
+	// Tooltip (Obsidian theme)
+	--tooltip--color--background: var(--color--obsidian-900);
+	--tooltip--color--text: var(--color--neutral-white);
+	--tooltip--border-color: var(--color--amber-alpha-200);
+	--tooltip--shadow: var(--shadow--lg);
+
+	// Popover (Obsidian theme)
+	--popover--color--background: var(--color--foreground--tint-2);
+	--popover--border-color: var(--color--obsidian-200);
+	--popover--shadow: var(--shadow--lg);
 
 	// NPS Survey
 	--nps-survey--color--background: var(--color--neutral-850);
@@ -704,7 +899,41 @@
 
 	// Params
 	--icon--color: var(--color--text--tint-1);
-	--icon--color--hover: var(--color--orange-300);
+	--icon--color--hover: var(--color--amber-500);
+
+	// Icon Stroke Width - State tokens (Phase 05 - Chrome Deco)
+	// Maps interaction states to stroke width primitives
+	--icon--stroke-width--rest: var(--icon--stroke-width--normal);
+	--icon--stroke-width--hover: var(--icon--stroke-width--standard);
+	--icon--stroke-width--active: var(--icon--stroke-width--thick);
+	--icon--stroke-width--focus: var(--icon--stroke-width--thick);
+	--icon--stroke-width--disabled: var(--icon--stroke-width--thin);
+
+	// Icon Chrome Effect tokens (Phase 05 - Session 04)
+	// Metallic chrome gradient overlay for retro-futuristic aesthetic
+	--icon--chrome--opacity: 0.5;
+	--icon--chrome--opacity--hover: 0.7;
+	--icon--chrome--opacity--active: 0.8;
+	--icon--chrome--gradient--start: hsla(0, 0%, 100%, 0.1);
+	--icon--chrome--gradient--mid: hsla(0, 0%, 100%, 0.3);
+	--icon--chrome--gradient--end: hsla(0, 0%, 100%, 0.1);
+	--icon--chrome--transition--duration: 0.2s;
+	--icon--chrome--transition--easing: ease-out;
+
+	// Shimmer animation tokens
+	--icon--chrome--shimmer--duration: 2.5s;
+	--icon--chrome--shimmer--easing: ease-in-out;
+
+	// Sunburst glow tokens
+	--icon--chrome--sunburst--color: var(--color--success);
+	--icon--chrome--sunburst--duration: 0.6s;
+	--icon--chrome--sunburst--easing: ease-out;
+
+	// Beveled edge effect tokens (dual drop-shadow)
+	--icon--chrome--bevel--light--offset: 1px 1px 0;
+	--icon--chrome--bevel--light--color: hsla(0, 0%, 100%, 0.3);
+	--icon--chrome--bevel--dark--offset: -1px -1px 0;
+	--icon--chrome--bevel--dark--color: hsla(0, 0%, 0%, 0.15);
 
 	/* Ag Grid */
 	--grid--row--color--background--selected: var(--color--purple-200);

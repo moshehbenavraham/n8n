@@ -4,6 +4,9 @@
 
 @use 'element-plus/theme-chalk/src/dropdown-menu';
 
+// Obsidian Forge Dropdown Styling
+// Elevated dropdown menus with forge-inspired hover states
+
 @include mixins.b(dropdown) {
 	position: relative;
 	color: var(--color--text--shade-1);
@@ -72,7 +75,6 @@
 	}
 
 	.el-dropdown-selfdefine {
-		// 自定义
 		&:focus:active,
 		&:focus:not(.focusing) {
 			outline-width: 0;
@@ -84,13 +86,18 @@
 	top: 0;
 	left: 0;
 	z-index: 10;
-	padding: 10px 0;
+	padding: 8px 0;
 	margin: 5px 0;
-	background-color: var.$color-white;
-	border: 1px solid var(--border-color--light);
-	border-radius: var(--radius);
+	// Forge surface background
+	background-color: var(--menu--color--background);
+	border: 1px solid var(--popover--border-color, var(--border-color--light));
+	border-radius: var(--radius--lg);
+	// Forge elevation shadow
+	box-shadow: var(--popover--shadow, var(--shadow--lg));
 	position: relative;
 	list-style: none;
+	// Forge entrance animation
+	animation: dropdown-fade-in var(--duration--fast) var(--easing--forge-enter);
 
 	@include mixins.e(item) {
 		list-style: none;
@@ -103,10 +110,20 @@
 		cursor: pointer;
 		outline: none;
 		white-space: nowrap;
+		// Forge smooth hover transition
+		transition:
+			background-color var(--duration--fast) var(--easing--ease-out),
+			color var(--duration--fast) var(--easing--ease-out);
+
 		&:not(.is-disabled):hover,
 		&:focus {
-			background-color: var.$dropdown-menuItem-hover-fill;
+			background-color: var(--menu--color--background--hover);
 			color: var.$dropdown-menuItem-hover-color;
+		}
+
+		// Active/selected state
+		&:not(.is-disabled):active {
+			background-color: var(--menu--color--background--active);
 		}
 
 		i {
@@ -118,13 +135,14 @@
 
 			position: relative;
 			margin-top: $divided-offset;
-			border-top: 1px solid var(--border-color--light);
+			// Forge divider with obsidian color
+			border-top: 1px solid var(--color--obsidian-200);
 
 			&:before {
 				content: '';
 				height: $divided-offset;
 				display: block;
-				background-color: var.$color-white;
+				background-color: var(--menu--color--background);
 			}
 		}
 
@@ -132,6 +150,7 @@
 			cursor: default;
 			color: var(--color--text--tint-2);
 			pointer-events: none;
+			opacity: 0.5;
 		}
 	}
 
@@ -190,5 +209,17 @@
 				}
 			}
 		}
+	}
+}
+
+// Dropdown entrance animation
+@keyframes dropdown-fade-in {
+	from {
+		opacity: 0;
+		transform: translateY(-4px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
 	}
 }

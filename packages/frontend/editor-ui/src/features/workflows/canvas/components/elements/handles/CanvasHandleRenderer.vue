@@ -181,8 +181,16 @@ provide(CanvasNodeHandleKey, {
 	background: transparent;
 	border-radius: 0;
 
+	// Obsidian Forge: Smooth transition for handle interactions
+	transition: transform var(--canvas-node--transition--duration, 150ms)
+		var(--easing--ease-out, ease-out);
+
 	&.inputs.main {
 		cursor: default;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		transition: none;
 	}
 }
 

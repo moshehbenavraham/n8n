@@ -3,6 +3,9 @@
 @use './common/var';
 @use 'common/transition';
 
+// Obsidian Forge Menu Styling
+// Context menus and navigation with consistent hover states
+
 @mixin menu-item {
 	height: var.$menu-item-height;
 	line-height: var.$menu-item-height;
@@ -13,22 +16,24 @@
 	list-style: none;
 	cursor: pointer;
 	position: relative;
+	// Forge smooth transitions
 	transition:
-		border-color 0.3s,
-		background-color 0.3s,
-		color 0.3s;
+		border-color var(--duration--fast) var(--easing--ease-out),
+		background-color var(--duration--fast) var(--easing--ease-out),
+		color var(--duration--fast) var(--easing--ease-out);
 	box-sizing: border-box;
 	white-space: nowrap;
 	border-radius: var.$menu-item-border-radius;
 
 	i {
 		color: var.$menu-item-icon-font-color;
+		transition: color var(--duration--fast) var(--easing--ease-out);
 	}
 
 	&:hover,
 	&:focus {
 		outline: none;
-		background-color: var.$menu-item-hover-fill;
+		background-color: var(--menu--color--background--hover);
 		color: var.$menu-item-hover-font-color;
 
 		i {
@@ -36,8 +41,13 @@
 		}
 	}
 
+	// Active state feedback
+	&:active:not(.is-disabled) {
+		background-color: var(--menu--color--background--active);
+	}
+
 	@include mixins.when(disabled) {
-		opacity: 0.25;
+		opacity: 0.5;
 		cursor: not-allowed;
 		background: none !important;
 	}
@@ -51,7 +61,7 @@
 	background-color: var.$menu-background-color;
 	@include utils.utils-clearfix;
 	&.el-menu--horizontal {
-		border-bottom: solid 1px #e6e6e6;
+		border-bottom: solid 1px var(--border-color--light);
 	}
 
 	@include mixins.m(horizontal) {
@@ -188,10 +198,14 @@
 	@include mixins.m(popup) {
 		z-index: 100;
 		min-width: 200px;
-		border: none;
-		padding: 5px 0;
-		border-radius: var(--radius--sm);
-		box-shadow: var.$box-shadow-light;
+		border: 1px solid var(--popover--border-color, var(--color--obsidian-200));
+		padding: 8px 0;
+		border-radius: var(--radius--lg);
+		// Forge elevation shadow
+		box-shadow: var(--popover--shadow, var(--shadow--lg));
+		background-color: var(--menu--color--background);
+		// Forge entrance animation
+		animation: menu-fade-in var(--duration--fast) var(--easing--forge-enter);
 
 		&-bottom-start {
 			margin-top: 5px;
@@ -308,4 +322,16 @@
 .horizontal-collapse-transition .el-sub-menu__title .el-sub-menu__icon-arrow {
 	transition: 0.2s;
 	opacity: 0;
+}
+
+// Menu entrance animation
+@keyframes menu-fade-in {
+	from {
+		opacity: 0;
+		transform: scale(0.95);
+	}
+	to {
+		opacity: 1;
+		transform: scale(1);
+	}
 }

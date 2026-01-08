@@ -31,16 +31,14 @@ const style = computed(() => ({
 	<div class="progress-circle">
 		<svg class="progress-ring" :width="diameter" :height="diameter">
 			<circle
-				:class="$style.progressRingCircle"
+				:class="[$style.progressRingCircle, $style.progressRingBackground]"
 				:stroke-width="strokeWidth"
-				stroke="#DCDFE6"
 				fill="transparent"
 				:r="radius"
 				v-bind="{ cx, cy }"
 			/>
 			<circle
-				:class="$style.progressRingCircle"
-				stroke="#5C4EC2"
+				:class="[$style.progressRingCircle, $style.progressRingProgress]"
 				:stroke-width="strokeWidth"
 				fill="transparent"
 				:r="radius"
@@ -55,5 +53,13 @@ const style = computed(() => ({
 	transition: stroke-dashoffset 0.35s linear;
 	transform: rotate(-90deg);
 	transform-origin: 50% 50%;
+}
+
+.progressRingBackground {
+	stroke: var(--color--foreground);
+}
+
+.progressRingProgress {
+	stroke: var(--color--purple-500);
 }
 </style>

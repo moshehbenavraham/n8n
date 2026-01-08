@@ -930,7 +930,7 @@ function handleSelectAction(params: INodeParameters) {
 
 	&.dragging {
 		border-color: var(--color--primary);
-		box-shadow: 0 6px 16px rgba(255, 74, 51, 0.15);
+		box-shadow: var(--ndv--panel--shadow--dragging);
 	}
 }
 

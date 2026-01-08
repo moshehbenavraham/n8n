@@ -30,6 +30,14 @@ const classes = computed(() => {
 	left: -4px;
 	width: calc(100% + 12px);
 	pointer-events: none;
+
+	// Obsidian Forge: Smooth transition for state changes
+	transition: border-color var(--canvas-node--transition--duration, 150ms)
+		var(--easing--ease-out, ease-out);
+
+	@media (prefers-reduced-motion: reduce) {
+		transition: none;
+	}
 }
 
 .success {

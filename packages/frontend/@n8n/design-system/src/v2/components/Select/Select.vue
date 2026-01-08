@@ -207,10 +207,21 @@ const groups = computed<SelectItemProps[]>(() => {
 	position: relative;
 	gap: var(--spacing--3xs);
 	color: var(--color--text--shade-1);
+	transition:
+		border-color var(--duration--fast) var(--easing--ease-out),
+		background-color var(--duration--fast) var(--easing--ease-out),
+		box-shadow var(--duration--fast) var(--easing--ease-out);
 
 	&:focus {
-		box-shadow: 0 0 0 2px var(--color--secondary);
+		border-color: var(--color--amber-500);
+		box-shadow: 0 0 0 3px var(--color--amber-alpha-200);
 		z-index: 1;
+	}
+
+	&:focus-visible {
+		outline: none;
+		border-color: var(--color--amber-500);
+		box-shadow: 0 0 0 3px var(--color--amber-alpha-200);
 	}
 
 	&:not([data-disabled]):hover {
@@ -225,6 +236,7 @@ const groups = computed<SelectItemProps[]>(() => {
 	&[data-disabled] {
 		color: var(--color--text--tint-1);
 		cursor: not-allowed;
+		opacity: 0.6;
 	}
 }
 
@@ -267,15 +279,20 @@ const groups = computed<SelectItemProps[]>(() => {
 
 .selectContent {
 	overflow: hidden;
-	border-radius: var(--radius);
-	border: var(--border);
-	background-color: var(--color--background--light-2);
-	box-shadow: var(--shadow);
+	border-radius: var(--radius--lg);
+	border: 1px solid var(--color--obsidian-200);
+	background-color: var(--color--foreground--tint-2);
+	box-shadow: var(--shadow--lg);
 	/**
 	 * High z-index to ensure select dropdown is above other elements
 	 * TODO: Replace with design system z-index variable when available
 	 */
 	z-index: 999999;
+
+	/* Forge reveal animation */
+	@media (prefers-reduced-motion: no-preference) {
+		animation: forge-reveal var(--duration--normal) var(--easing--forge-enter);
+	}
 }
 
 .selectViewport {
@@ -300,6 +317,9 @@ const groups = computed<SelectItemProps[]>(() => {
 	user-select: none;
 	color: var(--color--text--shade-1);
 	gap: var(--spacing--3xs);
+	transition:
+		background-color var(--duration--fast) var(--easing--ease-out),
+		color var(--duration--fast) var(--easing--ease-out);
 
 	&:not([data-disabled]) {
 		&:hover,
@@ -309,9 +329,21 @@ const groups = computed<SelectItemProps[]>(() => {
 		}
 	}
 
+	&[data-state='checked'] {
+		color: var(--color--amber-600);
+		background-color: var(--color--amber-50);
+		font-weight: var(--font-weight--bold);
+
+		&:hover,
+		&[data-highlighted] {
+			background-color: var(--color--amber-100);
+		}
+	}
+
 	&[data-disabled] {
 		color: var(--color--text--tint-1);
 		cursor: not-allowed;
+		opacity: 0.6;
 	}
 }
 

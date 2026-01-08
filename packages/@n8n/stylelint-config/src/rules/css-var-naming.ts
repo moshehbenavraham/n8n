@@ -38,6 +38,7 @@ const PROPERTY_VOCABULARY = new Set([
 	'font-size',
 	'font-weight',
 	'font-family',
+	'letter-spacing',
 	'line-height',
 	'margin',
 	'margin-right',
@@ -59,6 +60,15 @@ const PROPERTY_VOCABULARY = new Set([
 	'bottom',
 	'left',
 	'right',
+	// Visual atmosphere and motion tokens
+	'blur',
+	'opacity',
+	'spread',
+	'brightness',
+	'scale',
+	'filter',
+	'transform',
+	'gradient',
 ]);
 
 // Properties that can be used as standalone single-group variables (without a value)
@@ -305,6 +315,8 @@ function validateCssVariable(variable: string): ValidationResult {
 				FONT_WEIGHT_VALUES.has(valueGroup) ||
 				// Allow color shades like "primary-500", "shade-50", "tint-50"
 				/^[a-z]+-\d+$/.test(valueGroup) ||
+				// Allow numeric scale values like "0", "1", "2", "10", "24" for spacing etc.
+				/^\d+$/.test(valueGroup) ||
 				// Allow descriptive names (3+ chars) - these are likely intentional semantic names
 				valueGroup.length >= 3 ||
 				// Support hsl css variables (only allowed at the end, checked above)

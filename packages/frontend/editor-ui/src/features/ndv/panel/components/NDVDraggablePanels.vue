@@ -451,14 +451,18 @@ function onDragEnd() {
 
 .mainPanelInner {
 	height: 100%;
-	border: var(--border);
+	border: 1px solid var(--ndv--panel--border-color);
 	border-radius: var(--radius--lg);
-	box-shadow: 0 4px 16px rgb(50 61 85 / 10%);
+	box-shadow: var(--ndv--panel--shadow);
 	overflow: hidden;
+	background-color: var(--ndv--panel--color--background);
+	transition:
+		box-shadow var(--duration--fast) var(--easing--ease-out),
+		border-color var(--duration--fast) var(--easing--ease-out);
 
 	&.dragging {
 		border-color: var(--color--primary);
-		box-shadow: 0 6px 16px rgba(255, 74, 51, 0.15);
+		box-shadow: var(--ndv--panel--shadow--dragging);
 	}
 }
 

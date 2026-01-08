@@ -1,21 +1,33 @@
 @use 'mixins/mixins';
 @use './common/var';
 
+// Default tag theme - amber accented chip styling
 @mixin genTheme() {
-	border-color: var(--callout--border-color--info);
-	background-color: var(--callout--color--background--info);
-	color: var(--callout--color--text--info);
+	border-color: var(--color--amber-200);
+	background-color: var(--color--amber-50);
+	color: var(--color--text--shade-1);
 	font-weight: var(--font-weight--regular);
+	transition:
+		background-color var(--duration--fast) var(--easing--ease-out),
+		border-color var(--duration--fast) var(--easing--ease-out);
+
+	&:hover {
+		background-color: var(--color--amber-100);
+		border-color: var(--color--amber-300);
+	}
 
 	@include mixins.when(hit) {
-		border-color: var.$tag-primary-color;
+		border-color: var(--color--amber-500);
 	}
 
 	.el-tag__close {
-		color: var.$color-primary-light-1;
+		color: var(--color--amber-500);
+		transition:
+			background-color var(--duration--fast) var(--easing--ease-out),
+			color var(--duration--fast) var(--easing--ease-out);
 		&:hover {
-			color: var.$color-white;
-			background-color: var.$color-primary-light-1;
+			color: var(--color--neutral-white);
+			background-color: var(--color--amber-500);
 		}
 	}
 
@@ -25,9 +37,12 @@
 		color: var(--callout--color--text--info);
 		border-width: 1px;
 		border-style: solid;
+		transition:
+			background-color var(--duration--fast) var(--easing--ease-out),
+			border-color var(--duration--fast) var(--easing--ease-out);
 
 		@include mixins.when(hit) {
-			border-color: var.$tag-info-color;
+			border-color: var(--color--steel-500);
 		}
 
 		.svg-inline--fa {
@@ -35,10 +50,13 @@
 		}
 
 		.el-tag__close {
-			color: var.$color-info-light-1;
+			color: var(--color--steel-400);
+			transition:
+				background-color var(--duration--fast) var(--easing--ease-out),
+				color var(--duration--fast) var(--easing--ease-out);
 			&:hover {
-				color: var.$color-white;
-				background-color: var.$color-info-light-1;
+				color: var(--color--neutral-white);
+				background-color: var(--color--steel-500);
 			}
 		}
 	}
@@ -49,20 +67,26 @@
 		color: var(--callout--color--text--success);
 		border-width: 1px;
 		border-style: solid;
+		transition:
+			background-color var(--duration--fast) var(--easing--ease-out),
+			border-color var(--duration--fast) var(--easing--ease-out);
 
 		.svg-inline--fa {
 			color: var(--callout--icon-color--success);
 		}
 
 		@include mixins.when(hit) {
-			border-color: var.$tag-success-color;
+			border-color: var(--color--verdigris-500);
 		}
 
 		.el-tag__close {
-			color: var.$color-success-light-1;
+			color: var(--color--verdigris-400);
+			transition:
+				background-color var(--duration--fast) var(--easing--ease-out),
+				color var(--duration--fast) var(--easing--ease-out);
 			&:hover {
-				color: var.$color-white;
-				background-color: var.$color-success-light-1;
+				color: var(--color--neutral-white);
+				background-color: var(--color--verdigris-500);
 			}
 		}
 	}
@@ -73,9 +97,12 @@
 		color: var(--callout--color--text--warning);
 		border-width: 1px;
 		border-style: solid;
+		transition:
+			background-color var(--duration--fast) var(--easing--ease-out),
+			border-color var(--duration--fast) var(--easing--ease-out);
 
 		@include mixins.when(hit) {
-			border-color: var.$tag-warning-color;
+			border-color: var(--color--gold-500);
 		}
 
 		.svg-inline--fa {
@@ -83,10 +110,13 @@
 		}
 
 		.el-tag__close {
-			color: var.$color-warning-light-1;
+			color: var(--color--gold-400);
+			transition:
+				background-color var(--duration--fast) var(--easing--ease-out),
+				color var(--duration--fast) var(--easing--ease-out);
 			&:hover {
-				color: var.$color-white;
-				background-color: var.$color-warning-light-1;
+				color: var(--color--neutral-white);
+				background-color: var(--color--gold-500);
 			}
 		}
 	}
@@ -97,9 +127,12 @@
 		color: var(--callout--color--text--danger);
 		border-width: 1px;
 		border-style: solid;
+		transition:
+			background-color var(--duration--fast) var(--easing--ease-out),
+			border-color var(--duration--fast) var(--easing--ease-out);
 
 		@include mixins.when(hit) {
-			border-color: var.$tag-danger-color;
+			border-color: var(--color--ember-500);
 		}
 
 		.svg-inline--fa {
@@ -107,10 +140,13 @@
 		}
 
 		.el-tag__close {
-			color: var.$color-danger-light-1;
+			color: var(--color--ember-400);
+			transition:
+				background-color var(--duration--fast) var(--easing--ease-out),
+				color var(--duration--fast) var(--easing--ease-out);
 			&:hover {
-				color: var.$color-white;
-				background-color: var.$color-danger-light-1;
+				color: var(--color--neutral-white);
+				background-color: var(--color--ember-500);
 			}
 		}
 	}
@@ -121,10 +157,10 @@
 	display: inline-block;
 	padding: var.$tag-padding;
 	font-size: var.$tag-font-size;
-	color: var.$tag-primary-color;
+	color: var(--color--text--shade-1);
 	border-width: 1px;
 	border-style: solid;
-	border-radius: var.$tag-border-radius;
+	border-radius: var(--radius--full);
 	box-sizing: border-box;
 	white-space: nowrap;
 	line-height: 1;
@@ -180,6 +216,118 @@
 		.el-icon.el-tag__close {
 			margin-left: -3px;
 			transform: scale(0.7);
+		}
+	}
+}
+
+// Dark mode overrides for amber-accented tags
+@mixin darkTheme() {
+	// Default amber tag in dark mode
+	border-color: var(--color--amber-700);
+	background-color: var(--color--amber-900);
+	color: var(--color--amber-200);
+
+	&:hover {
+		background-color: var(--color--amber-800);
+		border-color: var(--color--amber-600);
+	}
+
+	@include mixins.when(hit) {
+		border-color: var(--color--amber-400);
+	}
+
+	.el-tag__close {
+		color: var(--color--amber-300);
+		&:hover {
+			color: var(--color--neutral-white);
+			background-color: var(--color--amber-500);
+		}
+	}
+}
+
+body[data-theme='dark'] {
+	.el-tag {
+		@include darkTheme();
+
+		&.el-tag--info {
+			.el-tag__close {
+				color: var(--color--steel-300);
+				&:hover {
+					background-color: var(--color--steel-400);
+				}
+			}
+		}
+
+		&.el-tag--success {
+			.el-tag__close {
+				color: var(--color--verdigris-300);
+				&:hover {
+					background-color: var(--color--verdigris-400);
+				}
+			}
+		}
+
+		&.el-tag--warning {
+			.el-tag__close {
+				color: var(--color--gold-300);
+				&:hover {
+					background-color: var(--color--gold-400);
+				}
+			}
+		}
+
+		&.el-tag--danger {
+			.el-tag__close {
+				color: var(--color--ember-300);
+				&:hover {
+					background-color: var(--color--ember-400);
+				}
+			}
+		}
+	}
+}
+
+// System preference dark mode
+@media (prefers-color-scheme: dark) {
+	body:not([data-theme]) {
+		.el-tag {
+			@include darkTheme();
+
+			&.el-tag--info {
+				.el-tag__close {
+					color: var(--color--steel-300);
+					&:hover {
+						background-color: var(--color--steel-400);
+					}
+				}
+			}
+
+			&.el-tag--success {
+				.el-tag__close {
+					color: var(--color--verdigris-300);
+					&:hover {
+						background-color: var(--color--verdigris-400);
+					}
+				}
+			}
+
+			&.el-tag--warning {
+				.el-tag__close {
+					color: var(--color--gold-300);
+					&:hover {
+						background-color: var(--color--gold-400);
+					}
+				}
+			}
+
+			&.el-tag--danger {
+				.el-tag__close {
+					color: var(--color--ember-300);
+					&:hover {
+						background-color: var(--color--ember-400);
+					}
+				}
+			}
 		}
 	}
 }

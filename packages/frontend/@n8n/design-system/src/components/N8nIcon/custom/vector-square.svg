@@ -1,10 +1,1 @@
-<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect x="2" y="2" width="5" height="5" rx="1" stroke="currentColor" style="stroke:currentColor;stroke-opacity:1;" stroke-width="2"/>
-<rect x="17" y="2" width="5" height="5" rx="1" stroke="currentColor" style="stroke:currentColor;stroke-opacity:1;" stroke-width="2"/>
-<rect x="17" y="17" width="5" height="5" rx="1" stroke="currentColor" style="stroke:currentColor;stroke-opacity:1;" stroke-width="2"/>
-<rect x="2" y="17" width="5" height="5" rx="1" stroke="currentColor" style="stroke:currentColor;stroke-opacity:1;" stroke-width="2"/>
-<rect x="7" y="3" width="10" height="2" fill="currentColor" style="fill:currentColor;fill-opacity:1;"/>
-<rect x="7" y="19" width="10" height="2" fill="currentColor" style="fill:currentColor;fill-opacity:1;"/>
-<rect x="3" y="7" width="2" height="10" fill="currentColor" style="fill:currentColor;fill-opacity:1;"/>
-<rect x="19" y="7" width="2" height="10" fill="currentColor" style="fill:currentColor;fill-opacity:1;"/>
-</svg>
+<svg viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M 0 0 L 4 0 L 4 4 L 0 4 Z M 10 0 L 14 0 L 14 4 L 10 4 Z M 10 10 L 14 10 L 14 14 L 10 14 Z M 0 10 L 4 10 L 4 14 L 0 14 Z M 4 1 L 10 1 L 10 3 L 4 3 Z M 4 11 L 10 11 L 10 13 L 4 13 Z M 1 4 L 3 4 L 3 10 L 1 10 Z M 11 4 L 13 4 L 13 10 L 11 10 Z" /></svg>

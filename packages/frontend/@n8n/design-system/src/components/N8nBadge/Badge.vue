@@ -50,21 +50,24 @@ withDefaults(defineProps<BadgeProps>(), {
 	composes: badge;
 	border-radius: var(--radius);
 	color: var(--color--success);
-	border-color: var(--color--success);
+	border-color: var(--color--success--tint-2);
+	background-color: var(--color--success--tint-4);
 }
 
 .warning {
 	composes: badge;
 	border-radius: var(--radius);
-	color: var(--color--warning);
-	border-color: var(--color--warning);
+	color: var(--color--warning--shade-1);
+	border-color: var(--color--warning--tint-1);
+	background-color: var(--color--warning--tint-2);
 }
 
 .danger {
 	composes: badge;
 	border-radius: var(--radius);
 	color: var(--color--danger);
-	border-color: var(--color--danger);
+	border-color: var(--color--danger--tint-3);
+	background-color: var(--color--danger--tint-4);
 }
 
 .primary {

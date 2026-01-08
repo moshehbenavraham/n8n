@@ -114,10 +114,32 @@ const getLabel = (user: IUser) =>
 .itemContainer {
 	--select--option--padding: var(--spacing--2xs) var(--spacing--sm);
 	--select--option--line-height: 1;
+
+	/* User option hover styling */
+	&:hover {
+		background-color: var(--color--background--light-1);
+	}
+
+	/* Selected user option styling */
+	&.selected {
+		background-color: var(--color--amber-50);
+
+		&:hover {
+			background-color: var(--color--amber-100);
+		}
+	}
+
+	/* Disabled user option styling */
+	&.is-disabled {
+		opacity: 0.5;
+		cursor: not-allowed;
+	}
 }
 
 :root .limitPopperWidth {
 	width: 0;
+	border-radius: var(--radius--lg);
+	box-shadow: var(--shadow--lg);
 
 	li > span {
 		text-overflow: ellipsis;

@@ -113,10 +113,14 @@ const iconColor = computed(() => {
 	cursor: pointer;
 	color: var(--color--text);
 	border-radius: var(--spacing--4xs);
-	cursor: pointer;
 	min-width: 0;
 	width: 100%;
 	position: relative;
+	// Forge motion: smooth transitions for menu interactions
+	transition:
+		background-color var(--duration--fast) var(--easing--ease-in-out),
+		color var(--duration--fast) var(--easing--ease-in-out),
+		box-shadow var(--duration--fast) var(--easing--ease-in-out);
 
 	&:hover .menuItemIcon {
 		color: var(--color--text--shade-1);
@@ -135,11 +139,12 @@ const iconColor = computed(() => {
 	&.compact {
 		gap: 0;
 	}
-}
 
-.menuItem:focus-visible {
-	outline: 1px solid var(--color--secondary);
-	outline-offset: -1px;
+	// Forge amber focus ring
+	&:focus-visible {
+		outline: none;
+		box-shadow: var(--shadow--glow-sm);
+	}
 }
 
 .menuItemText {

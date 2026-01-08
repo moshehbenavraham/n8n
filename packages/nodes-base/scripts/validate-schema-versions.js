@@ -100,6 +100,24 @@ function extractVersionFromSource(nodeFilePath) {
 }
 
 /**
+ * Find versionDescription.ts file in node directory tree (for factory pattern nodes)
+ */
+function findVersionDescriptionFile(nodeDir) {
+	const searchPaths = [
+		path.join(nodeDir, 'versionDescription.ts'),
+		path.join(nodeDir, 'actions', 'versionDescription.ts'),
+		path.join(nodeDir, 'v1', 'actions', 'versionDescription.ts'),
+		path.join(nodeDir, 'v1', 'versionDescription.ts'),
+	];
+	for (const searchPath of searchPaths) {
+		if (fs.existsSync(searchPath)) {
+			return searchPath;
+		}
+	}
+	return null;
+}
+
+/**
  * Convert version number to schema directory format (e.g., 2.2 -> "2.2.0")
  */
 function versionToSchemaFormat(version) {
@@ -136,7 +154,15 @@ function validateSchemaVersions() {
 			warnings.push(`${relativePath}: Could not find node file`);
 			continue;
 		}
-		const versionInfo = extractVersionFromSource(actualNodeFile);
+		let versionInfo = extractVersionFromSource(actualNodeFile);
+
+		// Fallback: check versionDescription.ts for factory pattern nodes
+		if (!versionInfo) {
+			const versionDescFile = findVersionDescriptionFile(path.dirname(actualNodeFile));
+			if (versionDescFile) {
+				versionInfo = extractVersionFromSource(versionDescFile);
+			}
+		}
 
 		if (!versionInfo) {
 			warnings.push(`${relativePath}: Could not extract version info`);

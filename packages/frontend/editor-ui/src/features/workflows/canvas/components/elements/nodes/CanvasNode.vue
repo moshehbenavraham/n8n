@@ -437,6 +437,13 @@ onBeforeUnmount(() => {
 
 <style lang="scss" module>
 .canvasNode {
+	// Obsidian Forge: GPU-accelerated transitions for smooth hover effects
+	// The actual transform and shadow are applied to child node components
+	transition:
+		transform var(--canvas-node--transition--duration, 150ms) var(--easing--ease-out, ease-out),
+		filter var(--canvas-node--transition--duration, 150ms) var(--easing--ease-out, ease-out);
+	will-change: transform;
+
 	.canvasNodeToolbarItems {
 		transition: opacity 0.1s ease-in;
 		opacity: 0;
@@ -448,6 +455,12 @@ onBeforeUnmount(() => {
 		.canvasNodeToolbarItems {
 			opacity: 1;
 		}
+	}
+
+	// Respect reduced motion preference
+	@media (prefers-reduced-motion: reduce) {
+		transition: none;
+		will-change: auto;
 	}
 }
 

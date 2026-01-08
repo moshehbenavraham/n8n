@@ -23,6 +23,10 @@ RUN cd /usr/local/lib/node_modules/n8n && \
     rm -rf /root/.npm /tmp/*
 
 EXPOSE 5678/tcp
+
+HEALTHCHECK --interval=30s --timeout=5s --start-period=30s --retries=3 \
+    CMD wget --no-verbose --tries=1 --spider http://localhost:5678/healthz || exit 1
+
 USER node
 ENTRYPOINT ["tini", "--", "/docker-entrypoint.sh"]
 

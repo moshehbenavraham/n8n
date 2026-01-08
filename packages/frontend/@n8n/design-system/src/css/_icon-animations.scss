@@ -1,0 +1,167 @@
+// _icon-animations.scss
+// Obsidian Forge Design System - Icon Animation Keyframes
+// Session: phase05-session01-icon-animation-foundation
+//
+// Defines icon-specific keyframe animations for the Chrome Deco visual language:
+// - icon-pulse: Scale/opacity oscillation for loading/processing states
+// - icon-glow-breathe: Ambient drop-shadow cycling for active indicators
+// - icon-shimmer: Chrome highlight sweep effect
+// - icon-brighten: Quick brightness flash for feedback
+//
+// All animations respect prefers-reduced-motion via media query
+
+// Icon Pulse Animation
+// Scale and opacity oscillation for loading/processing states
+// Uses transform (GPU-composited) for smooth 60fps performance
+@keyframes icon-pulse {
+	0%,
+	100% {
+		transform: scale(1);
+		opacity: 1;
+	}
+	50% {
+		transform: scale(1.1);
+		opacity: 0.8;
+	}
+}
+
+// Icon Glow Breathe Animation
+// Ambient drop-shadow cycling for active/running indicators
+// Uses filter drop-shadow for SVG-compatible glow effect
+@keyframes icon-glow-breathe {
+	0%,
+	100% {
+		filter: drop-shadow(
+			var(--icon--glow--shadow--current, var(--icon--glow--shadow--subtle))
+				var(--icon--glow--color--current, var(--icon--glow--color--amber))
+		);
+		opacity: 0.85;
+	}
+	50% {
+		filter: drop-shadow(
+			var(--icon--glow--shadow--current, var(--icon--glow--shadow--base))
+				var(--icon--glow--color--current, var(--icon--glow--color--amber))
+		);
+		opacity: 1;
+	}
+}
+
+// Icon Shimmer Animation
+// Chrome highlight sweep effect for premium/metallic appearance
+// Creates a diagonal light sweep using brightness filter
+@keyframes icon-shimmer {
+	0% {
+		filter: brightness(1);
+	}
+	25% {
+		filter: brightness(1.15);
+	}
+	50% {
+		filter: brightness(1.3);
+	}
+	75% {
+		filter: brightness(1.15);
+	}
+	100% {
+		filter: brightness(1);
+	}
+}
+
+// Icon Brighten Animation
+// Quick brightness flash for user feedback on click/action
+// Short duration for immediate response feel
+@keyframes icon-brighten {
+	0% {
+		filter: brightness(1);
+	}
+	50% {
+		filter: brightness(1.4);
+	}
+	100% {
+		filter: brightness(1);
+	}
+}
+
+// Animation Class Mixins
+// Applied via CSS modules in Icon.vue
+
+// Base animation class - applies animation with accessibility check
+@mixin icon-animation-base {
+	will-change: transform, filter, opacity;
+
+	// Disable animations for users who prefer reduced motion
+	@media (prefers-reduced-motion: reduce) {
+		animation: none !important;
+		filter: none !important;
+	}
+}
+
+// Animation utility classes (exported for Icon.vue CSS modules)
+.icon-animate-pulse {
+	@include icon-animation-base;
+	animation: icon-pulse var(--icon--animation--duration--pulse)
+		var(--icon--animation--easing--pulse) infinite;
+}
+
+.icon-animate-glow-breathe {
+	@include icon-animation-base;
+	animation: icon-glow-breathe var(--icon--animation--duration--glow)
+		var(--icon--animation--easing--glow) infinite;
+}
+
+.icon-animate-shimmer {
+	@include icon-animation-base;
+	animation: icon-shimmer var(--icon--animation--duration--shimmer)
+		var(--icon--animation--easing--shimmer) infinite;
+}
+
+.icon-animate-brighten {
+	@include icon-animation-base;
+	animation: icon-brighten var(--icon--animation--duration--brighten)
+		var(--icon--animation--easing--brighten) 1;
+}
+
+// Glow intensity modifiers
+.icon-glow-subtle {
+	--icon--glow--shadow--current: var(--icon--glow--shadow--subtle);
+}
+
+.icon-glow-medium {
+	--icon--glow--shadow--current: var(--icon--glow--shadow--base);
+}
+
+.icon-glow-strong {
+	--icon--glow--shadow--current: var(--icon--glow--shadow--strong);
+}
+
+// Glow color modifiers
+.icon-glow-amber {
+	--icon--glow--color--current: var(--icon--glow--color--amber);
+}
+
+.icon-glow-verdigris {
+	--icon--glow--color--current: var(--icon--glow--color--verdigris);
+}
+
+.icon-glow-ember {
+	--icon--glow--color--current: var(--icon--glow--color--ember);
+}
+
+.icon-glow-steel {
+	--icon--glow--color--current: var(--icon--glow--color--steel);
+}
+
+// Static glow class (non-animated drop-shadow)
+.icon-glow {
+	filter: drop-shadow(
+		var(--icon--glow--shadow--current, var(--icon--glow--shadow--base))
+			var(--icon--glow--color--current, var(--icon--glow--color--amber))
+	);
+
+	@media (prefers-reduced-motion: reduce) {
+		filter: drop-shadow(
+			var(--icon--glow--shadow--current, var(--icon--glow--shadow--base))
+				var(--icon--glow--color--current, var(--icon--glow--color--amber))
+		);
+	}
+}

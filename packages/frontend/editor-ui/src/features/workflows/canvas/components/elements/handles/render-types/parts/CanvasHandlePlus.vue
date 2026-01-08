@@ -168,6 +168,9 @@ function onClick(event: MouseEvent) {
 			oklch(var(--canvas-handle-plus-line--color--lightness--light) 0 0),
 			oklch(var(--canvas-handle-plus-line--color--lightness--dark) 0 0)
 		);
+		// Obsidian Forge: Smooth transition for line color
+		transition: stroke var(--canvas-node--transition--duration, 150ms)
+			var(--easing--ease-out, ease-out);
 	}
 
 	&.success {
@@ -177,20 +180,33 @@ function onClick(event: MouseEvent) {
 	}
 
 	.plus {
-		color: light-dark(var(--color--neutral-700), var(--color--neutral-250));
+		// Obsidian Forge: Tokenized plus button colors
+		color: var(--canvas-handle--plus--color);
+
+		// Obsidian Forge: Smooth transition for plus button
+		transition: color var(--canvas-node--transition--duration, 150ms)
+			var(--easing--ease-out, ease-out);
 
 		&:hover {
 			cursor: pointer;
-			color: light-dark(var(--color--neutral-850), var(--color--neutral-150));
+			color: var(--canvas-handle--plus--color--hover);
 
 			path {
-				fill: light-dark(var(--color--neutral-250), var(--color--neutral-800));
+				fill: var(--canvas-handle--plus--color--background--hover);
 			}
 
 			rect {
-				stroke: light-dark(var(--color--neutral-250), var(--color--neutral-800));
-				fill: light-dark(var(--color--neutral-250), var(--color--neutral-800));
+				stroke: var(--canvas-handle--plus--color--background--hover);
+				fill: var(--canvas-handle--plus--color--background--hover);
 			}
+		}
+	}
+
+	// Respect reduced motion preference
+	@media (prefers-reduced-motion: reduce) {
+		.line,
+		.plus {
+			transition: none;
 		}
 	}
 }

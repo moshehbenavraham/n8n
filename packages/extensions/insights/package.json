@@ -29,7 +29,7 @@
   },
   "scripts": {
     "cleanup": "rimraf dist",
-    "dev": "tsdown --watch",
+    "dev": "tsdown --watch --ignore-watch dist",
     "lint": "eslint src --quiet",
     "lint:fix": "eslint src --fix",
     "lint:styles": "stylelint \"src/**/*.{scss,sass,vue}\" --cache",

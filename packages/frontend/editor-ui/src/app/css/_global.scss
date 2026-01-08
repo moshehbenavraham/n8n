@@ -284,3 +284,67 @@
 		}
 	}
 }
+
+// Forge Atmosphere - Visual atmosphere for main app containers
+// Applies subtle noise texture and gradient mesh background
+.forge-atmosphere {
+	position: relative;
+
+	// Noise texture overlay
+	&::before {
+		content: '';
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+		opacity: var(--atmosphere--noise--opacity, 0.02);
+		background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+		background-repeat: repeat;
+		z-index: 1;
+	}
+
+	// Gradient mesh background
+	background:
+		radial-gradient(
+			ellipse at 20% 30%,
+			var(--atmosphere--gradient--primary, var(--color--obsidian-100)) 0%,
+			transparent 50%
+		),
+		radial-gradient(
+			ellipse at 80% 70%,
+			var(--atmosphere--gradient--secondary, var(--color--steel-100)) 0%,
+			transparent 50%
+		),
+		radial-gradient(
+			ellipse at 50% 50%,
+			var(--atmosphere--gradient--accent, var(--color--amber-alpha-100)) 0%,
+			transparent 30%
+		),
+		var(--color--background);
+	background-attachment: fixed;
+}
+
+// Apply atmosphere to main app shell
+#app,
+.n8n-app {
+	min-height: 100vh;
+}
+
+// Forge focus ring utility class
+.forge-focus-ring {
+	&:focus-visible {
+		outline: none;
+		box-shadow:
+			0 0 0 2px var(--color--background),
+			0 0 0 4px var(--color--amber-500),
+			0 0 var(--focus--glow--spread, 12px) var(--focus--glow--color, var(--color--amber-alpha-300));
+	}
+}
+
+// Reduced motion preference
+@media (prefers-reduced-motion: reduce) {
+	.forge-focus-ring:focus-visible {
+		box-shadow:
+			0 0 0 2px var(--color--background),
+			0 0 0 4px var(--color--amber-500);
+	}
+}

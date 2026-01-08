@@ -43,7 +43,7 @@ $color-danger-light-1: var(--color--danger);
 $color-danger-light: var(--color--danger--tint-3);
 $color-danger-lighter: var(--color--danger--tint-4);
 
-$color-info-light-1: var(-color-info);
+$color-info-light-1: var(--color--info);
 $color-info-lighter: var(--color--info--tint-2);
 
 // Background
@@ -351,15 +351,15 @@ $message-warning-font-color: var(--color--warning);
 /// color||Color|0
 $message-danger-font-color: var(--color--danger);
 
-/* Notification
+/* Notification (Obsidian Forge)
 -------------------------- */
 $notification-width: 330px;
 /// padding||Spacing|3
 $notification-padding: 14px 26px 14px 13px;
-$notification-radius: 8px;
-$notification-shadow: $box-shadow-light;
+$notification-radius: var(--radius--lg);
+$notification-shadow: var(--notification--shadow, var(--shadow--lg));
 /// color||Color|0
-$notification-border-color: var(--border-color--light);
+$notification-border-color: var(--notification--border-color, var(--border-color--light));
 $notification-icon-size: 24px;
 $notification-close-font-size: $message-close-size;
 $notification-group-margin-left: 13px;
@@ -378,6 +378,7 @@ $notification-close-color: var(--color--text--tint-1);
 /// color||Color|0
 $notification-close-hover-color: var(--color--text--shade-1);
 
+// Semantic state icon colors (Forge palette)
 /// color||Color|0
 $notification-success-icon-color: var(--color--success);
 /// color||Color|0
@@ -386,6 +387,18 @@ $notification-info-icon-color: var(--color--info);
 $notification-warning-icon-color: var(--color--warning);
 /// color||Color|0
 $notification-danger-icon-color: var(--color--danger);
+
+// Semantic state background colors (Forge palette)
+$notification-success-background-color: var(--notification--color--background--success);
+$notification-error-background-color: var(--notification--color--background--error);
+$notification-warning-background-color: var(--notification--color--background--warning);
+$notification-info-background-color: var(--notification--color--background--info);
+
+// Semantic state border colors (left accent stripe)
+$notification-success-border-color: var(--notification--border-color--success);
+$notification-error-border-color: var(--notification--border-color--error);
+$notification-warning-border-color: var(--notification--border-color--warning);
+$notification-info-border-color: var(--notification--border-color--info);
 
 /* Input
 -------------------------- */
@@ -682,6 +695,19 @@ $dialog-content-font-size: 14px;
 $dialog-padding-primary: var(--spacing--lg);
 $dialog-close-top: var(--dialog--close--spacing--top, var(--spacing--lg));
 
+/* Modal (Forge tokens)
+-------------------------- */
+$modal-backdrop-opacity: var(--modal--backdrop--opacity);
+$modal-backdrop-blur: var(--modal--backdrop--blur);
+$modal-background-color: var(--modal--color--background);
+$modal-border-color: var(--modal--border-color);
+$modal-border-radius: var(--modal--radius);
+$modal-box-shadow: var(--modal--shadow);
+$modal-animation-duration-enter: var(--modal--animation--duration--enter);
+$modal-animation-duration-exit: var(--modal--animation--duration--exit);
+$modal-animation-easing-enter: var(--modal--animation--easing--enter);
+$modal-animation-easing-exit: var(--modal--animation--easing--exit);
+
 /* Table
 -------------------------- */
 /// color||Color|0
@@ -728,14 +754,14 @@ $popup-modal-background-color: var(--dialog--overlay--color--background);
 /// opacity||Other|1
 $popup-modal-opacity: 0.65;
 
-/* Popover
+/* Popover (Obsidian Forge)
 -------------------------- */
 /// color||Color|0
-$popover-background-color: $color-white;
+$popover-background-color: var(--popover--color--background, var(--color--foreground--tint-2));
 /// fontSize||Font|1
 $popover-font-size: $font-size-base;
 /// color||Color|0
-$popover-border-color: var(--border-color--light);
+$popover-border-color: var(--popover--border-color, var(--color--obsidian-200));
 $popover-arrow-size: 6px;
 /// padding||Spacing|3
 $popover-padding: var(--spacing--sm);
@@ -744,20 +770,24 @@ $popover-padding-large: 18px 20px;
 $popover-title-font-size: 16px;
 /// color||Color|0
 $popover-title-font-color: var(--color--text--shade-1);
+// Forge elevation shadow
+$popover-shadow: var(--popover--shadow, var(--shadow--lg));
 
-/* Tooltip
+/* Tooltip (Obsidian Forge)
 -------------------------- */
 /// color|1|Color|0
-$tooltip-fill: var(--color--background--shade-2);
+$tooltip-fill: var(--tooltip--color--background, var(--color--obsidian-900));
 /// color|1|Color|0
-$tooltip-color: $color-white;
+$tooltip-color: var(--tooltip--color--text, var(--color--neutral-white));
 /// fontSize||Font|1
 $tooltip-font-size: 12px;
 /// color||Color|0
-$tooltip-border-color: var(--color--background--shade-2);
+$tooltip-border-color: var(--tooltip--border-color, var(--color--amber-alpha-200));
 $tooltip-arrow-size: 6px;
 /// padding||Spacing|3
 $tooltip-padding: 10px;
+// Forge elevation shadow
+$tooltip-shadow: var(--tooltip--shadow, var(--shadow--lg));
 
 /* Tag
 -------------------------- */

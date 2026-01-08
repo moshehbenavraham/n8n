@@ -73,14 +73,16 @@ function onDelete() {
 </style>
 
 <style lang="scss">
+// Edge toolbar buttons - Obsidian Forge theme with subtle amber accents
 .canvas-edge-toolbar-button {
 	border-width: 0;
-	--button--color--text: light-dark(var(--color--neutral-700), var(--color--neutral-250));
-	--button--color--text--hover: light-dark(var(--color--neutral-850), var(--color--neutral-150));
-	--button--color--background: light-dark(var(--color--neutral-200), var(--color--neutral-850));
+	--button--color--text: light-dark(var(--color--steel-600), var(--color--steel-300));
+	--button--color--text--hover: light-dark(var(--color--amber-600), var(--color--amber-400));
+	--button--color--background: light-dark(var(--color--neutral-200), var(--color--obsidian-800));
 	--button--color--background--hover: light-dark(
 		var(--color--neutral-250),
-		var(--color--neutral-800)
+		var(--color--obsidian-700)
 	);
+	transition: all var(--duration--fast) var(--easing--ease-out);
 }
 </style>

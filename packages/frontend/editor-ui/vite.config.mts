@@ -227,9 +227,8 @@ export default mergeConfig(
 			target,
 		},
 		optimizeDeps: {
-			esbuildOptions: {
-				target,
-			},
+			// Note: esbuildOptions is deprecated in Vite 7+ (uses Rolldown now)
+			// The build.target setting above handles browser targeting
 		},
 		worker: {
 			format: 'es',
