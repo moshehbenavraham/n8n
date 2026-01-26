@@ -303,8 +303,7 @@
 	}
 
 	// Gradient mesh background
-	background:
-		radial-gradient(
+	background: radial-gradient(
 			ellipse at 20% 30%,
 			var(--atmosphere--gradient--primary, var(--color--obsidian-100)) 0%,
 			transparent 50%
