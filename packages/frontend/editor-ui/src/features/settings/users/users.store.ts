@@ -30,7 +30,6 @@ import * as invitationsApi from './invitation.api';
 import { computed, ref } from 'vue';
 import { useSettingsStore } from '@/app/stores/settings.store';
 import * as onboardingApi from '@/app/api/workflow-webhooks';
-import * as promptsApi from '@n8n/rest-api-client/api/prompts';
 import { hasPermission } from '@/app/utils/rbac/permissions';
 
 const _isPendingUser = (user: IUserResponse | null) => !!user?.isPending;
@@ -250,13 +249,16 @@ export const useUsersStore = defineStore(STORES.USERS, () => {
 		}
 	};
 
-	const validateSignupToken = async (params: { inviteeId: string; inviterId: string }) => {
+	const validateSignupToken = async (
+		params: { token?: string } | { inviteeId?: string; inviterId?: string },
+	) => {
 		return await usersApi.validateSignupToken(rootStore.restApiContext, params);
 	};
 
 	const acceptInvitation = async (params: {
-		inviteeId: string;
-		inviterId: string;
+		token?: string;
+		inviteeId?: string;
+		inviterId?: string;
 		firstName: string;
 		lastName: string;
 		password: string;
@@ -422,18 +424,6 @@ export const useUsersStore = defineStore(STORES.USERS, () => {
 		return null;
 	};
 
-	const submitContactInfo = async (email: string) => {
-		try {
-			return await promptsApi.submitContactInfo(
-				rootStore.instanceId,
-				currentUserId.value ?? '',
-				email,
-			);
-		} catch (error) {
-			return;
-		}
-	};
-
 	const usersList = useAsyncState(
 		async (filter?: UsersListFilterDto) =>
 			await usersApi.getUsers(rootStore.restApiContext, filter),
@@ -506,7 +496,6 @@ export const useUsersStore = defineStore(STORES.USERS, () => {
 		isCalloutDismissed,
 		setCalloutDismissed,
 		submitContactEmail,
-		submitContactInfo,
 		setUserQuota,
 		usersList,
 	};

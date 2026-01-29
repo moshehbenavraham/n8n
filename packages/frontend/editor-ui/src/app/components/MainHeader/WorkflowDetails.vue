@@ -8,6 +8,8 @@ import WorkflowTagsDropdown from '@/features/shared/tags/components/WorkflowTags
 import { MAX_WORKFLOW_NAME_LENGTH, MODAL_CONFIRM, VIEWS } from '@/app/constants';
 
 import { useProjectsStore } from '@/features/collaboration/projects/projects.store';
+import { useCollaborationStore } from '@/features/collaboration/collaboration/collaboration.store';
+import { useSourceControlStore } from '@/features/integrations/sourceControl.ee/sourceControl.store';
 import { useDocumentTitle } from '@/app/composables/useDocumentTitle';
 import { useMessage } from '@/app/composables/useMessage';
 import { useTelemetry } from '@/app/composables/useTelemetry';
@@ -17,7 +19,6 @@ import { nodeViewEventBus } from '@/app/event-bus';
 import type { IWorkflowDb } from '@/Interface';
 import type { FolderShortInfo } from '@/features/core/folders/folders.types';
 import { useFoldersStore } from '@/features/core/folders/folders.store';
-import { useNpsSurveyStore } from '@/app/stores/npsSurvey.store';
 import { ProjectTypes } from '@/features/collaboration/projects/projects.types';
 import type { PathItem } from '@n8n/design-system/components/N8nBreadcrumbs/Breadcrumbs.vue';
 import WorkflowHeaderDraftPublishActions from '@/app/components/MainHeader/WorkflowHeaderDraftPublishActions.vue';
@@ -39,7 +40,8 @@ import { N8nBadge, N8nInlineTextEdit } from '@n8n/design-system';
 import { useSettingsStore } from '@/app/stores/settings.store';
 import { useUIStore } from '@/app/stores/ui.store';
 import { useWorkflowsStore } from '@/app/stores/workflows.store';
-import { getWorkflowId } from '@/app/components/MainHeader/utils';
+import { useWorkflowsListStore } from '@/app/stores/workflowsList.store';
+
 const WORKFLOW_NAME_BP_TO_WIDTH: { [key: string]: number } = {
 	XS: 150,
 	SM: 200,
@@ -49,7 +51,6 @@ const WORKFLOW_NAME_BP_TO_WIDTH: { [key: string]: number } = {
 };
 
 const props = defineProps<{
-	readOnly?: boolean;
 	id: IWorkflowDb['id'];
 	tags: IWorkflowDb['tags'];
 	name: IWorkflowDb['name'];
@@ -66,9 +67,11 @@ const $style = useCssModule();
 const settingsStore = useSettingsStore();
 const uiStore = useUIStore();
 const workflowsStore = useWorkflowsStore();
+const workflowsListStore = useWorkflowsListStore();
 const projectsStore = useProjectsStore();
+const collaborationStore = useCollaborationStore();
+const sourceControlStore = useSourceControlStore();
 const foldersStore = useFoldersStore();
-const npsSurveyStore = useNpsSurveyStore();
 const i18n = useI18n();
 
 const router = useRouter();
@@ -101,21 +104,20 @@ const isNewWorkflow = computed(() => {
 	return !workflowsStore.isWorkflowSaved[props.id];
 });
 
-const isWorkflowSaving = computed(() => {
-	return uiStore.isActionActive.workflowSaving;
-});
-
 const workflowPermissions = computed(() => getResourcePermissions(props.scopes).workflow);
+
+const readOnly = computed(
+	() => sourceControlStore.preferences.branchReadOnly || collaborationStore.shouldBeReadOnly,
+);
+
+// For workflow name and tags editing: needs update permission and not archived
+const readOnlyActions = computed(() => {
+	if (isNewWorkflow.value) return readOnly.value;
+	return readOnly.value || props.isArchived || !workflowPermissions.value.update;
+});
 
 const workflowTagIds = computed(() => {
 	return (props.tags ?? []).map((tag) => (typeof tag === 'string' ? tag : tag.id));
-});
-
-const currentProjectName = computed(() => {
-	if (projectsStore.currentProject?.type === ProjectTypes.Personal) {
-		return locale.baseText('projects.menu.personal');
-	}
-	return projectsStore.currentProject?.name;
 });
 
 const currentFolderForBreadcrumbs = computed(() => {
@@ -138,41 +140,11 @@ watch(
 	},
 );
 
-async function onSaveButtonClick() {
-	// If the workflow is saving, do not allow another save
-	if (isWorkflowSaving.value) {
+function onTagsEditEnable() {
+	if (readOnlyActions.value) {
 		return;
 	}
 
-	const id = getWorkflowId(props.id, route.params.name);
-
-	const name = props.name;
-	const tags = props.tags as string[];
-
-	// Capture the "new" state before saving, as the route will be replaced during save
-	const wasNewWorkflow = !workflowsStore.isWorkflowSaved[props.id];
-
-	const saved = await workflowSaving.saveCurrentWorkflow({
-		id,
-		name,
-		tags,
-	});
-
-	if (saved) {
-		showCreateWorkflowSuccessToast(id, wasNewWorkflow);
-
-		await npsSurveyStore.fetchPromptsData();
-
-		if (route.name === VIEWS.EXECUTION_DEBUG) {
-			await router.replace({
-				name: VIEWS.WORKFLOW,
-				params: { name: props.id },
-			});
-		}
-	}
-}
-
-function onTagsEditEnable() {
 	appliedTagIds.value = (props.tags ?? []) as string[];
 	isTagsEditEnabled.value = true;
 
@@ -194,6 +166,14 @@ async function onTagsBlur() {
 	if (tagsSaving.value) {
 		return;
 	}
+
+	if (readOnlyActions.value) {
+		isTagsEditEnabled.value = false;
+		return;
+	}
+
+	collaborationStore.requestWriteAccess();
+
 	tagsSaving.value = true;
 
 	const saved = await workflowSaving.saveCurrentWorkflow({ tags });
@@ -238,14 +218,9 @@ async function onNameSubmit(name: string) {
 	}
 
 	uiStore.addActiveAction('workflowSaving');
-	const id = getWorkflowId(props.id, route.params.name);
-
-	// Capture the "new" state before saving, as the route will be replaced during save
-	const wasNewWorkflow = !workflowsStore.isWorkflowSaved[props.id];
 
 	const saved = await workflowSaving.saveCurrentWorkflow({ name });
 	if (saved) {
-		showCreateWorkflowSuccessToast(id, wasNewWorkflow);
 		documentTitle.setDocumentTitle(newName, 'IDLE');
 	}
 	uiStore.removeActiveAction('workflowSaving');
@@ -282,7 +257,7 @@ async function handleArchiveWorkflow() {
 		return;
 	}
 
-	uiStore.stateIsDirty = false;
+	uiStore.markStateClean();
 	toast.showMessage({
 		title: locale.baseText('mainSidebar.showMessage.handleArchive.title', {
 			interpolate: { workflowName: props.name },
@@ -291,7 +266,7 @@ async function handleArchiveWorkflow() {
 	});
 
 	// Navigate to the appropriate project's workflow list
-	const workflow = workflowsStore.getWorkflowById(props.id);
+	const workflow = workflowsListStore.getWorkflowById(props.id);
 	if (workflow?.homeProject?.type === ProjectTypes.Team) {
 		await router.push({
 			name: VIEWS.PROJECTS_WORKFLOWS,
@@ -334,16 +309,16 @@ async function handleDeleteWorkflow() {
 	}
 
 	// Get workflow before deletion to know which project to navigate to
-	const workflow = workflowsStore.getWorkflowById(props.id);
+	const workflow = workflowsListStore.getWorkflowById(props.id);
 	const isTeamProject = workflow?.homeProject?.type === ProjectTypes.Team;
 
 	try {
-		await workflowsStore.deleteWorkflow(props.id);
+		await workflowsListStore.deleteWorkflow(props.id);
 	} catch (error) {
 		toast.showError(error, locale.baseText('generic.deleteWorkflowError'));
 		return;
 	}
-	uiStore.stateIsDirty = false;
+	uiStore.markStateClean();
 	// Reset tab title since workflow is deleted.
 	documentTitle.reset();
 	toast.showMessage({
@@ -362,66 +337,6 @@ async function handleDeleteWorkflow() {
 	} else {
 		await router.push({ name: VIEWS.WORKFLOWS });
 	}
-}
-
-function getPersonalProjectToastContent() {
-	const title = locale.baseText('workflows.create.personal.toast.title');
-	if (!props.currentFolder) {
-		return { title };
-	}
-
-	const toastMessage = locale.baseText('workflows.create.folder.toast.title', {
-		interpolate: {
-			projectName: 'Personal',
-			folderName: props.currentFolder.name,
-		},
-	});
-
-	return { title, toastMessage };
-}
-
-function getToastContent() {
-	const currentProject = projectsStore.currentProject;
-	const isPersonalProject =
-		!projectsStore.currentProject || currentProject?.id === projectsStore.personalProject?.id;
-	const projectName = currentProjectName.value ?? '';
-
-	if (isPersonalProject) {
-		return getPersonalProjectToastContent();
-	}
-
-	const titleKey = props.currentFolder
-		? 'workflows.create.folder.toast.title'
-		: 'workflows.create.project.toast.title';
-
-	const interpolateData: Record<string, string> = props.currentFolder
-		? { projectName, folderName: props.currentFolder.name ?? '' }
-		: { projectName };
-
-	const title = locale.baseText(titleKey, { interpolate: interpolateData });
-
-	const toastMessage = locale.baseText('workflows.create.project.toast.text', {
-		interpolate: { projectName },
-	});
-
-	return { title, toastMessage };
-}
-
-function showCreateWorkflowSuccessToast(id?: string, wasNewWorkflow?: boolean) {
-	if (!id) return;
-
-	// Only show toast if this is a newly created workflow
-	const shouldShowToast = wasNewWorkflow ?? false;
-
-	if (!shouldShowToast) return;
-
-	const { title, toastMessage } = getToastContent();
-
-	toast.showMessage({
-		title,
-		message: toastMessage,
-		type: 'success',
-	});
 }
 
 const onBreadcrumbsItemSelected = (item: PathItem) => {
@@ -487,8 +402,8 @@ onBeforeUnmount(() => {
 							:model-value="name"
 							:max-length="MAX_WORKFLOW_NAME_LENGTH"
 							:max-width="WORKFLOW_NAME_BP_TO_WIDTH[bp]"
-							:read-only="readOnly || isArchived || (!isNewWorkflow && !workflowPermissions.update)"
-							:disabled="readOnly || isArchived || (!isNewWorkflow && !workflowPermissions.update)"
+							:read-only="readOnlyActions"
+							:disabled="readOnlyActions"
 							@update:model-value="onNameSubmit"
 						/>
 					</template>
@@ -498,11 +413,7 @@ onBeforeUnmount(() => {
 		<span class="tags" data-test-id="workflow-tags-container">
 			<template v-if="settingsStore.areTagsEnabled">
 				<WorkflowTagsDropdown
-					v-if="
-						isTagsEditEnabled &&
-						!(readOnly || isArchived) &&
-						(isNewWorkflow || workflowPermissions.update)
-					"
+					v-if="isTagsEditEnabled && !readOnlyActions"
 					ref="dropdown"
 					v-model="appliedTagIds"
 					:event-bus="tagsEventBus"
@@ -512,13 +423,7 @@ onBeforeUnmount(() => {
 					@blur="onTagsBlur"
 					@esc="onTagsEditEsc"
 				/>
-				<div
-					v-else-if="
-						(tags ?? []).length === 0 &&
-						!(readOnly || isArchived) &&
-						(isNewWorkflow || workflowPermissions.update)
-					"
-				>
+				<div v-else-if="(tags ?? []).length === 0 && !readOnlyActions">
 					<span class="add-tag clickable" data-test-id="new-tag-link" @click="onTagsEditEnable">
 						+ {{ i18n.baseText('workflowDetails.addTag') }}
 					</span>
@@ -555,11 +460,9 @@ onBeforeUnmount(() => {
 				:tags="tags"
 				:name="name"
 				:meta="meta"
-				:read-only="readOnly"
 				:is-archived="isArchived"
 				:is-new-workflow="isNewWorkflow"
 				:workflow-permissions="workflowPermissions"
-				@workflow:saved="onSaveButtonClick"
 			/>
 		</PushConnectionTracker>
 	</div>

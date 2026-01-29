@@ -76,7 +76,7 @@ const edgeClasses = computed(() => ({
 
 const edgeToolbarStyle = computed(() => ({
 	transform: `translate(-50%, -50%) translate(${labelPosition.value[0]}px, ${labelPosition.value[1]}px)`,
-	...(delayedHovered.value ? { zIndex: 1 } : {}),
+	...(delayedHovered.value && props.bringToFront ? { zIndex: 1 } : {}),
 }));
 
 const edgeToolbarClasses = computed(() => ({
@@ -158,6 +158,8 @@ function onEdgeLabelMouseLeave() {
 			<CanvasEdgeToolbar
 				v-if="renderToolbar"
 				:type="connectionType"
+				:target-node="targetNode"
+				:source-node="sourceNode"
 				@add="onAdd"
 				@delete="onDelete"
 			/>

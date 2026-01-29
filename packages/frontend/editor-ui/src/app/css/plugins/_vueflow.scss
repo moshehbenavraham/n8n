@@ -122,7 +122,7 @@ body[data-theme='dark'] .vue-flow__minimap {
 	}
 
 	// Bump z-index for unconnected nodes
-	&:has(.canvas-handle-plus-wrapper):hover {
+	&:has(.canvas-handle-plus):hover {
 		z-index: 2 !important;
 	}
 }

@@ -164,3 +164,15 @@ The design system uses variable fonts for optimal performance and flexibility:
 --border-style: solid
 --border: var(--border-width) var(--border-style) var(--color--foreground)
 ```
+
+### Debounce Timing
+
+Use centralized constants from `@/app/constants/durations` instead of hardcoding:
+
+```typescript
+import { DEBOUNCE_TIME, getDebounceTime } from '@/app/constants';
+
+useDebounceFn(() => { ... }, getDebounceTime(DEBOUNCE_TIME.INPUT.SEARCH));
+```
+
+Categories: `UI`, `INPUT`, `API`, `TELEMETRY`, `COLLABORATION`, `CONNECTION`.

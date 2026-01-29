@@ -106,6 +106,15 @@ const plugins: UserConfig['plugins'] = [
 				src: pathPosix.resolve('node_modules/curlconverter/dist/tree-sitter-bash.wasm'),
 				dest: resolve(__dirname, 'dist'),
 			},
+			// wa-sqlite WASM files for OPFS database support (no cross-origin isolation needed)
+			{
+				src: pathPosix.resolve('node_modules/wa-sqlite/dist/wa-sqlite.wasm'),
+				dest: 'assets',
+			},
+			{
+				src: pathPosix.resolve('node_modules/wa-sqlite/dist/wa-sqlite-async.wasm'),
+				dest: 'assets',
+			},
 		],
 	}),
 	vue(),
@@ -227,8 +236,10 @@ export default mergeConfig(
 			target,
 		},
 		optimizeDeps: {
-			// Note: esbuildOptions is deprecated in Vite 7+ (uses Rolldown now)
-			// The build.target setting above handles browser targeting
+			exclude: ['wa-sqlite'],
+			esbuildOptions: {
+				target,
+			},
 		},
 		worker: {
 			format: 'es',

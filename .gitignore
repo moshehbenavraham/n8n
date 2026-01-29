@@ -36,6 +36,7 @@ packages/**/.turbo/
 !.vscode/extensions.json
 !.vscode/settings.default.json
 .idea/
+.idea
 *.sublime-project
 *.sublime-workspace
 
@@ -53,7 +54,9 @@ google-generated-credentials.json
 # -----------------------------------------------------------------------------
 coverage/
 .coverage/
+.coverage
 .nyc_output/
+.nyc_output
 test-results/
 test-results.json
 *.junit.xml
@@ -71,6 +74,7 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 build-storybook.log
+build.log
 *.log
 
 # -----------------------------------------------------------------------------
@@ -120,6 +124,10 @@ packages/cli/THIRD_PARTY_LICENSES.md
 _START_PACKAGE
 packages/cli/src/modules/my-feature/
 packages/cli/src/commands/export/outputs/
+packages/cli/src/commands/export/outputs
 
 # Dev instance data (isolated from production)
 .n8n-dev/
+.data
+.data/
+.claude/settings.local.json

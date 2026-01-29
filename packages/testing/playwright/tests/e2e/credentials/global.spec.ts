@@ -1,10 +1,11 @@
 import { test, expect } from '../../../fixtures/base';
 
-test.describe('Global credentials @isolated', () => {
+test.use({ capability: { env: { TEST_ISOLATION: 'global-credentials' } } });
+
+test.describe('Global credentials', () => {
 	test.describe.configure({ mode: 'serial' });
 
 	test.beforeAll(async ({ api }) => {
-		await api.resetDatabase();
 		await api.enableFeature('sharing');
 	});
 
@@ -97,12 +98,6 @@ test.describe('Global credentials @isolated', () => {
 
 		// Close NDV
 		await n8n.ndv.clickBackToCanvasButton();
-
-		// Save workflow
-		await n8n.canvas.saveWorkflow();
-
-		// Verify workflow saved successfully
-		await expect(n8n.canvas.getWorkflowNameInput()).toHaveValue('Test Global Credential Workflow');
 
 		await n8n.workflowComposer.executeWorkflowAndWaitForNotification(
 			'Workflow executed successfully',
