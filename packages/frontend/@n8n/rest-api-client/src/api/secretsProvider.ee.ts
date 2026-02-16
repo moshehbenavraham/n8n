@@ -10,11 +10,7 @@ import { makeRestApiRequest } from '../utils';
 export const getSecretProviderTypes = async (
 	context: IRestApiContext,
 ): Promise<SecretProviderTypeResponse[]> => {
-	return await makeRestApiRequest(
-		context,
-		'GET',
-		'/secret-providers/secrets-provider-connection-type',
-	);
+	return await makeRestApiRequest(context, 'GET', '/secret-providers/types');
 };
 
 export const getSecretProviderConnections = async (
@@ -23,7 +19,7 @@ export const getSecretProviderConnections = async (
 	return await makeRestApiRequest(context, 'GET', '/secret-providers/connections');
 };
 
-export const getSecretProviderConnectionById = async (
+export const getSecretProviderConnectionByKey = async (
 	context: IRestApiContext,
 	providerKey: string,
 ): Promise<SecretProviderConnection> => {
@@ -62,11 +58,33 @@ export const updateSecretProviderConnection = async (
 
 export const testSecretProviderConnection = async (
 	context: IRestApiContext,
-	connectionId: string,
+	providerKey: string,
 ): Promise<TestSecretProviderConnectionResponse> => {
 	return await makeRestApiRequest(
 		context,
 		'POST',
-		`/secret-providers/connections/${connectionId}/test`,
+		`/secret-providers/connections/${providerKey}/test`,
+	);
+};
+
+export const deleteSecretProviderConnection = async (
+	context: IRestApiContext,
+	providerKey: string,
+): Promise<void> => {
+	return await makeRestApiRequest(
+		context,
+		'DELETE',
+		`/secret-providers/connections/${providerKey}`,
+	);
+};
+
+export const getProjectSecretProviderConnectionsByProjectId = async (
+	context: IRestApiContext,
+	projectId: string,
+): Promise<SecretProviderConnection[]> => {
+	return await makeRestApiRequest(
+		context,
+		'GET',
+		`/secret-providers/projects/${projectId}/connections`,
 	);
 };

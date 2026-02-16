@@ -33,6 +33,7 @@ packages/**/.turbo/
 # IDE / Editor Settings
 # -----------------------------------------------------------------------------
 .vscode/*
+!.claude
 !.vscode/extensions.json
 !.vscode/settings.default.json
 .idea/
@@ -131,3 +132,4 @@ packages/cli/src/commands/export/outputs
 .data
 .data/
 .claude/settings.local.json
+lefthook-local.yml

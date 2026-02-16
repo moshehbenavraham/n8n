@@ -162,6 +162,7 @@ describe('GlobalConfig', () => {
 		templates: {
 			enabled: true,
 			host: 'https://api.n8n.io/api/',
+			dynamicTemplatesHost: 'https://dynamic-templates.n8n.io/templates',
 		},
 		versionNotifications: {
 			enabled: true,
@@ -178,7 +179,7 @@ describe('GlobalConfig', () => {
 			defaultName: 'My workflow',
 			callerPolicyDefaultOption: 'workflowsFromSameOwner',
 			activationBatchSize: 1,
-			indexingEnabled: false,
+			indexingEnabled: true,
 			useWorkflowPublicationService: false,
 		},
 		endpoints: {
@@ -216,6 +217,7 @@ describe('GlobalConfig', () => {
 			webhook: 'webhook',
 			webhookTest: 'webhook-test',
 			webhookWaiting: 'webhook-waiting',
+			health: 'healthz',
 		},
 		cache: {
 			backend: 'auto',
@@ -227,6 +229,11 @@ describe('GlobalConfig', () => {
 				prefix: 'cache',
 				ttl: 3600000,
 			},
+		},
+		chatHub: {
+			executionContextTtl: 3600,
+			maxBufferedChunks: 1000,
+			streamStateTtl: 300,
 		},
 		queue: {
 			health: {
@@ -251,6 +258,7 @@ describe('GlobalConfig', () => {
 					keepAlive: false,
 					keepAliveDelay: 5000,
 					keepAliveInterval: 5000,
+					reconnectOnFailover: true,
 				},
 				gracefulShutdownTimeout: 30,
 				prefix: 'bull',
@@ -281,6 +289,9 @@ describe('GlobalConfig', () => {
 			frontendDsn: '',
 			environment: '',
 			deploymentName: '',
+			profilesSampleRate: 0,
+			tracesSampleRate: 0,
+			eventLoopBlockThreshold: 500,
 		},
 		logging: {
 			level: 'info',
@@ -407,6 +418,7 @@ describe('GlobalConfig', () => {
 		ai: {
 			enabled: false,
 			timeout: 3600000,
+			allowSendingParameterValues: true,
 		},
 		workflowHistoryCompaction: {
 			batchDelayMs: 1_000,

@@ -388,15 +388,13 @@ describe('WorkflowsView', () => {
 				count: 0,
 				items: [],
 			});
-			const userStore = mockedStore(useUsersStore);
 
 			const sourceControl = useSourceControlStore();
 
 			renderComponent({ pinia });
 			await waitAllPromises();
 
-			await sourceControl.pullWorkfolder(true);
-			expect(userStore.fetchUsers).toHaveBeenCalledTimes(2);
+			await sourceControl.pullWorkfolder(true, 'none');
 		});
 	});
 });

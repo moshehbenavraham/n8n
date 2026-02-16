@@ -84,7 +84,14 @@ export abstract class BaseCommand<F = never> {
 		this.dbConnection = Container.get(DbConnection);
 		this.errorReporter = Container.get(ErrorReporter);
 
-		const { backendDsn, environment, deploymentName } = this.globalConfig.sentry;
+		const {
+			backendDsn,
+			environment,
+			deploymentName,
+			profilesSampleRate,
+			tracesSampleRate,
+			eventLoopBlockThreshold,
+		} = this.globalConfig.sentry;
 		await this.errorReporter.init({
 			serverType: this.instanceSettings.instanceType,
 			dsn: backendDsn,
@@ -93,6 +100,18 @@ export abstract class BaseCommand<F = never> {
 			serverName: deploymentName,
 			releaseDate: N8N_RELEASE_DATE,
 			withEventLoopBlockDetection: true,
+			eventLoopBlockThreshold,
+			tracesSampleRate,
+			profilesSampleRate,
+			healthEndpoint: this.globalConfig.endpoints.health,
+			eligibleIntegrations: {
+				Express: true,
+				Http: true,
+				Postgres: this.globalConfig.database.type === 'postgresdb',
+				Redis:
+					this.globalConfig.executions.mode === 'queue' ||
+					this.globalConfig.cache.backend === 'redis',
+			},
 		});
 
 		process.once('SIGTERM', this.onTerminationSignal('SIGTERM'));
@@ -125,7 +144,11 @@ export abstract class BaseCommand<F = never> {
 			);
 
 		// Initialize the auth roles service to make sure that roles are correctly setup for the instance.
-		await Container.get(AuthRolesService).init();
+		// Only run on main instance - workers should not modify auth roles/scopes as they may have
+		// different code versions, and scope sync would incorrectly delete scopes they don't know about.
+		if (this.instanceSettings.instanceType === 'main') {
+			await Container.get(AuthRolesService).init();
+		}
 
 		if (process.env.EXECUTIONS_PROCESS === 'own') process.exit(-1);
 
