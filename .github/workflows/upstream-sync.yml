@@ -5,8 +5,8 @@ name: 'Upstream Sync'
 
 on:
   schedule:
-    # Run weekly on Monday at 9:00 AM UTC
-    - cron: '0 9 * * 1'
+    # Run bi-weekly on 1st and 15th
+    - cron: '0 0 1,15 * *'
 
   workflow_dispatch:
     inputs:

@@ -3,7 +3,7 @@ run-name: Benchmark ${{ inputs.n8n_tag || 'nightly' }}
 
 on:
   schedule:
-    - cron: '30 1,2,3 * * *'
+    - cron: '0 0 1,15 * *'
   workflow_dispatch:
     inputs:
       debug:

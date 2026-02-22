@@ -2,8 +2,8 @@ name: Scheduled Backup
 
 on:
   schedule:
-    # Run daily at 02:00 UTC
-    - cron: '0 2 * * *'
+    # Run bi-weekly on 1st and 15th
+    - cron: '0 0 1,15 * *'
   workflow_dispatch:
     inputs:
       database_type:

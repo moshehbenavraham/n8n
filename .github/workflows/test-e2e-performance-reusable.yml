@@ -4,7 +4,7 @@ on:
   workflow_call:
   workflow_dispatch:
   schedule:
-    - cron: '0 0 * * *' # Runs daily at midnight
+    - cron: '0 0 1,15 * *' # Runs bi-weekly on 1st and 15th
   pull_request:
     paths:
       - '.github/workflows/test-e2e-performance-reusable.yml'

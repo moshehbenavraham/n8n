@@ -10,7 +10,7 @@ on:
         type: string
         default: ''
   schedule:
-    - cron: '0 6 * * 1' # Weekly on Monday at 6 AM UTC
+    - cron: '0 0 1,15 * *' # Bi-weekly on 1st and 15th
 
 permissions:
   contents: read

@@ -2,7 +2,7 @@ name: 'Test: Workflows Nightly'
 
 on:
   schedule:
-    - cron: '0 2 * * *'
+    - cron: '0 0 1,15 * *'
   workflow_dispatch:
     inputs:
       git_ref_to_test:
