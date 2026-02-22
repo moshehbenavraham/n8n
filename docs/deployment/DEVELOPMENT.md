@@ -30,7 +30,7 @@ n8n-dev
 Add this alias to your shell config (`~/.bashrc`, `~/.zshrc`, etc.):
 
 ```bash
-alias n8n-dev='N8N_USER_FOLDER=/home/aiwithapex/projects/n8n/.n8n-dev N8N_PORT=5682 VUE_APP_URL_BASE_API=http://localhost:5682/ pnpm exec turbo run dev --env-mode=loose --concurrency=50 --filter=!@n8n/design-system --filter=!@n8n/chat --filter=!@n8n/task-runner --filter=!n8n-playwright 2>&1 | tee logs/dev-build-$(date +%Y%m%d-%H%M%S).log'
+alias n8n-dev='N8N_USER_FOLDER=/home/aiwithapex/projects/n8n-obsidian-forge/.n8n-dev N8N_PORT=5682 VUE_APP_URL_BASE_API=http://localhost:5682/ pnpm exec turbo run dev --env-mode=loose --concurrency=50 --filter=!@n8n/design-system --filter=!@n8n/chat --filter=!@n8n/task-runner --filter=!n8n-playwright 2>&1 | tee logs/dev-build-$(date +%Y%m%d-%H%M%S).log'
 ```
 
 Then reload your shell:

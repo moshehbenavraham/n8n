@@ -72,15 +72,15 @@ mkdir -p ~/n8n-deployment
 cd ~/n8n-deployment
 
 # Copy the deployment files from this repo
-cp /home/aiwithapex/projects/n8n/docs/deployment/docker-compose.yml .
-cp /home/aiwithapex/projects/n8n/docs/deployment/.env.example .env
+cp /home/aiwithapex/projects/n8n-obsidian-forge/docs/deployment/docker-compose.yml .
+cp /home/aiwithapex/projects/n8n-obsidian-forge/docs/deployment/.env.example .env
 ```
 
 If deploying to a **remote server**, transfer the files:
 ```bash
 # From your local machine
-scp /home/aiwithapex/projects/n8n/docs/deployment/docker-compose.yml user@server:~/n8n-deployment/
-scp /home/aiwithapex/projects/n8n/docs/deployment/.env.example user@server:~/n8n-deployment/.env
+scp /home/aiwithapex/projects/n8n-obsidian-forge/docs/deployment/docker-compose.yml user@server:~/n8n-deployment/
+scp /home/aiwithapex/projects/n8n-obsidian-forge/docs/deployment/.env.example user@server:~/n8n-deployment/.env
 ```
 
 ---
